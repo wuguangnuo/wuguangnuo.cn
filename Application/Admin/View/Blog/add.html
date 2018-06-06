@@ -1,0 +1,14 @@
+<extend name="./Application/Admin/View/Public/main.html"/>
+
+<block name="form">
+<form method="post" action="./insert">
+标题：<input type="text" name="post_title"><br/>
+作者：<input type="text" name="post_author"><br/>
+类型：<input type="text" name="post_type"><br/>
+内容：<textarea name="post_content" rows="10" cols="50"></textarea><br/>
+日期：<input type="date" name="post_time1"><input type="time" name="post_time2"><br/>
+来源：<input type="text" name="post_from"><br/>
+原链：<input type="text" name="post_link"><br/>
+<input type="submit" value="提交">
+</form>
+</block>

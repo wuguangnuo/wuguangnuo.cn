@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+	<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+	<link rel="stylesheet" href="__HOME_CSS__/main.css">
+	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+	<script src="__PUBLIC__/jquery/jquery.min.js"></script>
+</head>
+<body>
+<div class="container home">
+<p class="title"><a href="__ROOT__/index" title="欢迎访问 (๑•́ ₃ •̀๑)">欢迎访问本站</a></p>
+	<ul class="link">
+		<li><a class="button button_green" href="__ROOT__/blog" title="道不远人">诺的博客</a></li>
+		<li><a class="button button_yellow" href="__ROOT__/diary" title="记录生活每一天">諾諾's diary</a></li>
+		<li><a class="button button_yellow" href="__ROOT__/demo" title="这只是一个DEMO">DEMO</a></li>
+		<li><a class="button button_yellow" href="__ROOT__/game" title="简洁不简单">H5游戏</a></li>
+		<li><a class="button button_yellow" href="__ROOT__/doc" title="思而不学则殆">开发文档</a></li>
+		<li><a class="button button_yellow" href="__ROOT__/tool" title="半成品堆放处">工具箱</a></li>
+		<li><a class="button button_yellow" href="https://weibo.com/wuguangnuo" target="_blank" title="微博">諾哥語錄</a></li>
+	</ul>
+	<div class="footer">Copyright &copy; <?php echo date("Y"); ?> wuguangnuo.cn All Rights Reserved | Author by WuGN</div>
+</div>
+</body>
+<script src="__HOME_JS__/functions.js"></script>
+<script src="__HOME_JS__/index.js"></script>
+<script>$(function(){$('body').iosParallax({movementFactor:75});});</script>
+</html>

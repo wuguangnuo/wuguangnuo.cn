@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+ <head> 
+  <meta charset="utf-8" /> 
+  <title>jquery文件分段上传插件-fcup</title> 
+  <!-- 引入css --> 
+  <link href="./fcup/css/style.css" rel="stylesheet" /> 
+ </head> 
+ <body> 
+  <p style="font-family:MicroSoft YaHei;font-size:32px;font-weight:900">fcup.js</p>
+  <p style="font-family:SimSun;font-size:20px;font-weight:500">fcup是一款支持大文件切片上传插件。该jquery插件使用简单，配置简单明了,支持上传类型指定，进度条查看上传进度，有php和node的接口案例。</p>
+  <div class="fcup"></div>  
+  <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script> 
+  <!--  引入js  --> 
+  <script src="./fcup/js/jquery.fcup.js"></script> 
+  <script>
+$.fcup({
+    updom: '.fcup',//上传控件的位置dom		
+	//upid: 'upid',//上传的文件表单id，有默认
+	shardsize: '2',//切片大小,(单次上传最大值)单位M，默认2M
+	upmaxsize : '1024',//上传文件大小,单位M，不设置不限制
+	upstr: '上传文件',//按钮文字
+	uploading: '上传中...',//上传中的提示文字
+    upfinished: '上传完成',//上传完成后的提示文字
+	upurl: './php/file.php',//文件上传接口 node接口:http://127.0.0.1:8888/upload
+	//uptype: 'mp4',//上传类型检测,用,号分割
+    errmaxup: '上传文件过大',//检测文件是否超出设置上传大小
+	errtype: '请上传mp4文件',//不支持类型的提示文字
+	//接口返回结果回调
+	upcallback : function(result){
+	     console.log(result);
+		 /*
+		 if (result !== 'success') {
+			$.fcupStop('出现错误');//终止运行,并且在按钮上显示内容
+		 }	
+         */		 
+		  
+	}
+});
+</script>  
+ </body>
+</html>

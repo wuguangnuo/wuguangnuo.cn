@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>JQ日历插件</title>
+	<link type="text/css" rel="stylesheet" href="calendar.css" />
+	<script src="jquery.min.js"></script>
+</head>
+
+<body>
+	<div id="CalendarMain">
+		<div id="title"> 
+			<a class="selectBtn month" href="javascript:" onclick="CalendarHandler.CalculateLastMonthDays();"><</a>
+			<a class="selectBtn selectYear" href="javascript:" onClick="CalendarHandler.CreateSelectYear(CalendarHandler.showYearStart);">2014年</a>
+			<a class="selectBtn selectMonth" onClick="CalendarHandler.CreateSelectMonth()">6月</a> <a class="selectBtn nextMonth" href="javascript:" onClick="CalendarHandler.CalculateNextMonthDays();">></a>
+			<a class="selectBtn currentDay" href="javascript:" onClick="CalendarHandler.CreateCurrentCalendar(0,0,0);">今天</a>
+		</div>
+		<div id="context">
+			<div class="week">
+				<h3> 一 </h3>
+				<h3> 二 </h3>
+				<h3> 三 </h3>
+				<h3> 四 </h3>
+				<h3> 五 </h3>
+				<h3> 六 </h3>
+				<h3> 日 </h3>
+			</div>
+			<div id="center">
+				<div id="centerMain">
+					<div id="selectYearDiv"></div>
+					<div id="centerCalendarMain">
+						<div id="Container"></div>
+					</div>
+					<div id="selectMonthDiv"></div>
+				</div>
+			</div>
+			<div id="foots"><a id="footNow">00:00:00</a></div>
+		</div>
+	</div>
+</body>
+<script src="calendar.js"></script>
+
+</html>

@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+	<head>
+		<title>
+			超级玛丽
+		</title>
+		<link rel="shortcut icon" href=favicon.png />
+		<link rel=stylesheet type="text/css" href="css.css">
+		<script type="text/javascript" src="jquery.min.js">
+		</script>
+	</head>
+	<body>
+		<h4>
+			方向键：移动 &nbsp;&nbsp;S键：跳跃/进入&nbsp;&nbsp;A键：快跑/射击
+		</h4>
+		<div class=spacing>
+		</div>
+		<div class=main>
+			<canvas id=canvas width=640 height=480>
+				<p style="text-align: center;">
+					糟糕！您的浏览器不支持HTML5 Canvas，玩不了，请尝试用Firefox、Chrome、IE9浏览器
+				</p>
+			</canvas>
+			<div class=spacing>
+			</div>
+		</div>
+		<script src="js1.js"></script>
+		<script src="js2.js"></script>
+		<script>
+			$(document).ready(function() {
+				new Enjine.Application().Initialize(new Mario.LoadingState(), 320, 240)
+			});
+		</script>
+		
+	</body>
+
+</html>

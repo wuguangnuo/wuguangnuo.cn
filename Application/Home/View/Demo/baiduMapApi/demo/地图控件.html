@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" /><!--移动平台兼容性---->  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />  
+	
+	<title>地图控件</title>  
+	
+	<link href="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2jICQS4CdwT8VjiRcjgvH9q2m9H6CvSi"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/TrafficControl/1.2/src/TrafficControl_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/DistanceTool/1.2/src/DistanceTool_min.js"></script>	
+	<script type="text/javascript" src="http://api.map.baidu.com/library/MarkerTool/1.2/src/MarkerTool_min.js"></script>
+	<script type="text/javascript" src="http://api.map.baidu.com/library/RectangleZoom/1.2/src/RectangleZoom_min.js"></script>
+
+	<style type="text/css">  
+		/* 整体布局 */
+		html{height:100%}  
+		body{height:100%;margin:0px;padding:0px} 
+		#allmap{height:100%}
+	</style> <!--铺满窗口--> 
+</head>  
+ 
+<body> 
+
+	<div id="allmap"></div>  
+	<script type="text/javascript"> 
+		var map = new BMap.Map("allmap");          // 创建地图实例  
+		
+		var point = new BMap.Point(118.090635,24.610362);  // 创建点坐标  
+
+		var myDis = new BMapLib.DistanceTool(map);
+		map.addEventListener("load",function(){
+			myDis.open();  //开启鼠标测距
+			myDis.close();  //关闭鼠标测距大
+		});
+		
+		var myDrag = new BMapLib.RectangleZoom(map, {
+			followText: "拖拽鼠标进行操作"
+		});
+		
+		// 添加定位控件
+		var geolocationControl = new BMap.GeolocationControl();
+		geolocationControl.addEventListener("locationSuccess", function(e){
+			// 定位成功事件
+			var address = '';
+			address += e.addressComponent.province;
+			address += e.addressComponent.city;
+			address += e.addressComponent.district;
+			address += e.addressComponent.street;
+			address += e.addressComponent.streetNumber;
+			alert("当前定位地址为：" + address);
+		});
+		geolocationControl.addEventListener("locationError",function(e){
+			// 定位失败事件
+			alert(e.message);
+		});
+			
+		var stCtrl = new BMap.PanoramaControl({anchor:BMAP_ANCHOR_TOP_LEFT});
+		stCtrl.setOffset(new BMap.Size(40, 10));//全景地图
+		
+		var cr = new BMap.CopyrightControl({anchor: BMAP_ANCHOR_TOP_RIGHT});   //设置版权控件位置
+		cr.addCopyright({id: 1, content: "<a style='font-size:10px;color:red'>Made By WuGN</a>"});  
+		
+		map.centerAndZoom(point, 17);// 初始化地图，设置中心点坐标和地图级别  
+		map.enableScrollWheelZoom(true);//鼠标滚轮控制
+		map.addControl(geolocationControl);//添加定位控件
+		map.addControl(new BMap.NavigationControl({type: BMAP_NAVIGATION_CONTROL_ZOOM , anchor: BMAP_ANCHOR_TOP_LEFT}));//鱼骨
+		map.addControl(new BMap.ScaleControl({anchor:BMAP_ANCHOR_BOTTOM_LEFT}));    //比例尺
+		map.addControl(new BMap.OverviewMapControl({anchor:BMAP_ANCHOR_BOTTOM_RIGHT,isOpen:false}));   //缩略图 
+		map.addControl(new BMap.MapTypeControl({mapTypes: [BMAP_NORMAL_MAP,BMAP_HYBRID_MAP],anchor: BMAP_ANCHOR_BOTTOM_RIGHT}));//2D图，卫星图
+		map.addControl(new BMapLib.TrafficControl({anchor:BMAP_ANCHOR_TOP_RIGHT}));//路况信息
+		map.addControl(stCtrl);//全景地图
+		map.addControl(cr); //添加版权控件	
+	
+	</script> 
+</body>  
+</html>

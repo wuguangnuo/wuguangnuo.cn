@@ -1,0 +1,76 @@
+<extend name="./Application/Home/View/Public/blog.html"/>
+
+<block name="style">
+<style>
+/* 分页样式 */
+.pages a,.pages span {
+  display:inline-block;
+  padding:2px 5px;
+  margin:0 1px;
+  border:1px solid #f0f0f0;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px;
+}
+.pages a,.pages li {
+  display:inline-block;
+  list-style: none;
+  text-decoration:none; color:#58A0D3;
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+  margin:0;
+}
+.pages a:hover{
+  border-color:#50A8E6;
+}
+.pages span.current{
+  background:#50A8E6;
+  color:#FFF;
+  font-weight:700;
+  border-color:#50A8E6;
+}
+/* 文章列表样式 */
+.postCon h3 a{
+  color:#333;
+  font-family:"Microsoft Yahei", Tahoma, Arial, SimSun, "Hiragino Sans GB", PMingLiu, Verdana, sans-serif;
+}
+.postCon h3 a:hover{
+  color:#f60;
+  text-decoration:none;
+}
+</style>
+</block>
+
+<block name="post_title">
+<div class="container">
+	<div class="postTitle">
+		<h2>最近文章</h2>
+		<span>&nbsp;</span>
+	</div>
+</div>
+</block>
+
+<block name="post_content">
+<div class="table-responsive">
+
+		<foreach name='list' item='post' >
+		<div>
+		<h3><a href="__ROOT__/blog/{$post.id}" title="{$post.post_title}">{$post.post_title}</a></h3>
+		<div class="">
+			日期：<time>{$post.post_date}</time>
+			<span>标签：<a href="#">{$post.post_type}</a></span>
+		</div>
+		<div>
+			<p>{$post.post_content}</p>
+			<p><a href="__ROOT__/blog/{$post.id}" title="继续阅读：{$post.post_title}">继续阅读 &raquo;</a></p>
+		</div>
+		<hr />
+		</div>
+		</foreach>
+	<div class="pages">{$page}</div>
+</div>
+</block>
+
+<block name="post_foot">
+
+</block>

@@ -1,0 +1,23 @@
+/* 整体布局 */
+html{
+	height:100%;
+}  
+body{
+	height:92%;
+	margin:0px;
+	padding:0px
+} 
+#allmap{
+	height:100%;
+}
+
+/* infowindow相关css */
+.common {
+	font-size: 12px;
+}
+.star {
+	color: #ff0000;
+}
+.zhong {
+	font-size: 15px;
+}

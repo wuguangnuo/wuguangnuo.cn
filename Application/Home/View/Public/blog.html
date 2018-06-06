@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
+	<link rel="stylesheet" href="__PUBLIC__/highlight.js/styles/default.css">
+	<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
+	<link rel="stylesheet" href="__HOME_CSS__/style.css">
+	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+	<block name="style"></block>
+	<style>
+		#tagbox{position:relative;margin:20px auto 0px;width:300px;height:250px;}
+		#tagbox a{position:absolute;padding:3px 6px;font-family:Microsoft YaHei;color:#fff;TOP:0px;text-decoration:none;left:0px}
+		#tagbox a:hover{border:#888 1px solid;background:#ddd;}
+		#tagbox .blue{color:blue}
+		#tagbox .red{color:red}
+		#tagbox .yellow{color:yellow}
+	</style>
+	<script src="__PUBLIC__/jquery/jquery.min.js"></script>
+</head>
+
+<body>
+<block name="nav">
+<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid"> 
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#example-navbar-collapse">
+			<span class="sr-only">切换导航</span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+			<span class="icon-bar"></span>
+		</button>
+		<a class="navbar-brand" href="__ROOT__/index">{:C('WEB_SITE')}</a>
+	</div>
+	<div class="collapse navbar-collapse" id="example-navbar-collapse">
+		<ul class="nav navbar-nav">
+			<li><a href="__ROOT__/index">首页</a></li>
+			<li><a href="__ROOT__/blog">博客</a></li>
+			<li><a href="__ROOT__/doc">开发文档</a></li>
+			<li><a href="__ROOT__/demo">DEMO</a></li>
+			<li><a href="__ROOT__/tool">工具箱</a></li>
+			<li><a href="__ROOT__/game">游戏</a></li>
+			<!--li class="dropdown">
+				<a href="__ROOT__/game" class="dropdown-toggle" data-toggle="dropdown">游戏<b class="caret"></b></a>
+				<ul class="dropdown-menu">
+					<li><a href="__ROOT__/game/snake.html">贪吃蛇</a></li>
+					<li><a href="__ROOT__/game/flappy-bird/">像素小鸟</a></li>
+					<li><a href="__ROOT__/game/game2/2048/">2048</a></li>
+					<li><a href="__ROOT__/game/tetris/">俄罗斯方块</a></li>
+					<li><a href="__ROOT__/game/game2/soduku/">数独</a></li>
+					<li class="divider"></li>
+					<li><a href="__ROOT__/game/lianliankan/">连连看</a></li>
+					<li><a href="__ROOT__/game/fruit-ninja/">水果忍者</a></li>
+					<li><a href="__ROOT__/game/ChineseChess/">中国象棋</a></li>
+					<li><a href="__ROOT__/game/mario/">马里奥</a></li>
+					<li><a href="__ROOT__/game/mota/">魔塔</a></li>
+					<li><a href="__ROOT__/game/game2/mine/">扫雷</a></li>
+				</ul>
+			</li-->
+			<li><a href="#">帮助</a></li>
+		</ul>
+		<ul class="nav navbar-nav navbar-right"> 
+            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li> 
+            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li> 
+       </ul>
+	</div>
+	</div>
+</nav>
+</block>
+<!--div class="bg-fixed"></div-->
+<header>
+<block name="post_title">
+<div class="container">
+	<div class="postTitle">
+		<h2>{$data.post_title}</h2>
+		<span>&nbsp;</span>
+	</div>
+</div>
+</block>
+</header>
+
+<div class="container clearfix">
+<div class="row">
+	<div class="col-md-8 col-lg-8 column">
+		<div class="postCon">
+			<!--some data from datebase****-->
+<block name="post_content">
+	<p>主体内容</p>
+</block>
+		</div>
+		<div>
+<block name="post_foot">
+	<p>原链接，日期，上一篇，下一篇</p>
+	<p>分页</p>
+</block>
+		</div>
+	</div>
+	<div class="col-md-4 col-lg-4 column visible-lg visible-md sidebar">
+<block name="post_news">
+<div class=""></div>
+<div id="sidebar-follow">
+	<div class="menuLayer">
+		<div class="panel panel-primary newsItem">
+			<div class="panel-heading">
+				<h3 class="panel-title">搜索博客</h3>
+			</div>
+			<div class="panel-body">
+				<form action="__ROOT__/blog/search" method="get">
+					<div class="form-group">
+						<label>输入标题、作者、类型、来源进行本地查找..</label>
+						<input name="q" type="text" class="form-control" placeholder="搜索博客..." />
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="panel panel-primary newsItem">
+			<div class="panel-heading">
+				<h3 class="panel-title">标签云</h3>
+			</div>
+			<div class="panel-body">
+				<div id="tagbox">
+					<a href="#" class="yellow">前端学习</a>
+					<a href="#" class="red">javascript</a>
+					<a href="#" class="blue">css</a>
+					<a href="#" class="yellow">html</a>
+					<a href="#" class="red">jquery</a>
+					<a href="#" class="blue">设计模式</a>
+					<a href="#" class="yellow">算法与数据结构</a>
+					<a href="#" class="red">nodejs</a>
+					<a href="#" class="blue">tcp/ip详解</a>
+					<a href="#" class="yellow">http</a>
+					<a href="#" class="red">计算机网络</a>
+					<a href="#" class="blue">程序员面试宝典</a>
+					<a href="#" class="yellow">剑指Offer</a>
+					<a href="#" class="red">你不知道的javascript</a>
+					<a href="#" class="blue">java</a>
+					<a href="#" class="yellow">java核心技术</a>
+					<a href="#" class="red">nodejs实战</a>
+					<a href="#" class="blue">jquery</a>
+					<a href="#" class="yellow">vue</a>
+					<a href="#" class="red">移动端开发</a>
+					<a href="#" class="blue">HTML5</a>
+					<a href="#" class="yellow">nodejs实战</a>
+					<a href="#" class="red">nodejs实战</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</block>
+	</div>
+
+	<div class="clear"></div>
+</div>
+</div>
+	
+<footer>
+	<div class="container">
+	<hr />
+		<div class="row footer-bottom">
+		<ul class="list-inline text-center">
+			<li>Copyright &copy; <?php echo date("Y"); ?></li> <li><a href="__ROOT__/index" target="_blank">{:C('WEB_SITE')}</a></li><li> All Rights Reserved | Author by {:C('AUTHOR_NAME')}</li>
+		</ul>
+		</div>
+	</div>
+</footer>
+
+<div id="gotop" class="hidden-xs hidden-sm" title="返回顶部">
+	<div class="level-2"></div>
+	<div class="level-3"></div>
+</div>
+
+<div id="gotop2" class="hidden-md hidden-lg text-center" title="返回顶部">
+	<i class="fa fa-angle-up"></i>
+</div>
+</body>
+
+<script src="__HOME_JS__/functions.js"></script>
+<script src="__HOME_JS__/blog.js"></script>
+<script src="__HOME_JS__/cloudtag.js"></script>
+<script src="__PUBLIC__/bootstrap/js/bootstrap.min.js"></script>
+<script src="__PUBLIC__/highlight.js/highlight.pack.js"></script>
+<script src="__PUBLIC__/jquery_lazyload/jquery.lazyload.min.js"></script>
+<!-- 侧边栏跟随,代码高亮,图片懒加载 -->
+<script>(new SidebarFollow()).init({element: jQuery('#sidebar-follow'),distanceToTop: 5});</script>
+<script>hljs.initHighlightingOnLoad();</script>
+<script>$(function(){$("img.lazy").lazyload({effect:"fadeIn"});});</script>
+<block name="script"></block>
+
+</html>
+

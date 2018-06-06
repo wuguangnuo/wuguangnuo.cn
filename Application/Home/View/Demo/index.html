@@ -1,0 +1,53 @@
+<extend name="./Application/Home/View/Public/doc.html"/>
+
+<block name="style">
+<!--style>
+.title{
+	color:#5e5e5e!important;
+	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
+	font-size:1.4em;
+}
+</style-->
+</block>
+	
+<block name="search">
+<form action="__ROOT__/demo/search">
+	<div class="item">
+		<div class="ui icon input">
+			<input name="q" type="text" placeholder="搜索DEMO..." />
+			<i class="search icon"></i>
+		</div>
+	</div>
+</form>
+</block>
+
+<block name="subject">
+<a class="toc"><i class="align justify icon"></i></a>
+<div class="ui huge breadcrumb">
+	<div class="active section">DEMO</div>
+</div>
+<div>分享到：
+	<a data-selector="share" data-type="weibo" href=""><i class="icon weibo"></i></a>
+	<a data-selector="share" data-type="qq" href=""><i class="icon qq"></i></a>
+	<a data-selector="share" data-type="wechat" href=""><i class="icon wechat"></i></a>
+</div>
+</block>
+
+<block name="content">
+<div class="ui special eight doubling cards">
+<foreach name='list' item='demo'>
+<a class="ui link card" href="<php>if(!strpos($demo['demo_link'],'://')){echo '__VIEW__/Demo/';}</php>{$demo.demo_link}" target="_blank">
+<div class="blurring dimmable image">
+	<div class="ui dimmer">
+		<div class="content">
+			<div class="center ">
+				<h4>{$demo.demo_title}</h4>
+			</div>
+		</div>
+	</div>
+	<img src="__VIEW__/demo/img/{$demo.demo_img}"/>
+</div>
+</a>
+</foreach>
+</div>
+</block>

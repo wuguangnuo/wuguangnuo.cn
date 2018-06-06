@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Read Page</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css">
+	
+	
+	<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+	<script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+	<script>hljs.initHighlightingOnLoad();</script>
+	
+<style>
+.post_content {
+  background-color:#afa;
+  
+  white-space:pre-wrap;
+  /*word-break:break-all;*/
+  word-wrap:break-word;
+}
+.post_content pre {
+  padding:3px!important;
+}
+</style>
+</head>
+<body>
+<table>
+<tr>
+    <td>id:</td>
+    <td>{$data.id}</td>
+</tr>
+<tr>
+    <td>标题：</td>
+    <td>{$data.post_title}</td>
+</tr>
+<tr>
+    <td>作者：</td>
+    <td>{$data.post_author}</td>
+</tr>
+<tr>
+    <td>类型：</td>
+    <td>{$data.post_type}</td>
+</tr>
+<tr>
+    <td>日期：</td>
+    <td>{$data.post_date}</td>
+</tr>
+<tr>
+    <td>来源：</td>
+    <td>{$data.post_from}</td>
+</tr>
+<tr>
+    <td>原链：</td>
+    <td>{$data.post_link}</td>
+</tr>
+</table>
+<strong>内容：</strong><hr />
+<div class="post_content">{$data.post_content}</div>
+<br />
+</body>
+</html>

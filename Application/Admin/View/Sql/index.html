@@ -1,0 +1,32 @@
+<extend name="./Application/Admin/View/Public/main.html"/>
+
+<block name="form">
+<script type="text/javascript" src="__PUBLIC__/jquery/jquery.min.js"></script>
+<script type="text/javascript">
+$(function(){
+	$('#submit').click(function(){
+		var sql = $('#textarea').val();
+		$.ajax({
+			url: './query',
+			data: {
+				sql: sql,
+			},
+			type: 'POST',
+			cache: false,
+			dataType: 'JSON',
+			success: function(data){
+				$('#message').html('结果：' + data.result + '<br />语句：' + data.info); 
+			},
+			error: function(){
+				$('#message').html('SQL语句错误<br />请检查重试');
+			}
+		});
+	})
+})
+</script>
+
+SQL语句：<br/><textarea id="textarea" rows="10" cols="50">select * from think_blog</textarea>
+<br/>
+<button id="submit">提交</button>
+<div id="message">&nbsp;<br />&nbsp;</div>
+</block>

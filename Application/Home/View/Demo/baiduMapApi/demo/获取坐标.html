@@ -1,0 +1,26 @@
+
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+		body, html,#allmap {width: 100%;height: 98%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=2jICQS4CdwT8VjiRcjgvH9q2m9H6CvSi"></script>
+	<title>坐标拾取器</title>
+</head>
+<body>
+	<div style="color:red;font-size:10px">Made By WuGN</div>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");            
+	map.centerAndZoom("华侨大学厦门校区",16);           
+	//单击获取点击的经纬度
+	map.addEventListener("click",function(e){
+		alert(e.point.lng + "," + e.point.lat);
+	});
+	map.enableScrollWheelZoom(true);//鼠标滚轮控制
+</script>

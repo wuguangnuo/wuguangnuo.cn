@@ -1,0 +1,24 @@
+﻿.imagechangenews_pnode
+{
+    padding:1px 7px;border-left:#cccccc 1px solid;
+}       
+a.imagechangenews_pnode:link,a.imagechangenews_pnode:visited
+{
+    text-decoration:none;color:#fff;line-height:15px;font-size:15px;font-family:宋体;background-color:#666;
+}       
+a.imagechangenews_pnode:active,a.imagechangenews_pnode:hover
+{
+    text-decoration:none;color:#fff;line-height:15px;font-size:15px;font-family:宋体;background-color:#999;
+}       
+.imagechangenews_fnode
+{
+    padding:1px 7px;border-left:#cccccc 1px solid;
+}       
+a.imagechangenews_fnode:link,a.imagechangenews_fnode:visited
+{
+    text-decoration:none;color:#fff;line-height:15px;font-size:15px;font-family:宋体;background-color:#ff0000;
+}       
+a.imagechangenews_fnode:active,a.imagechangenews_fnode:hover
+{
+    text-decoration:none;color:#fff;line-height:15px;font-size:15px;font-family:宋体;background-color:#ff0000;
+}       

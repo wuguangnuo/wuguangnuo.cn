@@ -1,0 +1,3344 @@
+﻿<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+		<!--移动平台兼容性---->
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<title>
+			Soooo.club!
+		</title>
+		<script type="text/javascript" src="js/key.js">
+		</script>
+		<style type="text/css">
+			html {
+				height:100%;
+			}
+			body {
+				height:92%;
+				margin:0px;
+				padding:0px
+			}
+			#allmap {
+				height:100%;
+			}
+			/* infowindow相关css */
+			.common {
+				font-size:12px;
+			}
+			.star {
+				color:#ff0000;
+			}
+			.zhong {
+				font-size:15px;
+			}
+			/*TrafficControl_min*/
+			.maplibTc {
+				font-size:12px;
+				width:243px;
+				border:1px solid #8ba4d8;
+				padding:3px 2px
+						0 5px;
+				background:#fff;
+				position:absolute
+			}
+			.maplibTc a {
+				text-decoration:none
+			}
+			.maplibTcColor {
+				background:url("images/tools_menu.gif") no-repeat scroll
+						138px -85px transparent;
+				font-weight:bold;
+				*background-position:128px -85px
+			}
+			.maplibTcUpdate {
+				float:left;
+				width:13px;
+				height:14px;
+				background:url(images/tools_menu.gif)
+						no-repeat -12px -18px;
+				margin-left:5px;
+				cursor:pointer
+			}
+			.maplibTcView {
+				float:right;
+				color:#00f;
+				text-decoration:none;
+				line-height:15px;
+				*line-height:18px
+			}
+			.maplibTcCurTime {
+				float:left;
+				color:#666
+			}
+			.maplibTcTime {
+				height:20px;
+				padding:5px 3px 0 0
+			}
+			.maplibTcWeekDay {
+				height:22px;
+				color:#6688ca;
+				padding:3px
+						0
+			}
+			.maplibTcWeekDay a {
+				color:#6688ca;
+				padding:3px 2px
+			}
+			.maplibTcWeekDay
+						ul {
+				float:left;
+				margin:0;
+				padding:0
+			}
+			.maplibTcWeekDay span {
+				float:left;
+				line-height:23px
+			}
+			.maplibTcWeekDay li {
+				float:left;
+				padding:0 6px;
+				list-style:none;
+				line-height:23px
+			}
+			.maplibTcRule {
+				background:url("images/bar.gif") no-repeat
+						scroll 0 10px transparent;
+				width:195px;
+				float:left;
+				margin-left:20px;
+				*margin-left:10px
+			}
+			.maplibTcRuleTxt {
+				float:left;
+				line-height:44px
+			}
+			.maplibTcClear {
+				clear:both
+			}
+			.maplibTcTimeBox {
+				color:#6688ca;
+				margin-left:137.5px;
+				font-size:11px;
+				overflow:hidden
+			}
+			.maplibTcTimeline {
+				height:34px
+			}
+			.maplibTcTimelinePrev {
+				overflow:hidden;
+				width:9px;
+				height:9px;
+				cursor:pointer;
+				float:left;
+				margin-top:3px
+			}
+			.maplibTcTimelineNext {
+				overflow:hidden;
+				width:11px;
+				*width:10px;
+				height:9px;
+				cursor:pointer;
+				float:right;
+				margin-top:3px
+			}
+			.maplibTcTimeMove {
+				width:9px;
+				height:18px;
+				background:url("images/tools_menu.gif") no-repeat scroll 0
+						-32px transparent;
+				float:left;
+				cursor:pointer;
+				margin-left:137.5px;
+				margin-top:0
+			}
+			.maplibTcHide {
+				display:none
+			}
+			.maplibTcBtn {
+				background:url(images/bgs.gif)
+						no-repeat scroll 0 -271px transparent;
+				cursor:pointer;
+				height:22px;
+				width:73px;
+				z-index:10;
+				position:absolute
+			}
+			.maplibTcBtnOff {
+				background-position:0
+						-249px
+			}
+			.maplibTcColon {
+				float:left
+			}
+			.maplibTcOn {
+				background:#e6eff8
+			}
+			.maplibTcClose {
+				background:url("images/popup_close.gif") no-repeat scroll
+						0 0 transparent;
+				border:0 none;
+				cursor:pointer;
+				height:12px;
+				position:absolute;
+				right:4px;
+				top:5px;
+				width:12px
+			}
+
+		</style>
+		<script type="text/javascript">
+			var BMapLib = window.BMapLib = BMapLib || {}; (function() {
+				var c = c || {
+					guid: "$BAIDU$"
+				}; (function() {
+					window[c.guid] = {};
+					c.extend = function(g, e) {
+						for (var f in e) {
+							if (e.hasOwnProperty(f)) {
+								g[f] = e[f]
+							}
+						}
+						return g
+					};
+					c.lang = c.lang || {};
+					c.lang.guid = function() {
+						return "TANGRAM__" + (window[c.guid]._counter++).toString(36)
+					};
+					window[c.guid]._counter = window[c.guid]._counter || 1;
+					window[c.guid]._instances = window[c.guid]._instances || {};
+					c.lang.Class = function(e) {
+						this.guid = e || c.lang.guid();
+						window[c.guid]._instances[this.guid] = this
+					};
+					window[c.guid]._instances = window[c.guid]._instances || {};
+					c.lang.isString = function(e) {
+						return "[object String]" == Object.prototype.toString.call(e)
+					};
+					c.lang.isFunction = function(e) {
+						return "[object Function]" == Object.prototype.toString.call(e)
+					};
+					c.lang.Class.prototype.toString = function() {
+						return "[object " + (this._className || "Object") + "]"
+					};
+					c.lang.Class.prototype.dispose = function() {
+						delete window[c.guid]._instances[this.guid];
+						for (var e in this) {
+							if (!c.lang.isFunction(this[e])) {
+								delete this[e]
+							}
+						}
+						this.disposed = true
+					};
+					c.lang.Event = function(e, f) {
+						this.type = e;
+						this.returnValue = true;
+						this.target = f || null;
+						this.currentTarget = null
+					};
+					c.lang.Class.prototype.addEventListener = function(h, g, f) {
+						if (!c.lang.isFunction(g)) {
+							return
+						} ! this.__listeners && (this.__listeners = {});
+						var e = this.__listeners,
+						i;
+						if (typeof f == "string" && f) {
+							if (/[^\w\-]/.test(f)) {
+								throw ("nonstandard key:" + f)
+							} else {
+								g.hashCode = f;
+								i = f
+							}
+						}
+						h.indexOf("on") != 0 && (h = "on" + h);
+						typeof e[h] != "object" && (e[h] = {});
+						i = i || c.lang.guid();
+						g.hashCode = i;
+						e[h][i] = g
+					};
+					c.lang.Class.prototype.removeEventListener = function(g, f) {
+						if (c.lang.isFunction(f)) {
+							f = f.hashCode
+						} else {
+							if (!c.lang.isString(f)) {
+								return
+							}
+						} ! this.__listeners && (this.__listeners = {});
+						g.indexOf("on") != 0 && (g = "on" + g);
+						var e = this.__listeners;
+						if (!e[g]) {
+							return
+						}
+						e[g][f] && delete e[g][f]
+					};
+					c.lang.Class.prototype.dispatchEvent = function(h, e) {
+						if (c.lang.isString(h)) {
+							h = new c.lang.Event(h)
+						} ! this.__listeners && (this.__listeners = {});
+						e = e || {};
+						for (var g in e) {
+							h[g] = e[g]
+						}
+						var g, f = this.__listeners,
+						j = h.type;
+						h.target = h.target || this;
+						h.currentTarget = this;
+						j.indexOf("on") != 0 && (j = "on" + j);
+						c.lang.isFunction(this[j]) && this[j].apply(this, arguments);
+						if (typeof f[j] == "object") {
+							for (g in f[j]) {
+								f[j][g].apply(this, arguments)
+							}
+						}
+						return h.returnValue
+					};
+					c.lang.inherits = function(k, i, h) {
+						var g, j, e = k.prototype,
+						f = new Function();
+						f.prototype = i.prototype;
+						j = k.prototype = new f();
+						for (g in e) {
+							j[g] = e[g]
+						}
+						k.prototype.constructor = k;
+						k.superClass = i.prototype;
+						if ("string" == typeof h) {
+							j._className = h
+						}
+					};
+					c.dom = c.dom || {};
+					c._g = c.dom._g = function(e) {
+						if (c.lang.isString(e)) {
+							return document.getElementById(e)
+						}
+						return e
+					};
+					c.g = c.dom.g = function(e) {
+						if ("string" == typeof e || e instanceof String) {
+							return document.getElementById(e)
+						} else {
+							if (e && e.nodeName && (e.nodeType == 1 || e.nodeType == 9)) {
+								return e
+							}
+						}
+						return null
+					};
+					c.insertHTML = c.dom.insertHTML = function(h, e, g) {
+						h = c.dom.g(h);
+						var f, i;
+						if (h.insertAdjacentHTML) {
+							h.insertAdjacentHTML(e, g)
+						} else {
+							f = h.ownerDocument.createRange();
+							e = e.toUpperCase();
+							if (e == "AFTERBEGIN" || e == "BEFOREEND") {
+								f.selectNodeContents(h);
+								f.collapse(e == "AFTERBEGIN")
+							} else {
+								i = e == "BEFOREBEGIN";
+								f[i ? "setStartBefore": "setEndAfter"](h);
+								f.collapse(i)
+							}
+							f.insertNode(f.createContextualFragment(g))
+						}
+						return h
+					};
+					c.ac = c.dom.addClass = function(k, m) {
+						k = c.dom.g(k);
+						var f = m.split(/\s+/),
+						e = k.className,
+						j = " " + e + " ",
+						h = 0,
+						g = f.length;
+						for (; h < g; h++) {
+							if (j.indexOf(" " + f[h] + " ") < 0) {
+								e += (e ? " ": "") + f[h]
+							}
+						}
+						k.className = e;
+						return k
+					};
+					c.event = c.event || {};
+					c.event._listeners = c.event._listeners || [];
+					c.on = c.event.on = function(f, i, k) {
+						i = i.replace(/^on/i, "");
+						f = c._g(f);
+						var j = function(m) {
+							k.call(f, m)
+						},
+						e = c.event._listeners,
+						h = c.event._eventFilter,
+						l,
+						g = i;
+						i = i.toLowerCase();
+						if (h && h[i]) {
+							l = h[i](f, i, j);
+							g = l.type;
+							j = l.listener
+						}
+						if (f.addEventListener) {
+							f.addEventListener(g, j, false)
+						} else {
+							if (f.attachEvent) {
+								f.attachEvent("on" + g, j)
+							}
+						}
+						e[e.length] = [f, i, k, j, g];
+						return f
+					};
+					c.un = c.event.un = function(g, j, f) {
+						g = c._g(g);
+						j = j.replace(/^on/i, "").toLowerCase();
+						var m = c.event._listeners,
+						h = m.length,
+						i = !f,
+						l, k, e;
+						while (h--) {
+							l = m[h];
+							if (l[1] === j && l[0] === g && (i || l[2] === f)) {
+								k = l[4];
+								e = l[3];
+								if (g.removeEventListener) {
+									g.removeEventListener(k, e, false)
+								} else {
+									if (g.detachEvent) {
+										g.detachEvent("on" + k, e)
+									}
+								}
+								m.splice(h, 1)
+							}
+						}
+						return g
+					};
+					c.preventDefault = c.event.preventDefault = function(e) {
+						if (e.preventDefault) {
+							e.preventDefault()
+						} else {
+							e.returnValue = false
+						}
+					}
+				})();
+				var d = BMapLib.DistanceTool = function(f, e) {
+					if (!f) {
+						return
+					}
+					this._map = f;
+					e = e || {};
+					this._opts = c.extend(c.extend(this._opts || {},
+					{
+						tips: "\u6d4b\u8ddd",
+						followText: "\u5355\u51fb\u786e\u5b9a\u5730\u70b9\uff0c\u53cc\u51fb\u7ed3\u675f",
+						unit: "metric",
+						lineColor: "#ff6319",
+						lineStroke: 2,
+						opacity: 0.8,
+						lineStyle: "solid",
+						cursor: "images/ruler.cur",
+						secIcon: null,
+						closeIcon: null
+					}), e);
+					this._followTitle = null;
+					this._points = [];
+					this._paths = [];
+					this._dots = [];
+					this._segDistance = [];
+					this._overlays = [];
+					this._enableMassClear = true,
+					this._units = {
+						metric: {
+							name: "metric",
+							conv: 1,
+							incon: 1000,
+							u1: "\u7c73",
+							u2: "\u516c\u91cc"
+						},
+						us: {
+							name: "us",
+							conv: 3.2808,
+							incon: 5279.856,
+							u1: "\u82f1\u5c3a",
+							u2: "\u82f1\u91cc"
+						}
+					};
+					this._isOpen = false;
+					this._startFollowText = "\u5355\u51fb\u786e\u5b9a\u8d77\u70b9";
+					this._movingTimerId = null;
+					this._styles = {
+						BMapLib_diso: "height:17px;width:5px;position:absolute;background:url(images/dis_box_01.gif) no-repeat left top",
+						BMapLib_disi: "color:#7a7a7a;position:absolute;left:5px;padding:0 4px 1px 0;line-height:17px;background:url(images/dis_box_01.gif) no-repeat right top",
+						BMapLib_disBoxDis: "color:#ff6319;font-weight:bold"
+					};
+					if (this._opts.lineStroke <= 0) {
+						this._opts.lineStroke = 2
+					}
+					if (this._opts.opacity > 1) {
+						this._opts.opacity = 1
+					} else {
+						if (this._opts.opacity < 0) {
+							this._opts.opacity = 0
+						}
+					}
+					if (this._opts.lineStyle != "solid" && this._opts.lineStyle != "dashed") {
+						this._opts.lineStyle = "solid"
+					}
+					if (!this._units[this._opts.unit]) {
+						this._opts.unit = "metric"
+					}
+					this.text = "\u6d4b\u8ddd"
+				};
+				c.lang.inherits(d, c.lang.Class, "DistanceTool");
+				d.prototype._bind = function() {
+					this._setCursor(this._opts.cursor);
+					var f = this;
+					c.on(this._map.getContainer(), "mousemove",
+					function(i) {
+						if (!f._isOpen) {
+							return
+						}
+						if (!f._followTitle) {
+							return
+						}
+						i = window.event || i;
+						var g = i.target || i.srcElement;
+						if (g != a.getDom(f._map)) {
+							f._followTitle.hide();
+							return
+						}
+						if (!f._mapMoving) {
+							f._followTitle.show()
+						}
+						var h = a.getDrawPoint(i, true);
+						f._followTitle.setPosition(h)
+					});
+					if (this._startFollowText) {
+						var e = this._followTitle = new BMap.Label(this._startFollowText, {
+							offset: new BMap.Size(14, 16)
+						});
+						this._followTitle.setStyles({
+							color: "#333",
+							borderColor: "#ff0103"
+						})
+					}
+				};
+				d.prototype.open = function() {
+					if (this._isOpen == true) {
+						return true
+					}
+					if ( !! BMapLib._toolInUse) {
+						return
+					}
+					this._isOpen = true;
+					BMapLib._toolInUse = true;
+					if (this._mapMoving) {
+						delete this._mapMoving
+					}
+					var h = this;
+					if (!this._binded) {
+						this._binded = true;
+						this._bind();
+						this._map.addEventListener("moving",
+						function() {
+							h._hideCurrent()
+						})
+					}
+					if (this._followTitle) {
+						this._map.addOverlay(this._followTitle);
+						this._followTitle.hide()
+					}
+					var g = function(q) {
+						var l = h._map;
+						if (!h._isOpen) {
+							return
+						}
+						q = window.event || q;
+						var n = a.getDrawPoint(q, true);
+						if (!h._isPointValid(n)) {
+							return
+						}
+						h._bind.initX = q.pageX || q.clientX || 0;
+						h._bind.initY = q.pageY || q.clientY || 0;
+						if (h._points.length > 0) {
+							var t = l.pointToPixel(h._points[h._points.length - 1]);
+							var m = l.pointToPixel(n);
+							var p = Math.sqrt(Math.pow(t.x - m.x, 2) + Math.pow(t.y - m.y, 2));
+							if (p < 5) {
+								return
+							}
+						}
+						h._bind.x = q.layerX || q.offsetX || 0;
+						h._bind.y = q.layerY || q.offsetY || 0;
+						h._points.push(n);
+						h._addSecPoint(n);
+						if (h._paths.length == 0) {
+							h._formatTitle(1, h._opts.followText, h._getTotalDistance())
+						}
+						if (h._paths.length > 0) {
+							h._paths[h._paths.length - 1].show();
+							h._paths[h._paths.length - 1].setStrokeOpacity(h._opts.opacity)
+						}
+						var w = new BMap.Polyline([n, n], {
+							enableMassClear: h._enableMassClear
+						});
+						h._map.addOverlay(w);
+						h._paths.push(w);
+						h._overlays.push(w);
+						w.setStrokeWeight(h._opts.lineStroke);
+						w.setStrokeColor(h._opts.lineColor);
+						w.setStrokeOpacity(h._opts.opacity / 2);
+						w.setStrokeStyle(h._opts.lineStyle);
+						if (h._mapMoving) {
+							w.hide()
+						}
+						if (h._points.length > 1) {
+							var o = h._paths[h._points.length - 2];
+							o.setPositionAt(1, n)
+						}
+						var r = "";
+						if (h._points.length > 1) {
+							var u = h._setSegDistance(h._points[h._points.length - 2], h._points[h._points.length - 1]);
+							var s = h._getTotalDistance();
+							r = h._formatDisStr(s)
+						} else {
+							r = "\u8d77\u70b9"
+						}
+						var v = new BMap.Label(r, {
+							offset: new BMap.Size(10, -5),
+							enableMassClear: h._enableMassClear
+						});
+						v.setStyles({
+							color: "#333",
+							borderColor: "#ff0103"
+						});
+						h._map.addOverlay(v);
+						h._formatSegLabel(v, r);
+						h._overlays.push(v);
+						n.disLabel = v;
+						v.setPosition(n);
+						var k = new c.lang.Event("onaddpoint");
+						k.point = n;
+						k.pixel = h._map.pointToPixel(n);
+						k.index = h._points.length - 1;
+						k.distance = h._getTotalDistance().toFixed(0);
+						h.dispatchEvent(k)
+					};
+					var f = function(p) {
+						if (!h._isOpen) {
+							return
+						}
+						if (h._paths.length > 0) {
+							p = window.event || p;
+							var l = p.pageX || p.clientX || 0;
+							var k = p.pageY || p.clientY || 0;
+							if (typeof h._bind.initX == "undefined") {
+								h._bind.x = p.layerX || p.offsetX || 0;
+								h._bind.y = p.layerY || p.offsetY || 0;
+								h._bind.initX = l;
+								h._bind.initY = k
+							}
+							var r = h._bind.x + l - h._bind.initX;
+							var q = h._bind.y + k - h._bind.initY;
+							var z = h._paths[h._paths.length - 1];
+							var m = h._map.pixelToPoint(new BMap.Pixel(r, q));
+							z.setPositionAt(1, m);
+							if (!h._mapMoving) {
+								z.show()
+							}
+							var A = 0;
+							var u = 0;
+							if (r < 10) {
+								A = 8
+							} else {
+								if (r > h._map.getSize().width - 10) {
+									A = -8
+								}
+							}
+							if (q < 10) {
+								u = 8
+							} else {
+								if (q > h._map.getSize().height - 10) {
+									u = -8
+								}
+							}
+							if (A != 0 || u != 0) {
+								if (!f._movingTimerId) {
+									h._mapMoving = true;
+									h._map.panBy(A, u, {
+										noAnimation: true
+									});
+									h._movingTimerId = f._movingTimerId = setInterval(function() {
+										h._map.panBy(A, u, {
+											noAnimation: true
+										})
+									},
+									30);
+									z.hide();
+									h._followTitle && h._followTitle.hide()
+								}
+							} else {
+								if (f._movingTimerId) {
+									clearInterval(f._movingTimerId);
+									delete f._movingTimerId;
+									delete h._movingTimerId;
+									var w = h._paths[h._paths.length - 1];
+									var v = h._map.pixelToPoint(new BMap.Pixel(r, q));
+									if (!w) {
+										return
+									}
+									w.setPositionAt(1, v);
+									w.show();
+									if (h._followTitle) {
+										h._followTitle.setPosition(v);
+										h._followTitle.show()
+									}
+									h._bind.i = 0;
+									h._bind.j = 0;
+									delete h._mapMoving
+								}
+							}
+							if (h._followTitle) {
+								var o = h._getTotalDistance();
+								var n = h._map.getDistance(h._points[h._points.length - 1], m);
+								h._updateInstDis(h._followTitle, o + n)
+							}
+						} else {
+							if (h._followTitle) {
+								h._followTitle.show();
+								p = window.event || p;
+								var s = p.target || p.srcElement;
+								if (s != a.getDom()) {
+									h._followTitle.hide()
+								}
+							}
+						}
+					};
+					var e = function(k) {
+						if (!h._isOpen) {
+							return
+						}
+						c.un(a.getDom(h._map), "click", g);
+						c.un(document, "mousemove", f);
+						c.un(a.getDom(h._map), "dblclick", e);
+						c.un(document, "keydown", j);
+						c.un(a.getDom(h._map), "mouseup", i);
+						setTimeout(function() {
+							h.close()
+						},
+						50)
+					};
+					var j = function(k) {
+						k = window.event || k;
+						if (k.keyCode == 27) {
+							h._clearCurData();
+							setTimeout(function() {
+								h.close()
+							},
+							50)
+						}
+					};
+					var i = function(k) {
+						k = window.event || k;
+						var l = 0;
+						if (/msie (\d+\.\d)/i.test(navigator.userAgent)) {
+							l = document.documentMode || +RegExp["\x241"]
+						}
+						if (l && k.button != 1 || k.button == 2) {
+							h.close()
+						}
+					};
+					h._initData();
+					this._formatTitle();
+					a.show(this._map);
+					this._setCursor(this._opts.cursor);
+					c.on(a.getDom(this._map), "click", g);
+					c.on(document, "mousemove", f);
+					c.on(a.getDom(this._map), "dblclick", e);
+					c.on(document, "keydown", j);
+					c.on(a.getDom(this._map), "mouseup", i);
+					this.bindFunc = [{
+						elem: a.getDom(this._map),
+						type: "click",
+						func: g
+					},
+					{
+						elem: a.getDom(this._map),
+						type: "dblclick",
+						func: e
+					},
+					{
+						elem: document,
+						type: "mousemove",
+						func: f
+					},
+					{
+						elem: document,
+						type: "keydown",
+						func: j
+					},
+					{
+						elem: a.getDom(this._map),
+						type: "mouseup",
+						func: i
+					}];
+					return true
+				};
+				d.prototype._dispatchLastEvent = function() {
+					var e = new c.lang.Event("ondrawend");
+					e.points = this._points ? this._points.slice(0) : [];
+					e.overlays = this._paths ? this._paths.slice(0, this._paths.length - 1) : [];
+					e.distance = this._getTotalDistance().toFixed(0);
+					this.dispatchEvent(e)
+				};
+				d.prototype.close = function() {
+					if (this._isOpen == false) {
+						return
+					}
+					this._isOpen = false;
+					BMapLib._toolInUse = false;
+					if (this._mapMoving) {
+						delete this._mapMoving
+					}
+					var g = this;
+					g._dispatchLastEvent();
+					if (g._points.length < 2) {
+						g._clearCurData()
+					} else {
+						g._paths[g._paths.length - 1].remove();
+						g._paths[g._paths.length - 1] = null;
+						g._paths.length = g._paths.length - 1;
+						var h = g._points[g._points.length - 1];
+						if (h.disLabel) {
+							h.disLabel.remove()
+						}
+						g._processLastOp()
+					}
+					a.hide();
+					for (var f = 0,
+					e = this.bindFunc.length; f < e; f++) {
+						c.un(this.bindFunc[f].elem, this.bindFunc[f].type, this.bindFunc[f].func)
+					}
+					if (g._movingTimerId) {
+						clearInterval(g._movingTimerId);
+						g._movingTimerId = null
+					}
+					if (this._followTitle) {
+						this._followTitle.hide()
+					}
+				};
+				d.prototype._clearCurData = function() {
+					for (var f = 0,
+					e = this._points.length; f < e; f++) {
+						if (this._points[f].disLabel) {
+							this._points[f].disLabel.remove()
+						}
+					}
+					for (var f = 0,
+					e = this._paths.length; f < e; f++) {
+						this._paths[f].remove()
+					}
+					for (var f = 0,
+					e = this._dots.length; f < e; f++) {
+						this._dots[f].remove()
+					}
+					this._initData()
+				};
+				d.prototype._initData = function() {
+					this._points.length = 0;
+					this._paths.length = 0;
+					this._segDistance.length = 0;
+					this._dots.length = 0
+				};
+				d.prototype._setSegDistance = function(g, f) {
+					if (!g || !f) {
+						return
+					}
+					var e = this._map.getDistance(g, f);
+					this._segDistance.push(e);
+					return e
+				};
+				d.prototype._getTotalDistance = function() {
+					var g = 0;
+					for (var f = 0,
+					e = this._segDistance.length; f < e; f++) {
+						g += this._segDistance[f]
+					}
+					return g
+				};
+				d.prototype._convertUnit = function(e, f) {
+					f = f || "metric";
+					if (this._units[f]) {
+						return e * this._units[f].conv
+					}
+					return e
+				};
+				d.prototype._addSecPoint = function(g) {
+					var f = this._opts.secIcon ? this._opts.secIcon: new BMap.Icon("images/mapctrls.png", new BMap.Size(11, 11), {
+						imageOffset: new BMap.Size( - 26, -313)
+					});
+					var e = new BMap.Marker(g, {
+						icon: f,
+						clickable: false,
+						baseZIndex: 3500000,
+						zIndexFixed: true,
+						enableMassClear: this._enableMassClear
+					});
+					this._map.addOverlay(e);
+					this._dots.push(e)
+				};
+				d.prototype._formatDisStr = function(h) {
+					var f = this._opts.unit;
+					var g = this._units[f].u1;
+					var e = this._convertUnit(h, f);
+					if (e > this._units[f].incon) {
+						e = e / this._units[f].incon;
+						g = this._units[f].u2;
+						e = e.toFixed(1)
+					} else {
+						e = e.toFixed(0)
+					}
+					return e + g
+				};
+				d.prototype._setCursor = function(f) {
+					var e = /webkit/.test(navigator.userAgent.toLowerCase()) ? "url(" + this._opts.cursor + ") 3 6, crosshair": "url(" + this._opts.cursor + "), crosshair";
+					a._setCursor(e)
+				};
+				d.prototype._getCursor = function() {
+					return this._opts.cursor
+				};
+				d.prototype._formatSegLabel = function(e, f) {
+					e.setStyle({
+						border: "none",
+						padding: "0"
+					});
+					e.setContent("<span style='" + this._styles.BMapLib_diso + "'><span style='" + this._styles.BMapLib_disi + "'>" + f + "</span></span>")
+				};
+				d.prototype._processLastOp = function() {
+					var i = this;
+					delete i._bind.x;
+					delete i._bind.y;
+					delete i._bind.initX;
+					delete i._bind.initY;
+					if (i._paths.length > i._points.length - 1) {
+						var g = i._paths.length - 1;
+						i._paths[g].remove();
+						i._paths[g] = null;
+						i._paths.length = g
+					}
+					var e = {};
+					e.points = i._points.slice(0);
+					e.paths = i._paths.slice(0);
+					e.dots = i._dots.slice(0);
+					e.segDis = i._segDistance.slice(0);
+					var j = i._map.pointToPixel(e.points[e.points.length - 1]);
+					var h = i._map.pointToPixel(e.points[e.points.length - 2]);
+					var k = [0, 0];
+					var f = [0, 0];
+					if (j.y - h.y >= 0) {
+						f = [ - 5, 11]
+					} else {
+						f = [ - 5, -35]
+					}
+					if (j.x - h.x >= 0) {
+						k = [14, 0]
+					} else {
+						k = [ - 14, 0]
+					}
+					var n = e.points[e.points.length - 1];
+					n.disLabel = new BMap.Label("", {
+						offset: new BMap.Size( - 15, -40),
+						enableMassClear: i._enableMassClear
+					});
+					n.disLabel.setStyles({
+						color: "#333",
+						borderColor: "#ff0103"
+					});
+					i._map.addOverlay(n.disLabel);
+					n.disLabel.setOffset(new BMap.Size(f[0], f[1]));
+					n.disLabel.setPosition(n);
+					i._formatTitle(2, "", "", n.disLabel);
+					var m = this._opts.closeIcon ? this._opts.closeIcon: new BMap.Icon("images/mapctrls.gif", new BMap.Size(12, 12), {
+						imageOffset: new BMap.Size(0, -14)
+					});
+					e.closeBtn = new BMap.Marker(e.points[e.points.length - 1], {
+						icon: m,
+						offset: new BMap.Size(k[0], k[1]),
+						baseZIndex: 3600000,
+						enableMassClear: i._enableMassClear
+					});
+					i._map.addOverlay(e.closeBtn);
+					e.closeBtn.setTitle("\u6e05\u9664\u672c\u6b21\u6d4b\u8ddd");
+					e.closeBtn.addEventListener("click",
+					function(r) {
+						for (var p = 0,
+						o = e.points.length; p < o; p++) {
+							e.points[p].disLabel.remove();
+							e.points[p].disLabel = null
+						}
+						for (var p = 0,
+						o = e.paths.length; p < o; p++) {
+							e.paths[p].remove();
+							e.paths[p] = null
+						}
+						for (var p = 0,
+						o = e.dots.length; p < o; p++) {
+							e.dots[p].remove();
+							e.dots[p] = null
+						}
+						e.closeBtn.remove();
+						e.closeBtn = null;
+						b(r);
+						var q = new c.lang.Event("onremovepolyline");
+						i.dispatchEvent(q)
+					});
+					i._initData()
+				};
+				d.prototype._formatTitle = function(g, l, e, i) {
+					var h = i || this._followTitle;
+					if (!h) {
+						return
+					}
+					h.setStyle({
+						lineHeight: "16px",
+						zIndex: "85",
+						padding: "3px 5px"
+					});
+					var n = this._startFollowText || "";
+					var k = [];
+					if (g == 1) {
+						h.setOffset(0, 25);
+						var m = this._opts.unit;
+						var j = this._units[m].u1;
+						var f = this._convertUnit(e, m);
+						if (f > this._units[m].incon) {
+							f = f / this._units[m].incon;
+							j = this._units[m].u2;
+							f = f.toFixed(1)
+						} else {
+							f = f.toFixed(0)
+						}
+						k.push("<span>\u603b\u957f\uff1a<span style='" + this._styles.BMapLib_disBoxDis + "'>" + f + "</span>" + j + "</span><br />");
+						k.push("<span style='color:#7a7a7a'>" + l + "</span>")
+					} else {
+						if (g == 2) {
+							var m = this._opts.unit;
+							var j = this._units[m].u1;
+							var f = this._convertUnit(this._getTotalDistance(), m);
+							if (f > this._units[m].incon) {
+								f = f / this._units[m].incon;
+								j = this._units[m].u2;
+								f = f.toFixed(1)
+							} else {
+								f = f.toFixed(0)
+							}
+							k.push("\u603b\u957f\uff1a<span style='" + this._styles.BMapLib_disBoxDis + "'>" + f + "</span>" + j)
+						} else {
+							h.setOffset(0, 25);
+							k.push(n)
+						}
+					}
+					h.setContent(k.join(""))
+				};
+				d.prototype._updateInstDis = function(g, e) {
+					var f = this._opts.unit;
+					var i = this._units[f].u1;
+					if (e > this._units[f].incon) {
+						e = e / this._units[f].incon;
+						i = this._units[f].u2;
+						e = e.toFixed(1)
+					} else {
+						e = e.toFixed(0)
+					}
+					if (g) {
+						var h = [];
+						h.push("<span>\u603b\u957f\uff1a<span style='" + this._styles.BMapLib_disBoxDis + "'>" + e + "</span>" + i + "</span><br />");
+						h.push("<span style='color:#7a7a7a'>" + this._opts.followText + "</span>");
+						g.setContent(h.join(""))
+					}
+				};
+				d.prototype._hideCurrent = function() {
+					if (!this._isOpen) {
+						return
+					}
+					if (this._paths.length > 0) {
+						var e = this._paths[this._paths.length - 1];
+						e.hide()
+					}
+					this._followTitle && this._followTitle.hide()
+				};
+				d.prototype._isPointValid = function(h) {
+					if (!h) {
+						return false
+					}
+					var f = this._map.getBounds();
+					var e = f.getSouthWest(),
+					g = f.getNorthEast();
+					if (h.lng < e.lng || h.lng > g.lng || h.lat < e.lat || h.lat > g.lat) {
+						return false
+					}
+					return true
+				};
+				var a = {
+					_map: null,
+					_html: "<div style='background:transparent url(images/blank.gif);position:absolute;left:0;top:0;width:100%;height:100%;z-index:1000' unselectable='on'></div>",
+					_maskElement: null,
+					_cursor: "default",
+					_inUse: false,
+					show: function(e) {
+						if (!this._map) {
+							this._map = e
+						}
+						this._inUse = true;
+						if (!this._maskElement) {
+							this._createMask(e)
+						}
+						this._maskElement.style.display = "block"
+					},
+					_createMask: function(g) {
+						this._map = g;
+						if (!this._map) {
+							return
+						}
+						c.insertHTML(this._map.getContainer(), "beforeEnd", this._html);
+						var f = this._maskElement = this._map.getContainer().lastChild;
+						var e = function(h) {
+							b(h);
+							return c.preventDefault(h)
+						};
+						c.on(f, "mouseup",
+						function(h) {
+							if (h.button == 2) {
+								e(h)
+							}
+						});
+						c.on(f, "contextmenu", e);
+						f.style.display = "none"
+					},
+					getDrawPoint: function(h, j) {
+						h = window.event || h;
+						var f = h.layerX || h.offsetX || 0;
+						var i = h.layerY || h.offsetY || 0;
+						var g = h.target || h.srcElement;
+						if (g != a.getDom(this._map) && j == true) {
+							while (g && g != this._map.getContainer()) {
+								if (! (g.clientWidth == 0 && g.clientHeight == 0 && g.offsetParent && g.offsetParent.nodeName.toLowerCase() == "td")) {
+									f += g.offsetLeft;
+									i += g.offsetTop
+								}
+								g = g.offsetParent
+							}
+						}
+						if (g != a.getDom(this._map) && g != this._map.getContainer()) {
+							return
+						}
+						if (typeof f === "undefined" || typeof i === "undefined") {
+							return
+						}
+						if (isNaN(f) || isNaN(i)) {
+							return
+						}
+						return this._map.pixelToPoint(new BMap.Pixel(f, i))
+					},
+					hide: function() {
+						if (!this._map) {
+							return
+						}
+						this._inUse = false;
+						if (this._maskElement) {
+							this._maskElement.style.display = "none"
+						}
+					},
+					getDom: function(e) {
+						if (!this._maskElement) {
+							this._createMask(e)
+						}
+						return this._maskElement
+					},
+					_setCursor: function(e) {
+						this._cursor = e || "default";
+						if (this._maskElement) {
+							this._maskElement.style.cursor = this._cursor
+						}
+					}
+				};
+				function b(f) {
+					var f = window.event || f;
+					f.stopPropagation ? f.stopPropagation() : f.cancelBubble = true
+				}
+			})();
+
+			var BMapLib = window.BMapLib = BMapLib || {}; (function() {
+				var d, c = d = c || {
+					version: "1.3.9"
+				};
+				c.guid = "$BAIDU$"; (function() {
+					c.dom = c.dom || {};
+					c.event = c.event || {};
+					c.lang = c.lang || {};
+					c.browser = c.browser || {};
+					c.dom.addClass = function(p, q) {
+						p = c.dom.g(p);
+						var k = q.split(/\s+/),
+						j = p.className,
+						o = " " + j + " ",
+						n = 0,
+						m = k.length;
+						for (; n < m; n++) {
+							if (o.indexOf(" " + k[n] + " ") < 0) {
+								j += (j ? " ": "") + k[n]
+							}
+						}
+						p.className = j;
+						return p
+					};
+					c.addClass = c.dom.addClass;
+					c.dom.removeClass = function(p, q) {
+						p = c.dom.g(p);
+						var n = p.className.split(/\s+/),
+						r = q.split(/\s+/),
+						l,
+						k = r.length,
+						m,
+						o = 0;
+						for (; o < k; ++o) {
+							for (m = 0, l = n.length; m < l; ++m) {
+								if (n[m] == r[o]) {
+									n.splice(m, 1);
+									break
+								}
+							}
+						}
+						p.className = n.join(" ");
+						return p
+					};
+					c.removeClass = c.dom.removeClass;
+					c.dom.getComputedStyle = function(j, i) {
+						j = c.dom._g(j);
+						var l = c.dom.getDocument(j),
+						k;
+						if (l.defaultView && l.defaultView.getComputedStyle) {
+							k = l.defaultView.getComputedStyle(j, null);
+							if (k) {
+								return k[i] || k.getPropertyValue(i)
+							}
+						}
+						return ""
+					};
+					c.dom.getStyle = function(j, i) {
+						var l = c.dom;
+						j = l.g(j);
+						var k = j.style[i] || (j.currentStyle ? j.currentStyle[i] : "") || l.getComputedStyle(j, i);
+						return k
+					};
+					c.getStyle = c.dom.getStyle;
+					c.dom.getDocument = function(i) {
+						i = c.dom.g(i);
+						return i.nodeType == 9 ? i: i.ownerDocument || i.document
+					};
+					c.dom.g = function(i) {
+						if ("string" == typeof i || i instanceof String) {
+							return document.getElementById(i)
+						} else {
+							if (i && i.nodeName && (i.nodeType == 1 || i.nodeType == 9)) {
+								return i
+							}
+						}
+						return null
+					};
+					c.g = c.G = c.dom.g;
+					c.dom._g = function(i) {
+						if (c.lang.isString(i)) {
+							return document.getElementById(i)
+						}
+						return i
+					};
+					c._g = c.dom._g;
+					c.lang.isString = function(i) {
+						return "[object String]" == Object.prototype.toString.call(i)
+					};
+					c.isString = c.lang.isString;
+					c.event._listeners = c.event._listeners || [];
+					c.event.on = function(j, m, o) {
+						m = m.replace(/^on/i, "");
+						j = c.dom._g(j);
+						var n = function(q) {
+							o.call(j, q)
+						},
+						i = c.event._listeners,
+						l = c.event._eventFilter,
+						p,
+						k = m;
+						m = m.toLowerCase();
+						if (l && l[m]) {
+							p = l[m](j, m, n);
+							k = p.type;
+							n = p.listener
+						}
+						if (j.addEventListener) {
+							j.addEventListener(k, n, false)
+						} else {
+							if (j.attachEvent) {
+								j.attachEvent("on" + k, n)
+							}
+						}
+						i[i.length] = [j, m, o, n, k];
+						return j
+					};
+					c.on = c.event.on;
+					c.event.un = function(k, n, j) {
+						k = c.dom._g(k);
+						n = n.replace(/^on/i, "").toLowerCase();
+						var q = c.event._listeners,
+						l = q.length,
+						m = !j,
+						p, o, i;
+						while (l--) {
+							p = q[l];
+							if (p[1] === n && p[0] === k && (m || p[2] === j)) {
+								o = p[4];
+								i = p[3];
+								if (k.removeEventListener) {
+									k.removeEventListener(o, i, false)
+								} else {
+									if (k.detachEvent) {
+										k.detachEvent("on" + o, i)
+									}
+								}
+								q.splice(l, 1)
+							}
+						}
+						return k
+					};
+					c.un = c.event.un;
+					if (/msie (\d+\.\d)/i.test(navigator.userAgent)) {
+						c.browser.ie = c.ie = document.documentMode || +RegExp["\x241"]
+					}
+				})();
+				var f = BMapLib.TrafficControl = function() {
+					this.defaultAnchor = BMAP_ANCHOR_TOP_RIGHT;
+					this.defaultOffset = new BMap.Size(10, 10)
+				};
+				f.prototype = new BMap.Control();
+				f.prototype.initialize = function(k) {
+					var i = e("div", {
+						title: "&#x663E;&#x793A;&#x4EA4;&#x901A;&#x6D41;&#x91CF;",
+						id: "tcBtn",
+						"class": "maplibTcBtn maplibTcBtnOff"
+					});
+					k.getContainer().appendChild(i);
+					this._map = k;
+					this._popUpDiv(this, i);
+					var j = this;
+					return i
+				};
+				f.prototype._popUpDiv = function(E, u) {
+					var v = ["&#x67E5;&#x770B;&#x5B9E;&#x65F6;&#x8DEF;&#x51B5;", "&#x6D41;&#x91CF;&#x9884;&#x6D4B;"];
+					var k = ["&#x67E5;&#x770B;&#x6D41;&#x91CF;&#x9884;&#x6D4B;", "&#x5B9E;&#x65F6;&#x8DEF;&#x51B5;"];
+					var y = true;
+					var z = false;
+					var C = this;
+					C._bind = false;
+					h(u, "afterEnd", s());
+					var A = c.g("tcViewPrediction");
+					var r = c.g("tcPredition");
+					var F = c.g("tcTitle");
+					var m = c.g("maplibTcDay");
+					var w = c.g("tcNow");
+					var o = c.g("tcWrap");
+					var t = c.g("tcTimeBox");
+					var x = c.g("tcUpdate");
+					var i = ["&#x4E00;", "&#x4E8C;", "&#x4E09;", "&#x56DB;", "&#x4E94;", "&#x516D;", "&#x65E5;"];
+					var q = new D(E);
+					this.show = function() {
+						j();
+						z = true;
+						c.dom.removeClass(u, "maplibTcBtnOff")
+					};
+					this.hide = function() {
+						z = false;
+						c.dom.addClass(u, "maplibTcBtnOff");
+						c.dom.addClass("tcWrap", "maplibTcHide");
+						c.dom.addClass("tcPredition", "maplibTcHide");
+						E.hideTraffic()
+					};
+					this.bShow = function() {
+						return z
+					};
+					this.setPopOffset = function(H) {
+						var J = 24;
+						var I = H.height + J + "px";
+						var G = H.width + "px";
+						switch (E.getAnchor()) {
+						case BMAP_ANCHOR_TOP_LEFT:
+							o.style.top = I;
+							o.style.left = G;
+							break;
+						case BMAP_ANCHOR_TOP_RIGHT:
+							o.style.top = I;
+							o.style.right = G;
+							break;
+						case BMAP_ANCHOR_BOTTOM_RIGHT:
+							o.style.bottom = I;
+							o.style.right = G;
+							break;
+						case BMAP_ANCHOR_BOTTOM_LEFT:
+							o.style.bottom = I;
+							o.style.left = G;
+							break
+						}
+					};
+					c.event.on(u, "onclick",
+					function() {
+						n()
+					});
+					c.event.on("tcClose", "click",
+					function(G) {
+						n()
+					});
+					function n() {
+						if (!C.bShow()) {
+							C.setPopOffset(E.getOffset());
+							C.show()
+						} else {
+							C.hide()
+						}
+					}
+					function j() {
+						m.innerHTML = "&#x66F4;&#x65B0;&#x65F6;&#x95F4;";
+						F.innerHTML = k[1];
+						A.innerHTML = k[0];
+						c.dom.addClass(r, "maplibTcHide");
+						x.style.display = "block";
+						y = true;
+						c.dom.removeClass("tcWrap", "maplibTcHide");
+						var I = c.g("tcWeek").getElementsByTagName("a");
+						for (var H = 0; H < 7; H++) {
+							I[H].className = ""
+						}
+						var G = "http://its.map.baidu.com:8002/traffic/GetCurrentTime?callback=BMapLib.TrafficControl.getTime&";
+						b(G + (new Date()).getTime(), J);
+						if (E.timer) {
+							clearInterval(E.timer)
+						}
+						E.timer = setInterval(function() {
+							b(G + (new Date()).getTime(),
+							function() {
+								var L = f.curTime;
+								var K = L.getHours();
+								var M = (K < 10 ? ("0" + K) : K) + ":" + (L.getMinutes() < 10 ? ("0" + L.getMinutes()) : L.getMinutes());
+								w.innerHTML = M;
+								E.hideTraffic();
+								E.showTraffic()
+							})
+						},
+						1000 * 3 * 60);
+						function J() {
+							var L = f.curTime;
+							var K = L.getHours();
+							if (!C._bind) {
+								B(E);
+								l(E);
+								C._bind = true
+							}
+							var M = (K < 10 ? ("0" + K) : K) + ":" + (L.getMinutes() < 10 ? ("0" + L.getMinutes()) : L.getMinutes());
+							w.innerHTML = M;
+							E.hour = K;
+							E.weekday = L.getDay() == 0 ? 7 : L.getDay();
+							E.time = M;
+							q.setBarTime(K)
+						}
+					}
+					function s() {
+						var G = ['<div class="maplibTc maplibTcHide" id="tcWrap">'];
+						G.push('<div class="maplibTcColor" id="tcTitle">&#x5B9E;&#x65F6;&#x8DEF;&#x51B5;</div>');
+						G.push('<div id="tcRealTime">');
+						G.push('<div class="maplibTcTime"><span id="maplibTcDay" class="maplibTcCurTime">&#x66F4;&#x65B0;&#x65F6;&#x95F4;</span><span><span class="maplibTcColon">&#xFF1A;&nbsp;</span><span class="maplibTcCurTime" id="tcNow"></span><span title="&#x66F4;&#x65B0;" id="tcUpdate" class="maplibTcUpdate"></span> <a href="javascript:void(0)" class="maplibTcView" id="tcViewPrediction">&#x67E5;&#x770B;&#x6D41;&#x91CF;&#x9884;&#x6D4B;</a><button class="maplibTcClose" id="tcClose"></button></div></div>');
+						G.push('<div id="tcPredition" class="maplibTcHide">');
+						G.push('<div class="maplibTcWeekDay"><span>&#x661F;&#x671F;</span><ul id="tcWeek"><li><a lang="1" href="javascript:void(0)">&#x4E00;</a></li><li><a lang="2" href="javascript:void(0)">&#x4E8C;</a></li><li><a lang="3" href="javascript:void(0)">&#x4E09;</a></li><li><a lang="4" href="javascript:void(0)">&#x56DB;</a></li><li><a lang="5" href="javascript:void(0)">&#x4E94;</a></li><li><a lang="6" href="javascript:void(0)">&#x516D;</a></li><li><a lang="7" href="javascript:void(0)">&#x65E5;</a></li></ul></div>');
+						G.push('<div><div class="maplibTcRuleTxt">&#x65F6;&#x95F4;</div>');
+						G.push('<div class="maplibTcRule">');
+						G.push('<div><div class="maplibTcTimeBox" id="tcTimeBox">20:00</div></div>');
+						G.push('<div class="maplibTcTimeline" >');
+						G.push('<div class="maplibTcTimelinePrev" id="tcPrev"></div>');
+						G.push('<div class="maplibTcTimeMove" id="tcMove"></div>');
+						G.push('<div class="maplibTcTimelineNext" id="tcNext"></div>');
+						G.push("</div></div></div>");
+						G.push('<div class="maplibTcClear" style="text-align: center; color: #ccc;">&#xFF08;&#x57FA;&#x4E8E;&#x5386;&#x53F2;&#x6D41;&#x91CF;&#x7EDF;&#x8BA1;&#x9884;&#x6D4B; &#x4EC5;&#x4F9B;&#x53C2;&#x8003;&#xFF09;</div>');
+						G.push("</div></div></div>");
+						return G.join("")
+					}
+					function B(H) {
+						c.event.on("tcViewPrediction", "click",
+						function() {
+							if (y) {
+								G()
+							} else {
+								j()
+							}
+						});
+						function G() {
+							if (H.timer) {
+								clearInterval(H.timer)
+							}
+							F.innerHTML = v[1];
+							A.innerHTML = v[0];
+							c.dom.removeClass(r, "maplibTcHide");
+							x.style.display = "none";
+							y = false;
+							m.innerHTML = "&#x661F;&#x671F;" + i[H.weekday - 1];
+							w.innerHTML = t.innerHTML;
+							H.showTraffic({
+								predictDate: {
+									hour: H.hour,
+									weekday: H.weekday
+								}
+							})
+						}
+						c.event.on("tcUpdate", "click",
+						function() {
+							j()
+						})
+					}
+					function p() {
+						m.innerHTML = "&#x661F;&#x671F;" + i[E.weekday - 1];
+						w.innerHTML = t.innerHTML
+					}
+					function l(G) {
+						c.event.on("tcWeek", "onclick",
+						function(J) {
+							var I = J.target || J.srcElement;
+							if (I.tagName.toLowerCase() == "a") {
+								var K = c.g("tcWeek").getElementsByTagName("a");
+								for (var H = 0; H < 7; H++) {
+									K[H].className = ""
+								}
+								c.dom.addClass(I, "maplibTcOn");
+								G.weekday = (parseInt(a(I, "lang"), 10));
+								p();
+								G.showTraffic({
+									predictDate: {
+										hour: G.hour,
+										weekday: G.weekday
+									}
+								})
+							}
+						})
+					}
+					function D(K) {
+						var H;
+						var M = c.g("tcMove");
+						function L(P) {
+							c.on(document, "onmousemove", O);
+							c.on(document, "onmouseup", G);
+							if (P && P.preventDefault) {
+								P.preventDefault()
+							} else {
+								window.event.returnValue = false
+							}
+							return false
+						}
+						function O(S) {
+							var P = S.clientX || S.x;
+							var R = g(c.G("tcPrev")).left + 9;
+							var Q = P - R - 4;
+							if (Q < 0) {
+								Q = 0
+							}
+							if (Q > 165) {
+								Q = 165
+							}
+							if (c.browser.ie <= 6) {
+								M.style.marginLeft = (Q * 0.53) + "px"
+							} else {
+								M.style.marginLeft = Q + "px"
+							}
+							t.style.marginLeft = (Q) + "px";
+							J()
+						}
+						function G() {
+							c.un(document, "onmousemove", O);
+							c.un(document, "onmouseup", G);
+							K.showTraffic({
+								predictDate: {
+									hour: K.hour,
+									weekday: K.weekday
+								}
+							})
+						}
+						c.on(M, "onmousedown", L);
+						c.on("tcPrev", "click",
+						function() {
+							N("prev")
+						});
+						c.on("tcNext", "click",
+						function() {
+							N("next")
+						});
+						function N(P) {
+							var Q = t;
+							var R = parseInt(c.dom.getStyle("tcTimeBox", "marginLeft"));
+							var S = Math.ceil((R - 4) * 24 / 165);
+							I(P == "next" ? (S + 1) : (S - 1))
+						}
+						this.setBarTime = function(P) {
+							I(P)
+						};
+						function I(R) {
+							if (R < 0) {
+								R = 0
+							}
+							if (R > 24) {
+								R = 24
+							}
+							H = R;
+							var Q = R * (165 / 24);
+							t.style.marginLeft = Q + "px";
+							var P = c.g("tcMove");
+							if (c.browser.ie <= 6 && c.browser.ie > 0) {
+								P.style.marginLeft = (Q * 0.53) + "px"
+							} else {
+								P.style.marginLeft = Q + "px"
+							}
+							K.hour = H;
+							if (y) {
+								K.showTraffic()
+							} else {
+								K.showTraffic({
+									predictDate: {
+										hour: K.hour,
+										weekday: K.weekday
+									}
+								})
+							}
+							J()
+						}
+						function J() {
+							var P = parseInt(t.style.marginLeft);
+							var Q = Math.ceil((P - 4) * 24 / 165);
+							H = Q;
+							K.hour = Q;
+							if (Q < 10) {
+								Q = "0" + Q
+							}
+							if (y) {
+								w.innerHTML = K.time;
+								t.innerHTML = Q + ":00"
+							} else {
+								w.innerHTML = t.innerHTML = Q + ":00"
+							}
+						}
+					}
+				};
+				f.prototype.showTraffic = function(i) {
+					var j;
+					if (this._trafficLayer) {
+						this._map.removeTileLayer(this._trafficLayer)
+					}
+					if (i) {
+						if (i.predictDate.weekday > 7 || i.predictDate.weekday < 1) {
+							return
+						}
+						j = new BMap.TrafficLayer(i)
+					} else {
+						j = new BMap.TrafficLayer()
+					}
+					this._map.addTileLayer(j);
+					this._trafficLayer = j
+				};
+				f.prototype.hideTraffic = function() {
+					if (this._trafficLayer) {
+						this._map.removeTileLayer(this._trafficLayer);
+						this._trafficLayer = null
+					}
+				};
+				f.prototype.remove = function() {
+					this.hideTraffic();
+					var i = c.g("tcWrap");
+					i.parentNode.removeChild(i);
+					BMap.Control.prototype.remove.call(this);
+					if (this.timer) {
+						clearInterval(this.timer)
+					}
+				};
+				function a(j, i, k) {
+					if (!i || i.constructor != String) {
+						return ""
+					}
+					i = {
+						"for": "htmlFor",
+						"class": "className"
+					} [i] || i;
+					if (typeof k != "undefined") {
+						j[i] = k;
+						if (j.setAttribute) {
+							j.setAttribute(i, k)
+						}
+					}
+					return j[i] || j.getAttribute(i) || ""
+				}
+				function e(k, j) {
+					var m = document.createElement(k);
+					j = j || {};
+					for (var l in j) {
+						value = j[l];
+						l = i()[l] || l;
+						if (l == "style") {
+							m.style.cssText = value;
+							continue
+						}
+						if (m.setAttribute) {
+							m.setAttribute(l, value)
+						} else {
+							try {
+								m[l] = value
+							} catch(m) {}
+						}
+					}
+					return m;
+					function i() {
+						var n = {
+							cellpadding: "cellPadding",
+							cellspacing: "cellSpacing",
+							colspan: "colSpan",
+							rowspan: "rowSpan",
+							valign: "vAlign"
+						};
+						if (c.browser.ie < 8) {
+							n["for"] = "htmlFor";
+							n["class"] = "className"
+						} else {
+							n.htmlFor = "for";
+							n.className = "class"
+						}
+						return n
+					}
+				}
+				function g(i) {
+					var j = {
+						left: 0,
+						top: 0
+					};
+					while (i && i.offsetParent) {
+						j.left += i.offsetLeft;
+						j.top += i.offsetTop;
+						i = i.offsetParent
+					}
+					return j
+				}
+				function h(l, i, k) {
+					var j, m;
+					if (l.insertAdjacentHTML) {
+						l.insertAdjacentHTML(i, k)
+					} else {
+						j = l.ownerDocument.createRange();
+						i = i.toUpperCase();
+						if (i == "AFTERBEGIN" || i == "BEFOREEND") {
+							j.selectNodeContents(l);
+							j.collapse(i == "AFTERBEGIN")
+						} else {
+							m = i == "BEFOREBEGIN";
+							j[m ? "setStartBefore": "setEndAfter"](l);
+							j.collapse(m)
+						}
+						j.insertNode(j.createContextualFragment(k))
+					}
+					return l
+				}
+				function b(j, k) {
+					var i = document.createElement("script");
+					i.setAttribute("src", j);
+					i.setAttribute("type", "text/javascript");
+					i.setAttribute("charset", "gbk");
+					if (i.addEventListener) {
+						i.addEventListener("load",
+						function(m) {
+							var l = m.target;
+							l.parentNode.removeChild(l);
+							if (k) {
+								k()
+							}
+						},
+						false)
+					} else {
+						if (i.attachEvent) {
+							i.attachEvent("onreadystatechange",
+							function(m) {
+								var l = window.event.srcElement;
+								if (l && (l.readyState == "loaded" || l.readyState == "complete")) {
+									l.parentNode.removeChild(l);
+									if (k) {
+										k()
+									}
+								}
+							})
+						}
+					}
+					setTimeout(function() {
+						document.getElementsByTagName("head")[0].appendChild(i);
+						i = null
+					},
+					1)
+				}
+				f.getTime = function(i) {
+					this.curTime = isNaN(i) ? new Date() : new Date(i)
+				}
+			})();
+
+			var BMapLib = window.BMapLib = BMapLib || {}; (function() {
+				var e = 0;
+				var j = 1;
+				var c = BMapLib.RectangleZoom = function(n, m) {
+					if (!n) {
+						return
+					}
+					this._map = n;
+					this._opts = {
+						zoomType: e,
+						followText: "",
+						strokeWeight: 2,
+						strokeColor: "#111",
+						style: "solid",
+						fillColor: "#ccc",
+						opacity: 0.4,
+						cursor: "crosshair",
+						autoClose: false
+					};
+					this._setOptions(m);
+					this._opts.strokeWeight = this._opts.strokeWeight <= 0 ? 1 : this._opts.strokeWeight;
+					this._opts.opacity = this._opts.opacity < 0 ? 0 : this._opts.opacity > 1 ? 1 : this._opts.opacity;
+					if (this._opts.zoomType < e || this._opts.zoomType > j) {
+						this._opts.zoomType = e
+					}
+					this._isOpen = false;
+					this._fDiv = null;
+					this._followTitle = null
+				};
+				c.prototype._setOptions = function(m) {
+					if (!m) {
+						return
+					}
+					for (var n in m) {
+						if (typeof(m[n]) != "undefined") {
+							this._opts[n] = m[n]
+						}
+					}
+				};
+				c.prototype.setStrokeColor = function(m) {
+					if (typeof m == "string") {
+						this._opts.strokeColor = m;
+						this._updateStyle()
+					}
+				};
+				c.prototype.setLineStroke = function(m) {
+					if (typeof m == "number" && Math.round(m) > 0) {
+						this._opts.strokeWeight = Math.round(m);
+						this._updateStyle()
+					}
+				};
+				c.prototype.setLineStyle = function(m) {
+					if (m == "solid" || m == "dashed") {
+						this._opts.style = m;
+						this._updateStyle()
+					}
+				};
+				c.prototype.setOpacity = function(m) {
+					if (typeof m == "number" && m >= 0 && m <= 1) {
+						this._opts.opacity = m;
+						this._updateStyle()
+					}
+				};
+				c.prototype.setFillColor = function(m) {
+					this._opts.fillColor = m;
+					this._updateStyle()
+				};
+				c.prototype.setCursor = function(m) {
+					this._opts.cursor = m;
+					f.setCursor(this._opts.cursor)
+				};
+				c.prototype._updateStyle = function() {
+					if (this._fDiv) {
+						this._fDiv.style.border = [this._opts.strokeWeight, "px ", this._opts.style, " ", this._opts.color].join("");
+						var m = this._fDiv.style,
+						n = this._opts.opacity;
+						m.opacity = n;
+						m.MozOpacity = n;
+						m.KhtmlOpacity = n;
+						m.filter = "alpha(opacity=" + (n * 100) + ")"
+					}
+				};
+				c.prototype.getCursor = function() {
+					return this._opts.cursor
+				};
+				c.prototype._bind = function() {
+					this.setCursor(this._opts.cursor);
+					var n = this;
+					d(this._map.getContainer(), "mousemove",
+					function(q) {
+						if (!n._isOpen) {
+							return
+						}
+						if (!n._followTitle) {
+							return
+						}
+						q = window.event || q;
+						var o = q.target || q.srcElement;
+						if (o != f.getDom(n._map)) {
+							n._followTitle.hide();
+							return
+						}
+						if (!n._mapMoving) {
+							n._followTitle.show()
+						}
+						var p = f.getDrawPoint(q, true);
+						n._followTitle.setPosition(p)
+					});
+					if (this._opts.followText) {
+						var m = this._followTitle = new BMap.Label(this._opts.followText, {
+							offset: new BMap.Size(14, 16)
+						});
+						this._followTitle.setStyles({
+							color: "#333",
+							borderColor: "#ff0103"
+						})
+					}
+				};
+				c.prototype.open = function() {
+					if (this._isOpen == true) {
+						return true
+					}
+					if ( !! BMapLib._toolInUse) {
+						return
+					}
+					this._isOpen = true;
+					BMapLib._toolInUse = true;
+					if (!this.binded) {
+						this._bind();
+						this.binded = true
+					}
+					if (this._followTitle) {
+						this._map.addOverlay(this._followTitle);
+						this._followTitle.hide()
+					}
+					var o = this;
+					var p = this._map;
+					var q = 0;
+					if (/msie (\d+\.\d)/i.test(navigator.userAgent)) {
+						q = document.documentMode || +RegExp["\x241"]
+					}
+					var n = function(s) {
+						s = window.event || s;
+						if (s.button != 0 && !q || q && s.button != 1) {
+							return
+						}
+						if ( !! q && f.getDom(p).setCapture) {
+							f.getDom(p).setCapture()
+						}
+						if (!o._isOpen) {
+							return
+						}
+						o._bind.isZooming = true;
+						d(document, "mousemove", m);
+						d(document, "mouseup", r);
+						o._bind.mx = s.layerX || s.offsetX || 0;
+						o._bind.my = s.layerY || s.offsetY || 0;
+						o._bind.ix = s.pageX || s.clientX || 0;
+						o._bind.iy = s.pageY || s.clientY || 0;
+						a(f.getDom(p), "beforeBegin", o._generateHTML());
+						o._fDiv = f.getDom(p).previousSibling;
+						o._fDiv.style.width = "0";
+						o._fDiv.style.height = "0";
+						o._fDiv.style.left = o._bind.mx + "px";
+						o._fDiv.style.top = o._bind.my + "px";
+						b(s);
+						return h(s)
+					};
+					var m = function(z) {
+						if (o._isOpen == true && o._bind.isZooming == true) {
+							var z = window.event || z;
+							var u = z.pageX || z.clientX || 0;
+							var s = z.pageY || z.clientY || 0;
+							var w = o._bind.dx = u - o._bind.ix;
+							var t = o._bind.dy = s - o._bind.iy;
+							var v = Math.abs(w) - o._opts.strokeWeight;
+							var y = Math.abs(t) - o._opts.strokeWeight;
+							o._fDiv.style.width = (v < 0 ? 0 : v) + "px";
+							o._fDiv.style.height = (y < 0 ? 0 : y) + "px";
+							var x = [p.getSize().width, p.getSize().height];
+							if (w >= 0) {
+								o._fDiv.style.right = "auto";
+								o._fDiv.style.left = o._bind.mx + "px";
+								if (o._bind.mx + w >= x[0] - 2 * o._opts.strokeWeight) {
+									o._fDiv.style.width = x[0] - o._bind.mx - 2 * o._opts.strokeWeight + "px";
+									o._followTitle && o._followTitle.hide()
+								}
+							} else {
+								o._fDiv.style.left = "auto";
+								o._fDiv.style.right = x[0] - o._bind.mx + "px";
+								if (o._bind.mx + w <= 2 * o._opts.strokeWeight) {
+									o._fDiv.style.width = o._bind.mx - 2 * o._opts.strokeWeight + "px";
+									o._followTitle && o._followTitle.hide()
+								}
+							}
+							if (t >= 0) {
+								o._fDiv.style.bottom = "auto";
+								o._fDiv.style.top = o._bind.my + "px";
+								if (o._bind.my + t >= x[1] - 2 * o._opts.strokeWeight) {
+									o._fDiv.style.height = x[1] - o._bind.my - 2 * o._opts.strokeWeight + "px";
+									o._followTitle && o._followTitle.hide()
+								}
+							} else {
+								o._fDiv.style.top = "auto";
+								o._fDiv.style.bottom = x[1] - o._bind.my + "px";
+								if (o._bind.my + t <= 2 * o._opts.strokeWeight) {
+									o._fDiv.style.height = o._bind.my - 2 * o._opts.strokeWeight + "px";
+									o._followTitle && o._followTitle.hide()
+								}
+							}
+							b(z);
+							return h(z)
+						}
+					};
+					var r = function(A) {
+						if (o._isOpen == true) {
+							i(document, "mousemove", m);
+							i(document, "mouseup", r);
+							if ( !! q && f.getDom(p).releaseCapture) {
+								f.getDom(p).releaseCapture()
+							}
+							var v = parseInt(o._fDiv.style.left) + parseInt(o._fDiv.style.width) / 2;
+							var u = parseInt(o._fDiv.style.top) + parseInt(o._fDiv.style.height) / 2;
+							var z = [p.getSize().width, p.getSize().height];
+							if (isNaN(v)) {
+								v = z[0] - parseInt(o._fDiv.style.right) - parseInt(o._fDiv.style.width) / 2
+							}
+							if (isNaN(u)) {
+								u = z[1] - parseInt(o._fDiv.style.bottom) - parseInt(o._fDiv.style.height) / 2
+							}
+							var C = Math.min(z[0] / Math.abs(o._bind.dx), z[1] / Math.abs(o._bind.dy));
+							C = Math.floor(C);
+							var x = new BMap.Pixel(v - parseInt(o._fDiv.style.width) / 2, u - parseInt(o._fDiv.style.height) / 2);
+							var w = new BMap.Pixel(v + parseInt(o._fDiv.style.width) / 2, u + parseInt(o._fDiv.style.height) / 2);
+							var F = p.pixelToPoint(x);
+							var E = p.pixelToPoint(w);
+							var y = new BMap.Bounds(F, E);
+							delete o._bind.dx;
+							delete o._bind.dy;
+							delete o._bind.ix;
+							delete o._bind.iy;
+							if (!isNaN(C)) {
+								if (o._opts.zoomType == e) {
+									targetZoomLv = Math.round(p.getZoom() + (Math.log(C) / Math.log(2)));
+									if (targetZoomLv < p.getZoom()) {
+										targetZoomLv = p.getZoom()
+									}
+								} else {
+									targetZoomLv = Math.round(p.getZoom() + (Math.log(1 / C) / Math.log(2)));
+									if (targetZoomLv > p.getZoom()) {
+										targetZoomLv = p.getZoom()
+									}
+								}
+							} else {
+								targetZoomLv = p.getZoom() + (o._opts.zoomType == e ? 1 : -1)
+							}
+							var s = p.pixelToPoint({
+								x: v,
+								y: u
+							},
+							p.getZoom());
+							p.centerAndZoom(s, targetZoomLv);
+							var I = f.getDrawPoint(A);
+							if (o._followTitle) {
+								o._followTitle.setPosition(I);
+								o._followTitle.show()
+							}
+							o._bind.isZooming = false;
+							o._fDiv.parentNode.removeChild(o._fDiv);
+							o._fDiv = null
+						}
+						var t = y.getSouthWest(),
+						B = y.getNorthEast(),
+						G = new BMap.Point(B.lng, t.lat),
+						H = new BMap.Point(t.lng, B.lat),
+						D = new BMap.Polygon([t, H, B, G]);
+						D.setStrokeWeight(2);
+						D.setStrokeOpacity(0.3);
+						D.setStrokeColor("#111");
+						D.setFillColor("");
+						p.addOverlay(D);
+						new g({
+							duration: 240,
+							fps: 20,
+							delay: 500,
+							render: function(K) {
+								var J = 0.3 * (1 - K);
+								D.setStrokeOpacity(J)
+							},
+							finish: function() {
+								p.removeOverlay(D);
+								D = null
+							}
+						});
+						if (o._opts.autoClose) {
+							setTimeout(function() {
+								if (o._isOpen == true) {
+									o.close()
+								}
+							},
+							70)
+						}
+						b(A);
+						return h(A)
+					};
+					f.show(this._map);
+					this.setCursor(this._opts.cursor);
+					if (!this._isBeginDrawBinded) {
+						d(f.getDom(this._map), "mousedown", n);
+						this._isBeginDrawBinded = true
+					}
+					return true
+				};
+				c.prototype.close = function() {
+					if (!this._isOpen) {
+						return
+					}
+					this._isOpen = false;
+					BMapLib._toolInUse = false;
+					this._followTitle && this._followTitle.hide();
+					f.hide()
+				};
+				c.prototype._generateHTML = function() {
+					return ["<div style='position:absolute;z-index:300;border:", this._opts.strokeWeight, "px ", this._opts.style, " ", this._opts.strokeColor, "; opacity:", this._opts.opacity, "; background: ", this._opts.fillColor, "; filter:alpha(opacity=", Math.round(this._opts.opacity * 100), "); width:0; height:0; font-size:0'></div>"].join("")
+				};
+				function a(p, m, o) {
+					var n, q;
+					if (p.insertAdjacentHTML) {
+						p.insertAdjacentHTML(m, o)
+					} else {
+						n = p.ownerDocument.createRange();
+						m = m.toUpperCase();
+						if (m == "AFTERBEGIN" || m == "BEFOREEND") {
+							n.selectNodeContents(p);
+							n.collapse(m == "AFTERBEGIN")
+						} else {
+							q = m == "BEFOREBEGIN";
+							n[q ? "setStartBefore": "setEndAfter"](p);
+							n.collapse(q)
+						}
+						n.insertNode(n.createContextualFragment(o))
+					}
+					return p
+				}
+				function k(n, m) {
+					a(n, "beforeEnd", m);
+					return n.lastChild
+				}
+				function b(m) {
+					var m = window.event || m;
+					m.stopPropagation ? m.stopPropagation() : m.cancelBubble = true
+				}
+				function h(m) {
+					var m = window.event || m;
+					m.preventDefault ? m.preventDefault() : m.returnValue = false;
+					return false
+				}
+				function d(m, n, o) {
+					if (!m) {
+						return
+					}
+					n = n.replace(/^on/i, "").toLowerCase();
+					if (m.addEventListener) {
+						m.addEventListener(n, o, false)
+					} else {
+						if (m.attachEvent) {
+							m.attachEvent("on" + n, o)
+						}
+					}
+				}
+				function i(m, n, o) {
+					if (!m) {
+						return
+					}
+					n = n.replace(/^on/i, "").toLowerCase();
+					if (m.removeEventListener) {
+						m.removeEventListener(n, o, false)
+					} else {
+						if (m.detachEvent) {
+							m.detachEvent("on" + n, o)
+						}
+					}
+				}
+				var f = {
+					_map: null,
+					_html: "<div style='background:transparent url(images/blank.gif);position:absolute;left:0;top:0;width:100%;height:100%;z-index:1000' unselectable='on'></div>",
+					_maskElement: null,
+					_cursor: "default",
+					_inUse: false,
+					show: function(m) {
+						if (!this._map) {
+							this._map = m
+						}
+						this._inUse = true;
+						if (!this._maskElement) {
+							this._createMask(m)
+						}
+						this._maskElement.style.display = "block"
+					},
+					_createMask: function(o) {
+						this._map = o;
+						if (!this._map) {
+							return
+						}
+						var n = this._maskElement = k(this._map.getContainer(), this._html);
+						var m = function(p) {
+							b(p);
+							return h(p)
+						};
+						d(n, "mouseup",
+						function(p) {
+							if (p.button == 2) {
+								m(p)
+							}
+						});
+						d(n, "contextmenu", m);
+						n.style.display = "none"
+					},
+					getDrawPoint: function(p, r) {
+						p = window.event || p;
+						var m = p.layerX || p.offsetX || 0;
+						var q = p.layerY || p.offsetY || 0;
+						var o = p.target || p.srcElement;
+						if (o != f.getDom(this._map) && r == true) {
+							while (o && o != this._map.getContainer()) {
+								if (! (o.clientWidth == 0 && o.clientHeight == 0 && o.offsetParent && o.offsetParent.nodeName.toLowerCase() == "td")) {
+									m += o.offsetLeft;
+									q += o.offsetTop
+								}
+								o = o.offsetParent
+							}
+						}
+						if (o != f.getDom(this._map) && o != this._map.getContainer()) {
+							return
+						}
+						if (typeof m === "undefined" || typeof q === "undefined") {
+							return
+						}
+						if (isNaN(m) || isNaN(q)) {
+							return
+						}
+						return this._map.pixelToPoint(new BMap.Pixel(m, q))
+					},
+					hide: function() {
+						if (!this._map) {
+							return
+						}
+						this._inUse = false;
+						if (this._maskElement) {
+							this._maskElement.style.display = "none"
+						}
+					},
+					getDom: function(m) {
+						if (!this._maskElement) {
+							this._createMask(m)
+						}
+						return this._maskElement
+					},
+					setCursor: function(m) {
+						this._cursor = m || "default";
+						if (this._maskElement) {
+							this._maskElement.style.cursor = this._cursor
+						}
+					}
+				};
+				function g(p) {
+					var m = {
+						duration: 1000,
+						fps: 30,
+						delay: 0,
+						transition: l.linear,
+						onStop: function() {}
+					};
+					if (p) {
+						for (var n in p) {
+							m[n] = p[n]
+						}
+					}
+					this._opts = m;
+					if (m.delay) {
+						var o = this;
+						setTimeout(function() {
+							o._beginTime = new Date().getTime();
+							o._endTime = o._beginTime + o._opts.duration;
+							o._launch()
+						},
+						m.delay)
+					} else {
+						this._beginTime = new Date().getTime();
+						this._endTime = this._beginTime + this._opts.duration;
+						this._launch()
+					}
+				}
+				g.prototype._launch = function() {
+					var n = this;
+					var m = new Date().getTime();
+					if (m >= n._endTime) {
+						if (typeof n._opts.render == "function") {
+							n._opts.render(n._opts.transition(1))
+						}
+						if (typeof n._opts.finish == "function") {
+							n._opts.finish()
+						}
+						return
+					}
+					n.schedule = n._opts.transition((m - n._beginTime) / n._opts.duration);
+					if (typeof n._opts.render == "function") {
+						n._opts.render(n.schedule)
+					}
+					if (!n.terminative) {
+						n._timer = setTimeout(function() {
+							n._launch()
+						},
+						1000 / n._opts.fps)
+					}
+				};
+				var l = {
+					linear: function(m) {
+						return m
+					},
+					reverse: function(m) {
+						return 1 - m
+					},
+					easeInQuad: function(m) {
+						return m * m
+					},
+					easeInCubic: function(m) {
+						return Math.pow(m, 3)
+					},
+					easeOutQuad: function(m) {
+						return - (m * (m - 2))
+					},
+					easeOutCubic: function(m) {
+						return Math.pow((m - 1), 3) + 1
+					},
+					easeInOutQuad: function(m) {
+						if (m < 0.5) {
+							return m * m * 2
+						} else {
+							return - 2 * (m - 2) * m - 1
+						}
+						return
+					},
+					easeInOutCubic: function(m) {
+						if (m < 0.5) {
+							return Math.pow(m, 3) * 4
+						} else {
+							return Math.pow(m - 1, 3) * 4 + 1
+						}
+					},
+					easeInOutSine: function(m) {
+						return (1 - Math.cos(Math.PI * m)) / 2
+					}
+				}
+			})();
+
+			var BMapLib = window.BMapLib = BMapLib || {};
+			if (typeof BMapLib._toolInUse == "undefined") {
+				BMapLib._toolInUse = false
+			} (function() {
+				var a = a || {
+					guid: "$BAIDU$"
+				}; (function() {
+					window[a.guid] = {};
+					a.extend = function(e, c) {
+						for (var d in c) {
+							if (c.hasOwnProperty(d)) {
+								e[d] = c[d]
+							}
+						}
+						return e
+					};
+					a.lang = a.lang || {};
+					a.lang.guid = function() {
+						return "TANGRAM__" + (window[a.guid]._counter++).toString(36)
+					};
+					window[a.guid]._counter = window[a.guid]._counter || 1;
+					window[a.guid]._instances = window[a.guid]._instances || {};
+					a.lang.Class = function(c) {
+						this.guid = c || a.lang.guid();
+						window[a.guid]._instances[this.guid] = this
+					};
+					a.lang.isString = function(c) {
+						return "[object String]" == Object.prototype.toString.call(c)
+					};
+					a.lang.isFunction = function(c) {
+						return "[object Function]" == Object.prototype.toString.call(c)
+					};
+					a.lang.Class.prototype.toString = function() {
+						return "[object " + (this._className || "Object") + "]"
+					};
+					a.lang.Class.prototype.dispose = function() {
+						delete window[a.guid]._instances[this.guid];
+						for (var c in this) {
+							if (!a.lang.isFunction(this[c])) {
+								delete this[c]
+							}
+						}
+						this.disposed = true
+					};
+					a.lang.Event = function(c, d) {
+						this.type = c;
+						this.returnValue = true;
+						this.target = d || null;
+						this.currentTarget = null
+					};
+					a.lang.Class.prototype.addEventListener = function(f, e, d) {
+						if (!a.lang.isFunction(e)) {
+							return
+						} ! this.__listeners && (this.__listeners = {});
+						var c = this.__listeners,
+						g;
+						if (typeof d == "string" && d) {
+							if (/[^\w\-]/.test(d)) {
+								throw ("nonstandard key:" + d)
+							} else {
+								e.hashCode = d;
+								g = d
+							}
+						}
+						f.indexOf("on") != 0 && (f = "on" + f);
+						typeof c[f] != "object" && (c[f] = {});
+						g = g || a.lang.guid();
+						e.hashCode = g;
+						c[f][g] = e
+					};
+					a.lang.Class.prototype.removeEventListener = function(e, d) {
+						if (a.lang.isFunction(d)) {
+							d = d.hashCode
+						} else {
+							if (!a.lang.isString(d)) {
+								return
+							}
+						} ! this.__listeners && (this.__listeners = {});
+						e.indexOf("on") != 0 && (e = "on" + e);
+						var c = this.__listeners;
+						if (!c[e]) {
+							return
+						}
+						c[e][d] && delete c[e][d]
+					};
+					a.lang.Class.prototype.dispatchEvent = function(f, c) {
+						if (a.lang.isString(f)) {
+							f = new a.lang.Event(f)
+						} ! this.__listeners && (this.__listeners = {});
+						c = c || {};
+						for (var e in c) {
+							f[e] = c[e]
+						}
+						var e, d = this.__listeners,
+						g = f.type;
+						f.target = f.target || this;
+						f.currentTarget = this;
+						g.indexOf("on") != 0 && (g = "on" + g);
+						a.lang.isFunction(this[g]) && this[g].apply(this, arguments);
+						if (typeof d[g] == "object") {
+							for (e in d[g]) {
+								d[g][e].apply(this, arguments)
+							}
+						}
+						return f.returnValue
+					};
+					a.lang.inherits = function(i, g, f) {
+						var e, h, c = i.prototype,
+						d = new Function();
+						d.prototype = g.prototype;
+						h = i.prototype = new d();
+						for (e in c) {
+							h[e] = c[e]
+						}
+						i.prototype.constructor = i;
+						i.superClass = g.prototype;
+						if ("string" == typeof f) {
+							h._className = f
+						}
+					}
+				})();
+				var b = BMapLib.MarkerTool = function(d, c) {
+					a.lang.Class.call(this);
+					this._map = d;
+					this._opts = {
+						icon: b.SYS_ICONS[8],
+						followText: "点击地图添加标注",
+						autoClose: true
+					};
+					a.extend(this._opts, c);
+					this._isOpen = false;
+					this._opts.followText = this._checkStr(this._opts.followText);
+					this._followMarker = null;
+					this._followLabel = null
+				};
+				a.lang.inherits(b, a.lang.Class, "MarkerTool");
+				b.prototype.open = function() {
+					if (!this._map) {
+						return false
+					}
+					if (this._isOpen == true) {
+						return true
+					}
+					if (BMapLib._toolInUse) {
+						return false
+					}
+					BMapLib._toolInUse = true;
+					this._isOpen = true;
+					if (!this._binded) {
+						this._bind();
+						this._binded = true
+					}
+					if (!this._followMarker) {
+						this._followMarker = new BMap.Marker(this._map.getCenter(), {
+							offset: new BMap.Size( - 10, -10)
+						});
+						this._map.addOverlay(this._followMarker);
+						this._followMarker.setZIndex(1000);
+						this._followMarker.hide()
+					}
+					if (!this._followLabel) {
+						this._followLabel = new BMap.Label(this._opts.followText, {
+							offset: new BMap.Size(20, 0)
+						})
+					}
+					this._preCursor = this._map.getDefaultCursor();
+					this._map.setDefaultCursor("url(" + b.CUR_IMG + "), default");
+					return true
+				};
+				b.prototype.close = function() {
+					if (!this._isOpen) {
+						return
+					}
+					this._map.removeEventListener("mousemove", this._mouseMoveHandler);
+					this._map.removeEventListener("click", this._clickHandler);
+					this._followMarker.hide();
+					this._map.setDefaultCursor(this._preCursor);
+					BMapLib._toolInUse = false;
+					this._isOpen = false;
+					this._binded = false
+				};
+				b.prototype.setIcon = function(c) {
+					if (!c || !(c instanceof BMap.Icon)) {
+						return
+					}
+					this._opts.icon = c
+				};
+				b.prototype.getIcon = function() {
+					return this._opts.icon
+				};
+				b.prototype._checkStr = function(c) {
+					if (!c) {
+						return ""
+					}
+					return c.replace(/</g, "&lt;").replace(/>/g, "&gt;")
+				};
+				b.prototype._bind = function() {
+					var c = this;
+					if (!c._isOpen) {
+						return
+					}
+					c._mouseMoveHandler = function(d) {
+						var e = d.point;
+						c._followMarker.setIcon(c._opts.icon);
+						c._followMarker.setPosition(e);
+						c._followMarker.setLabel(c._followLabel);
+						c._followMarker.show()
+					};
+					c._map.addEventListener("mousemove", c._mouseMoveHandler);
+					c._clickHandler = function(d) {
+						var i = d.pixel;
+						var g = new BMap.Pixel(i.x - 10, i.y - 10);
+						var h = c._map.pixelToPoint(g);
+						var e = new BMap.Marker(h, {
+							icon: c._opts.icon
+						});
+						c._map.addOverlay(e);
+						var f = new a.lang.Event("onmarkend");
+						f.marker = e;
+						c.dispatchEvent(f);
+						if (c._opts.autoClose) {
+							c.close()
+						}
+					};
+					c._map.addEventListener("click", c._clickHandler)
+				};
+				b.CUR_IMG = "images/transparent.cur";
+				b.ICON_IMG = "images/us_mk_icon.png";
+				b.SYS_ICONS = [new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size(0, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size( - 23, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size( - 46, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size( - 69, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size( - 92, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(6, 21),
+					imageOffset: new BMap.Size( - 115, 0)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size(0, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 23, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 46, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 69, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 92, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(23, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 115, -21)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size(0, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size( - 23, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size( - 46, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size( - 69, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size( - 92, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(21, 21), {
+					anchor: new BMap.Size(1, 21),
+					imageOffset: new BMap.Size( - 115, -46)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(25, 25), {
+					anchor: new BMap.Size(12, 25),
+					imageOffset: new BMap.Size(0, -67)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(25, 25), {
+					anchor: new BMap.Size(12, 25),
+					imageOffset: new BMap.Size( - 25, -67)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(24, 25), {
+					anchor: new BMap.Size(12, 25),
+					imageOffset: new BMap.Size( - 50, -67)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(25, 25), {
+					anchor: new BMap.Size(12, 25),
+					imageOffset: new BMap.Size( - 75, -67)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(25, 25), {
+					anchor: new BMap.Size(12, 25),
+					imageOffset: new BMap.Size( - 100, -67)
+				}), new BMap.Icon(b.ICON_IMG, new BMap.Size(19, 25), {
+					anchor: new BMap.Size(9, 25),
+					imageOffset: new BMap.Size( - 125, -67)
+				})]
+			})();
+		</script>
+	</head>
+	<body>
+		<div id="button">
+			<button type="button" onclick="myDrag.open()">
+				拉框放大
+			</button>
+			<button type="button" onclick="myDrag.close()">
+				关闭拉框
+			</button>
+			<button type="button" onclick="myDis.open()">
+				开启测距
+			</button>
+			<button type="button" onclick="myDis.close()">
+				关闭测距
+			</button>
+			<button type="button" onclick="openStylePnl()">
+				签到
+			</button>
+			<a id="r-result" class="zhong">
+				&#12288搜索:
+				<input type="text" id="suggestId" size="15" value="百度" style="width:150px;"
+				/>
+			</a>
+			<div id="searchResultPanel" style="border:1px solid #C0C0C0;width:150px;height:auto; display:none;">
+			</div>
+			<!--div align=" center"><a href = "main.html">吃喝玩乐华大游!</a></div-->
+		</div>
+		<div id="allmap">
+		</div>
+		<script type="text/javascript">
+			function G(id) {
+				return document.getElementById(id);
+			}
+
+			var map = new BMap.Map("allmap"); // 创建地图实例  
+			var point = new BMap.Point(118.090635, 24.610362); // 创建点坐标  
+			var myDis = new BMapLib.DistanceTool(map);
+			map.addEventListener("load",
+			function() {
+				myDis.open(); //开启鼠标测距
+				myDis.close(); //关闭鼠标测距大
+			});
+
+			var myDrag = new BMapLib.RectangleZoom(map, {
+				followText: "拖拽鼠标进行操作"
+			});
+
+			// 添加定位控件
+			var geolocationControl = new BMap.GeolocationControl();
+			geolocationControl.addEventListener("locationSuccess",
+			function(e) {
+				// 定位成功事件
+				var address = '';
+				address += e.addressComponent.province;
+				address += e.addressComponent.city;
+				address += e.addressComponent.district;
+				address += e.addressComponent.street;
+				address += e.addressComponent.streetNumber;
+				alert("当前定位地址为：" + address);
+			});
+			geolocationControl.addEventListener("locationError",
+			function(e) {
+				// 定位失败事件
+				alert(e.message);
+			});
+
+			var traffic = new BMapLib.TrafficControl({
+				anchor: BMAP_ANCHOR_TOP_RIGHT
+			});
+			traffic.setOffset(new BMap.Size(10, 25)); //路况信息
+			var stCtrl = new BMap.PanoramaControl({
+				anchor: BMAP_ANCHOR_TOP_LEFT
+			});
+			stCtrl.setOffset(new BMap.Size(40, 10)); //全景地图
+			/*
+		var removeMarker = function(e,ee,marker){
+				map.removeOverlay(marker);
+			}
+		//创建标注右键菜单
+		var markerMenu=new BMap.ContextMenu();
+		markerMenu.addItem(new BMap.MenuItem('删除',removeMarker.bind(marker)));
+		*/
+			//marker.addContextMenu(markerMenu);
+			//创建地图右键菜单
+			var menu = new BMap.ContextMenu();
+			var txtMenuItem = [{
+				text: '放大',
+				callback: function() {
+					map.zoomIn()
+				}
+			},
+			{
+				text: '缩小',
+				callback: function() {
+					map.zoomOut()
+				}
+			}];
+			for (var i = 0; i < txtMenuItem.length; i++) {
+				menu.addItem(new BMap.MenuItem(txtMenuItem[i].text, txtMenuItem[i].callback, 100));
+			}
+
+			var ac = new BMap.Autocomplete( //建立一个自动完成的对象
+			{
+				"input": "suggestId",
+				"location": map
+			});
+
+			ac.addEventListener("onhighlight",
+			function(e) { //鼠标放在下拉列表上的事件
+				var str = "";
+				var _value = e.fromitem.value;
+				var value = "";
+				if (e.fromitem.index > -1) {
+					value = _value.province + _value.city + _value.district + _value.street + _value.business;
+				}
+				str = "FromItem<br />index = " + e.fromitem.index + "<br />value = " + value;
+
+				value = "";
+				if (e.toitem.index > -1) {
+					_value = e.toitem.value;
+					value = _value.province + _value.city + _value.district + _value.street + _value.business;
+				}
+				str += "<br />ToItem<br />index = " + e.toitem.index + "<br />value = " + value;
+				G("searchResultPanel").innerHTML = str;
+			});
+
+			var myValue;
+			ac.addEventListener("onconfirm",
+			function(e) { //鼠标点击下拉列表后的事件
+				var _value = e.item.value;
+				myValue = _value.province + _value.city + _value.district + _value.street + _value.business;
+				G("searchResultPanel").innerHTML = "onconfirm<br />index = " + e.item.index + "<br />myValue = " + myValue;
+
+				setPlace();
+			});
+
+			function setPlace() {
+				//map.clearOverlays();    //清除地图上所有覆盖物
+				function myFun() {
+					var pp = local.getResults().getPoi(0).point; //获取第一个智能搜索的结果
+					map.centerAndZoom(pp, 18);
+					map.addOverlay(new BMap.Marker(pp)); //添加标注
+				}
+				var local = new BMap.LocalSearch(map, { //智能搜索
+					onSearchComplete: myFun
+				});
+				local.search(myValue);
+			}
+
+			/*
+		var marker = new BMap.Marker(new BMap.Point(118.090635,24.610362));    //创建标注
+		map.addOverlay(marker);                  // 将标注添加到地图中
+		*/
+
+			/*
+		marker.addEventListener("click", function(){    
+		 alert("您点击了标注");    
+		});//监听标注事件
+		*/
+
+			/*
+		marker.enableDragging();    
+		marker.addEventListener("dragend", function(e){    
+		 alert("当前位置：" + e.point.lng + ", " + e.point.lat);    
+		})//可拖拽的标注
+		*/
+
+			/*
+		var opts3 = {    
+		 width : 250,     // 信息窗口宽度    
+		 height: 100,     // 信息窗口高度    
+		 title : "标题"  // 信息窗口标题   
+		} 
+		var infoWindow = new BMap.InfoWindow("介绍", opts3);  // 创建信息窗口对象    
+		map.openInfoWindow(infoWindow,new BMap.Point(118.090635,24.610362));      // 打开信息窗口
+		*/
+
+			map.centerAndZoom(point, 17); // 初始化地图，设置中心点坐标和地图级别  
+			map.enableScrollWheelZoom(true); //鼠标滚轮控制
+			map.addControl(geolocationControl); //添加定位控件
+			map.addControl(new BMap.NavigationControl({
+				type: BMAP_NAVIGATION_CONTROL_ZOOM,
+				anchor: BMAP_ANCHOR_TOP_LEFT
+			})); //鱼骨
+			map.addControl(new BMap.ScaleControl({
+				anchor: BMAP_ANCHOR_BOTTOM_LEFT
+			})); //比例尺
+			map.addControl(new BMap.OverviewMapControl({
+				anchor: BMAP_ANCHOR_BOTTOM_RIGHT,
+				isOpen: false
+			})); //缩略图 
+			map.addControl(new BMap.MapTypeControl({
+				mapTypes: [BMAP_NORMAL_MAP, BMAP_HYBRID_MAP],
+				anchor: BMAP_ANCHOR_BOTTOM_RIGHT
+			})); //2D图，卫星图
+			map.addControl(traffic); //路况信息
+			map.addControl(stCtrl); //全景地图
+			map.addContextMenu(menu); //右键菜单
+			//map.addOverlay(marker);               // 将标注添加到地图中(默认不可拖拽)
+			//**********************
+			/*
+		// 定义一个控件类,即function
+		function ZoomControl(){
+		  // 默认停靠位置和偏移量
+		  this.defaultAnchor = BMAP_ANCHOR_TOP_LEFT;
+		  this.defaultOffset = new BMap.Size(10, 10);
+		}
+
+		// 通过JavaScript的prototype属性继承于BMap.Control
+		ZoomControl.prototype = new BMap.Control();
+
+		// 自定义控件必须实现自己的initialize方法,并且将控件的DOM元素返回
+		// 在本方法中创建个div元素作为控件的容器,并将其添加到地图容器中
+		ZoomControl.prototype.initialize = function(map){
+		  // 创建一个DOM元素
+		  var div = document.createElement("div");
+		  // 添加文字说明
+		  div.appendChild(document.createTextNode("坐标拾取"));
+		  // 设置样式
+		  div.style.cursor = "pointer";
+		  div.style.border = "1px solid gray";
+		  div.style.backgroundColor = "white";
+
+		  div.onclick = function(e){
+			map.addEventListener("click",function(e){
+			alert(e.point.lng + "," + e.point.lat);
+				});
+			}
+		
+		  // 添加DOM元素到地图中
+		  map.getContainer().appendChild(div);
+		  // 将DOM元素返回
+		  return div;
+		  }
+		  // 创建控件
+		var myZoomCtrl = new ZoomControl();
+		// 添加到地图当中
+		map.addControl(myZoomCtrl);
+		*/
+			//*******************
+
+			//=====签到=====
+			//拼接infowindow内容字串
+			var html = [];
+			html.push('<span style="font-size:15px"><b>签到: </b></span><br/>');
+			html.push('<table border="0" cellpadding="1" cellspacing="1" >');
+			html.push('  <tr>');
+			html.push('      <td align="left" class="common">名 称：</td>');
+			html.push('      <td colspan="2"><input type="text" maxlength="50" size="18"  id="txtName"></td>');
+			html.push('	     <td valign="top"><span class="star">*</span></td>');
+			html.push('  </tr>');
+			html.push('  <tr>');
+			html.push('      <td  align="left" class="common">电 话：</td>');
+			html.push('      <td colspan="2"><input type="text" maxlength="30" size="18"  id="txtTel"></td>');
+			html.push('	     <td valign="top"><span class="star">*</span></td>');
+			html.push('  </tr>');
+			html.push('  <tr>');
+			html.push('      <td  align="left" class="common">地 址：</td>');
+			html.push('      <td  colspan="2"><input type="text" maxlength="50" size="18"  id="txtAddr"></td>');
+			html.push('	     <td valign="top"><span class="star">*</span></td>');
+			html.push('  </tr>');
+			html.push('  <tr>');
+			html.push('      <td align="left" class="common">描 述：</td>');
+			html.push('      <td colspan="2"><textarea rows="2" cols="15"  id="areaDesc"></textarea></td>');
+			html.push('	     <td valign="top"></td>');
+			html.push('  </tr>');
+			html.push('  <tr>');
+			html.push('	     <td  align="center" colspan="3">');
+			html.push('          <input type="button" name="btnOK"  onclick="fnOK()" value="确定">&nbsp;&nbsp;');
+			html.push('		     <input type="button" name="btnClear" onclick="fnClear();" value="重填">');
+			html.push('	     </td>');
+			html.push('  </tr>');
+			html.push('</table>');
+
+			var infoWin = new BMap.InfoWindow(html.join(""), {
+				offset: new BMap.Size(0, -10)
+			});
+
+			var curMkr = null; // 记录当前添加的Mkr
+			var mkrTool = new BMapLib.MarkerTool(map, {
+				autoClose: true,
+				followText: "请添加标注点"
+			});
+			mkrTool.addEventListener("markend",
+			function(evt) {
+				var mkr = evt.marker;
+				mkr.openInfoWindow(infoWin);
+				curMkr = mkr;
+			});
+
+			//签到按钮
+			function openStylePnl() {
+				mkrTool.open(); //打开工具 
+				var icon = BMapLib.MarkerTool.SYS_ICONS[2]; //设置工具样式，使用系统提供的样式BMapLib.MarkerTool.SYS_ICONS[0] -- BMapLib.MarkerTool.SYS_ICONS[23]
+				mkrTool.setIcon(icon);
+				document.getElementById("divStyle").style.display = "none";
+			}
+
+			//提交数据
+			function fnOK() {
+				var name = encodeHTML(document.getElementById("txtName").value);
+				var tel = encodeHTML(document.getElementById("txtTel").value);
+				var addr = encodeHTML(document.getElementById("txtAddr").value);
+				var desc = encodeHTML(document.getElementById("areaDesc").value);
+
+				if (!name || !tel || !addr) {
+					alert("星号字段必须填写");
+					return;
+				}
+
+				if (curMkr) {
+					//设置label
+					var lbl = new BMap.Label(name, {
+						offset: new BMap.Size(15, 10)
+					});
+					lbl.setStyle({
+						border: "solid 1px gray"
+					});
+					curMkr.setLabel(lbl);
+
+					//设置title
+					var title = "电话: " + tel + "\n\r" + "地址: " + addr + "\n\r" + "描述: " + desc;
+					curMkr.setTitle(title);
+				}
+				if (infoWin.isOpen()) {
+					map.closeInfoWindow();
+				}
+
+				//在此用户可将数据提交到后台数据库中
+			}
+
+			//输入校验
+			function encodeHTML(a) {
+				return a.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+			}
+
+			//重填数据
+			function fnClear() {
+				document.getElementById("txtName").value = "";
+				document.getElementById("txtTel").value = "";
+				document.getElementById("txtAddr").value = "";
+				document.getElementById("areaDesc").value = "";
+			}
+
+			//*****签到*****
+
+			//===================
+			//=====A区=====
+			var point1 = new BMap.Point(118.092683, 24.607303);
+			var marker = new BMap.Marker(point1); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("A区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts1 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "A区",
+				// 信息窗口标题
+			}
+			var infoWindow1 = new BMap.InfoWindow("A区行政大楼很高", opts1); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow1, point1); //开启信息窗口
+			});
+
+			//=====B区=====
+			var point2 = new BMap.Point(118.092019, 24.607631);
+			var marker = new BMap.Marker(point2); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("B区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts2 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "B区",
+				// 信息窗口标题
+			}
+			var infoWindow2 = new BMap.InfoWindow("B区大楼很长", opts2); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow2, point2); //开启信息窗口
+			});
+
+			//=====C区=====
+			var point3 = new BMap.Point(118.091264, 24.607993);
+			var marker = new BMap.Marker(point3); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("C区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts3 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "C区",
+				// 信息窗口标题
+			}
+			var infoWindow3 = new BMap.InfoWindow("C区大楼哈哈哈", opts3); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow3, point3); //开启信息窗口
+			});
+
+			//=====D区=====
+			var point4 = new BMap.Point(118.090204, 24.608584);
+			var marker = new BMap.Marker(point4); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("D区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts4 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "D区",
+				// 信息窗口标题
+			}
+			var infoWindow4 = new BMap.InfoWindow("D区大楼嘿嘿嘿", opts4); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow4, point4); //开启信息窗口
+			});
+
+			//=====E区=====
+			var point5 = new BMap.Point(118.089288, 24.609208);
+			var marker = new BMap.Marker(point5); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("E区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts5 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "E区",
+				// 信息窗口标题
+			}
+			var infoWindow5 = new BMap.InfoWindow("E区大楼呵呵呵", opts5); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow5, point5); //开启信息窗口
+			});
+
+			//=====F区=====
+			var point6 = new BMap.Point(118.088246, 24.609865);
+			var marker = new BMap.Marker(point6); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("F区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts6 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "F区",
+				// 信息窗口标题
+			}
+			var infoWindow6 = new BMap.InfoWindow("F区啦啦啦", opts6); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow6, point6); //开启信息窗口
+			});
+
+			//=====G区=====
+			var point7 = new BMap.Point(118.087312, 24.610342);
+			var marker = new BMap.Marker(point7); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("G区", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			var opts7 = {
+				width: 200,
+				// 信息窗口宽度
+				height: 100,
+				// 信息窗口高度
+				title: "G区",
+				// 信息窗口标题
+			}
+			var infoWindow7 = new BMap.InfoWindow("G区大楼在最后", opts7); // 创建信息窗口对象 
+			marker.addEventListener("click",
+			function() {
+				map.openInfoWindow(infoWindow7, point7); //开启信息窗口
+			});
+
+			//=====1区=====
+			var point8 = new BMap.Point(118.090536, 24.615068);
+			var marker = new BMap.Marker(point8, {
+				icon: new BMap.Icon("images/icon2.png", new BMap.Size(20, 25))
+			}); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("西北拉面", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			/*
+		var opts8 = {
+			width : 200,     // 信息窗口宽度
+			height: 100,     // 信息窗口高度
+			title : "西北拉面" , // 信息窗口标题
+		}
+		var infoWindow8 = new BMap.InfoWindow("这儿有各种火锅", opts8);  // 创建信息窗口对象 
+		marker.addEventListener("click", function(){          
+			map.openInfoWindow(infoWindow8,point8); //开启信息窗口
+		});*/
+			marker.addEventListener("click",
+			function() {
+				var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href='http://wc666666.hk158.16data.com/index.php?ctrl=wxsite&action=shopshow&typelx=wm&id=188' style='text-decoration:none'>西北拉面<a></h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='images/西北拉面.jpg' width='150' height='110'title='西北拉面'/>" + "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>推荐菜:牛肉炒刀削面、新疆大盘鸡、土豆牛肉盖浇面、清汤面、炸酱面。订餐电话：6666666</p>" + "</div>";
+				var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象       
+				this.openInfoWindow(infoWindow);
+				//图片加载完毕重绘infowindow
+				document.getElementById('imgDemo').onload = function() {
+					infoWindow.redraw(); //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+				}
+			});
+
+			//=====2区=====
+			var point9 = new BMap.Point(118.089674, 24.614329);
+			var marker = new BMap.Marker(point9, {
+				icon: new BMap.Icon("images/icon2.png", new BMap.Size(20, 25))
+			}); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("肯德基", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			/*
+		var opts9 = {
+			width : 200,     // 信息窗口宽度
+			height: 100,     // 信息窗口高度
+			title : "肯德基" , // 信息窗口标题
+		}
+		var infoWindow9 = new BMap.InfoWindow("美味炸鸡店", opts9);  // 创建信息窗口对象 
+		marker.addEventListener("click", function(){          
+			map.openInfoWindow(infoWindow9,point9); //开启信息窗口
+		});*/
+			marker.addEventListener("click",
+			function() {
+				var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href='http://wc666666.hk158.16data.com/index.php?ctrl=wxsite&action=shopshow&typelx=wm&id=189' style='text-decoration:none'>肯德基</a></h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='images/肯德基.jpg' width='130' height='130' title='肯德基'/>" + "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>肯德基，简称KFC，是美国跨国连锁餐厅之一，也是世界第二大速食及最大炸鸡连锁企业，由哈兰·山德士于1930年在肯塔基州路易斯维尔创建，主要出售炸鸡、汉堡、薯条、蛋挞、汽水等高热量快餐食品。</p>" + "</div>";
+				var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象       
+				this.openInfoWindow(infoWindow);
+				//图片加载完毕重绘infowindow
+				document.getElementById('imgDemo').onload = function() {
+					infoWindow.redraw(); //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+				}
+			});
+
+			//=====3区=====
+			var point10 = new BMap.Point(118.088884, 24.613688);
+			var marker = new BMap.Marker(point10, {
+				icon: new BMap.Icon("images/icon2.png", new BMap.Size(20, 25))
+			}); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("泉牛馆", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			/*
+		var opts10 = {
+			width : 200,     // 信息窗口宽度
+			height: 100,     // 信息窗口高度
+			title : "泉牛馆" , // 信息窗口标题
+		}
+		var infoWindow10 = new BMap.InfoWindow("黑凤梨¥100一斤", opts10);  // 创建信息窗口对象 
+		marker.addEventListener("click", function(){          
+			map.openInfoWindow(infoWindow10,point10); //开启信息窗口
+		});
+		*/
+			marker.addEventListener("click",
+			function() {
+				var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href='http://wc666666.hk158.16data.com/index.php?ctrl=wxsite&action=shopshow&typelx=wm&id=190' style='text-decoration:none'>泉牛馆</a></h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='images/泉牛馆.jpg' width='139' height='104' title='泉牛馆'/>" + "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>泉牛馆，以二十多种纯天然中药材，科学的调配出独家秘方，精选上等牛肉，用大铁锅木柴经数小时烧煮而成，肉质鲜美、汤味纯正，香气四溢，鲜而略回甜。</p>" + "</div>";
+				var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象       
+				this.openInfoWindow(infoWindow);
+				//图片加载完毕重绘infowindow
+				document.getElementById('imgDemo').onload = function() {
+					infoWindow.redraw(); //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+				}
+			});
+
+			//=====4区=====
+			var point11 = new BMap.Point(118.092099, 24.609615);
+			var marker = new BMap.Marker(point11, {
+				icon: new BMap.Icon("images/icon2.png", new BMap.Size(20, 25))
+			}); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("图书馆", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			marker.addEventListener("click",
+			function() {
+				var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href='http://lib.hqu.edu.cn/' style='text-decoration:none'>郑年锦图书馆</a></h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='images/图书馆.jpg' width='139' height='104' title='图书馆'/>" + "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>厦门校区图书馆“郑年锦图书馆” 建筑面积14639平方米，五层框架结构，总投资2805万元，于2008年10月7日开始试运行。</p>" + "</div>";
+				var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象       
+				this.openInfoWindow(infoWindow);
+				//图片加载完毕重绘infowindow
+				document.getElementById('imgDemo').onload = function() {
+					infoWindow.redraw(); //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+				}
+			});
+
+			//=====5区=====
+			var point12 = new BMap.Point(118.093959, 24.610609);
+			var marker = new BMap.Marker(point12, {
+				icon: new BMap.Icon("images/icon2.png", new BMap.Size(20, 25))
+			}); // 创建标注
+			map.addOverlay(marker); // 将标注添加到地图中
+			var label = new BMap.Label("BOC", {
+				offset: new BMap.Size(20, -10)
+			});
+			marker.setLabel(label); //添加标签
+			marker.addEventListener("click",
+			function() {
+				var sContent = "<h4 style='margin:0 0 5px 0;padding:0.2em 0'><a href='http://boc.cn' style='text-decoration:none'>BOC</a></h4>" + "<img style='float:right;margin:4px' id='imgDemo' src='images/BOC.jpg' width='139' height='104' title='BOC'/>" + "<p style='margin:0;line-height:1.5;font-size:13px;text-indent:2em'>中国银行股份有限公司（Bank of China Limited，简称BOC），成立于1912年2月5日，总行位于北京复兴门内大街1号，是五大国有商业银行之一。旗下有中银香港、中银国际、中银保险等控股金融机构，在全球范围内为个人和公司客户提供金融服务。</p>" + "</div>";
+				var infoWindow = new BMap.InfoWindow(sContent); // 创建信息窗口对象       
+				this.openInfoWindow(infoWindow);
+				//图片加载完毕重绘infowindow
+				document.getElementById('imgDemo').onload = function() {
+					infoWindow.redraw(); //防止在网速较慢，图片未加载时，生成的信息框高度比图片的总高度小，导致图片部分被隐藏
+				}
+			});
+
+			//===============
+			//***************
+			/*
+		var data_info = [
+				[118.092683,24.607303,"A区你好"],
+				[118.092019,24.607631,"B区hello"],
+				[118.091264,24.607993,"C区welcome"],
+				[118.090204,24.608584,"D区good"],
+				[118.089288,24.609208,"E区greet"],
+				[118.088246,24.609865,"F区perfect"],
+				[118.087312,24.610342,"G区beautiful"],
+				[118.090536,24.615068,"火锅店，啥都有。  订餐电话：12345678"],
+				[118.089674,24.614329,"啃的鸡炸鸡，美滋滋。  加盟热线：23456789"],
+				[118.088884,24.613688,"泉牛馆，大减价。  地址：西街666号"],
+				[118.092099,24.609615,"郑年锦图书馆。书籍是人类进步的阶梯"],
+				[118.093959,24.610609,"中国人民银行。Bank Of China Limited"]
+				];
+		var opts = {
+					width : 250,     // 信息窗口宽度
+					height: 100,     // 信息窗口高度
+				   };
+		for(var i=0;i<data_info.length;i++){
+			var marker = new BMap.Marker(new BMap.Point(data_info[i][0],data_info[i][1]));  // 创建标注
+			var content = data_info[i][2];
+			map.addOverlay(marker);               // 将标注添加到地图中
+			addClickHandler(content,marker);
+		}
+		function addClickHandler(content,marker){
+			marker.addEventListener("click",function(e){
+				openInfo(content,e)}
+			);
+		}
+		function openInfo(content,e){
+			var p = e.target;
+			var point = new BMap.Point(p.getPosition().lng, p.getPosition().lat);
+			var infoWindow = new BMap.InfoWindow(content,opts);  // 创建信息窗口对象 
+			map.openInfoWindow(infoWindow,point); //开启信息窗口
+		}
+		
+		*/
+			//***************
+
+			//map.addOverlay(marker);               // 将标注添加到地图中(默认不可拖拽)
+			//marker.enableDragging();//标注可拖拽
+			//marker.disableDragging();//标注不可拖拽
+			/*
+		marker.addEventListener("click",getAttr);
+		function getAttr(){
+			var p = marker.getPosition();       //获取marker的位置
+			alert("此点的位置是" + p.lng + "," + p.lat);   
+		}
+		*/
+
+			var cr = new BMap.CopyrightControl({
+				anchor: BMAP_ANCHOR_TOP_RIGHT
+			}); //设置版权控件位置
+			map.addControl(cr); //添加版权控件
+			cr.addCopyright({
+				id: 1,
+				content: "<a style='font-size:10px;color:red'>Made By WuGN</a>"
+			});
+		</script>
+	</body>
+
+</html>

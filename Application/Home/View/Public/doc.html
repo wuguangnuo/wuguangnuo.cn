@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no"/>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+    <link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+	<link rel="stylesheet" href="__PUBLIC__/kancloud/app.css"/>
+	<script type="text/javascript" src="__PUBLIC__/kancloud/app.js"></script>
+    <block name="style"></block>
+</head>
+<body class="pushable">
+	<block name="nav_sm">
+	<div class="ui vertical sidebar menu right" data-attach='[data-selector="sidebar toc"]'>
+		<block name="search"></block>
+		<a class="item" href="__ROOT__/index">首页</a>
+		<a class="item" href="__ROOT__/blog">博客</a>
+		<a class="item" href="__ROOT__/doc">开发文档</a>
+		<a class="item" href="__ROOT__/demo">DEMO</a>
+		<a class="item" href="__ROOT__/tool">工具箱</a>
+		<a class="item" href="__ROOT__/game">游戏</a>
+		<a class="item" href="#">帮助</a>
+		<a class="item" href="#">登录</a>
+		<a class="item" href="#">注册</a>
+	</div>
+	</block>
+	<div class="pusher">
+		<div class="w-page m-explore">
+			<block name="nav">
+			<div class="page-head">
+				<div class="ui menu small secondary fixed">
+					<a class="item logo" href="__ROOT__/index"></a>
+					<a class="item" href="__ROOT__/index">首页</a>
+					<a class="item" href="__ROOT__/blog">博客</a>
+					<a class="item" href="__ROOT__/doc">开发文档</a>
+					<a class="item" href="__ROOT__/demo">DEMO</a>
+					<a class="item" href="__ROOT__/tool">工具箱</a>
+					<a class="item" href="__ROOT__/game">游戏</a>
+					<a class="item" href="#">帮助</a>
+					<div class="right menu ">
+						<a class="toc item" data-selector="sidebar toc"><i class="ellipsis vertical icon"></i></a>
+						<block name="search"></block>
+						<a class="item" href="#">登录</a>
+						<a class="item" href="#">注册</a>
+					</div>
+				</div>
+			</div>
+			</block>
+			<div class="page-body">
+				<div class="ui nags"></div>
+				<div class="w-breadcrumb">
+					<div class="ui container">
+					<block name="subject">
+						<a class="toc"><i class="align justify icon"></i></a>
+						<div class="ui huge breadcrumb">
+							<div class="active section">###</div>
+						</div>
+						<div>分享到：
+							<a data-selector="share" data-type="weibo" href=""><i class="icon weibo"></i></a>
+							<a data-selector="share" data-type="qq" href=""><i class="icon qq"></i></a>
+							<a data-selector="share" data-type="wechat" href=""><i class="icon wechat"></i></a>
+						</div>
+					</block>
+					</div>
+				</div>
+				<div class="ui container">
+					<block name="content">
+					<div class="ui special eight doubling cards">
+						<a class="ui link card" href="###">
+							<div class="blurring dimmable image">
+								<div class="ui dimmer">
+									<div class="content">
+										<div class="center ">
+											<h4>###</h4>
+											<p class="ui text yellow ">###</p>
+										</div>
+									</div>
+								</div>
+								<img src="###"/>
+							</div>
+						</a>
+					</div>
+					</block>
+				</div>
+			</div>
+			<div class="page-foot">
+				<div class="ui container">
+					<div class="w-copyright">
+						<div class="left">
+							<p>Copyright &copy; <?php echo date("Y"); ?> <a href="__ROOT__/index" target="_blank">{:C('WEB_SITE')}</a> All Rights Reserved | Author by {:C('AUTHOR_NAME')}</p>
+							<div class="ui list horizontal">
+								<a class="item" href="{:C('WEB_SITE_DOMAIN')}">Blog</a>
+								<a class="item" href="https://weibo.com/wuguangnuo">WeiBo</a>
+								<a class="item" href="https://github.com/wuguangnuo">GitHub</a>
+								<a class="item" title="Email：{:C('AUTHOR_EMAIL')}">About</a>
+							</div>
+						</div>
+						<div class="right">
+							<a class="logo" href="__ROOT__/index"></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
+<script src="__HOME_JS__/functions.js"></script>
+<block name="script"></block>
+</html>

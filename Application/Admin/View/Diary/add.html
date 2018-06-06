@@ -1,0 +1,11 @@
+<extend name="./Application/Admin/View/Public/main.html"/>
+
+<block name="form">
+<form method="post" action="./insert">
+标题：<input type="text" name="diary_title"><br/>
+关键词：<input type="text" name="diary_key"><br/>
+内容：<textarea name="diary_content" rows="10" cols="50"></textarea><br/>
+日期：<input type="date" name="diary_time1"><input type="time" name="diary_time2"><br/>
+<input type="submit" value="提交">
+</form>
+</block>
