@@ -58,7 +58,7 @@
 		<h3><a href="__ROOT__/blog/{$post.id}" title="{$post.post_title}">{$post.post_title}</a></h3>
 		<div class="">
 			日期：<time>{$post.post_date}</time>
-			<span>标签：<a href="#">{$post.post_type}</a></span>
+			<span>标签：<a href="__ROOT__/blog/search?q={$post.post_type}">{$post.post_type}</a></span>
 		</div>
 		<div>
 			<p>{$post.post_content}</p>
