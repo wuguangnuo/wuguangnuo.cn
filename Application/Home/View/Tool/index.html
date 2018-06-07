@@ -45,7 +45,12 @@
 			</div>
 		</div>
 	</div>
-	<img src="__VIEW__/Tool/img/{$tool.tool_img}"/>
+	<img src="__VIEW__/Tool/img/
+	<php>
+	$filename = 'Application/Home/View/Tool/img/'.$tool['tool_img'];
+	echo is_file($filename)?$tool['tool_img']:'default.png';
+	</php>
+	"/>
 </div>
 </a>
 </foreach>

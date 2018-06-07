@@ -53,7 +53,12 @@
 			</div>
 		</div>
 	</div>
-	<img src="__VIEW__/demo/img/{$demo.demo_img}"/>
+	<img src="__VIEW__/demo/img/
+	<php>
+	$filename = 'Application/Home/View/Demo/img/'.$demo['demo_img'];
+	echo is_file($filename)?$demo['demo_img']:'default.png';
+	</php>
+	"/>
 </div>
 </a>
 </foreach>
