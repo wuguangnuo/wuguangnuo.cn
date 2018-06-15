@@ -2,11 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class DemoController extends Controller {
-    public function index(){
-		$this->show("<a href='./add'>add</a><br /><a href='./read'>read</a>");
-    }
-	
+class DemoController extends AdminController {
 	public function insert(){//添加数据
 		$Form = M('demo');
 		$Form->create();

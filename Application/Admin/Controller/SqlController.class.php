@@ -2,11 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class SqlController extends Controller {
-    public function index(){
-		$this->display();
-    }
-	
+class SqlController extends AdminController {
 	public function query(){
 		$Form = M();
 		$data['result'] = $Form->execute($_POST['sql']); 

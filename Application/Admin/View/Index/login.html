@@ -1,0 +1,10 @@
+<extend name="./Application/Admin/View/Public/main.html"/>
+
+<block name="form">
+<form method="post" action="./login">
+账号：<input type="text" name="username"><br/>
+密码：<input type="text" name="password"><br/>
+<input type="submit" value="提交">
+</form>
+{$login_info}
+</block>

@@ -2,11 +2,7 @@
 namespace Admin\Controller;
 use Think\Controller;
 
-class BlogController extends Controller {
-    public function index(){
-		$this->show("<a href='./add'>add</a><br /><a href='./read'>read</a>");
-    }
-	
+class BlogController extends AdminController {
 	public function insert(){//添加数据
 		$Form = M('blog');
 		$Form->create();

@@ -1,5 +1,9 @@
 <extend name="./Application/Admin/View/Public/main.html"/>
 
+<block name="info">
+{$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
+</block>
+
 <block name="form">
 <form method="post" action="./insert">
 标题：<input type="text" name="post_title"><br/>
