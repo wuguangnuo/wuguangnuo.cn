@@ -24,10 +24,8 @@ class IndexController extends Controller {
 	
 	// 登录
 	public function login(){
-		if(empty($_POST['username']) || empty($_POST['password'])){
-			$this->assign('login_info', "请填写完整");
-		}
-		else{
+		session_destroy();
+		if(!empty($_POST['username']) && !empty($_POST['password'])){
 			$User = M('user');
 			$where['username'] = $_POST['username'];
 			$where['password'] = md5($_POST['password']);
@@ -38,7 +36,7 @@ class IndexController extends Controller {
 				$_SESSION['password'] = md5($_POST['password']);
 				$this->redirect('Index/index','',1,'登录中');
 			}else{
-				$this->assign('login_info', "账号或密码错误");
+				$this->assign('messages', "账号或密码错误");
 			}
 		}
 		$this->assign('meta_title', "登录");

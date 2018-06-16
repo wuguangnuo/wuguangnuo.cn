@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+	<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
 	<link rel="stylesheet" href="__PUBLIC__/bootstrap/css/bootstrap.min.css">
 	<link rel="stylesheet" href="__PUBLIC__/highlight.js/styles/default.css">
 	<link rel="stylesheet" href="__PUBLIC__/font-awesome/css/font-awesome.min.css">
@@ -43,34 +43,19 @@
 			<li><a href="__ROOT__/demo">DEMO</a></li>
 			<li><a href="__ROOT__/tool">工具箱</a></li>
 			<li><a href="__ROOT__/game">游戏</a></li>
-			<!--li class="dropdown">
-				<a href="__ROOT__/game" class="dropdown-toggle" data-toggle="dropdown">游戏<b class="caret"></b></a>
-				<ul class="dropdown-menu">
-					<li><a href="__ROOT__/game/snake.html">贪吃蛇</a></li>
-					<li><a href="__ROOT__/game/flappy-bird/">像素小鸟</a></li>
-					<li><a href="__ROOT__/game/game2/2048/">2048</a></li>
-					<li><a href="__ROOT__/game/tetris/">俄罗斯方块</a></li>
-					<li><a href="__ROOT__/game/game2/soduku/">数独</a></li>
-					<li class="divider"></li>
-					<li><a href="__ROOT__/game/lianliankan/">连连看</a></li>
-					<li><a href="__ROOT__/game/fruit-ninja/">水果忍者</a></li>
-					<li><a href="__ROOT__/game/ChineseChess/">中国象棋</a></li>
-					<li><a href="__ROOT__/game/mario/">马里奥</a></li>
-					<li><a href="__ROOT__/game/mota/">魔塔</a></li>
-					<li><a href="__ROOT__/game/game2/mine/">扫雷</a></li>
-				</ul>
-			</li-->
 			<li><a href="#">帮助</a></li>
 		</ul>
-		<ul class="nav navbar-nav navbar-right">
+		<div class="navbar-right">
 			<form action="__ROOT__/blog/search" method="get" class="navbar-form navbar-left" role="search">
 				<div class="form-group">
 					<input name="q" type="text" class="form-control" placeholder="搜索博客..." />
 				</div>
 			</form>
-            <li><a href="#"><span class="glyphicon glyphicon-user"></span> 注册</a></li> 
-            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> 登录</a></li> 
-       </ul>
+			<ul class="nav navbar-nav">
+				<li><a href="#"><span class="glyphicon glyphicon-user"></span>&nbsp;注册</a></li> 
+				<li><a href="#"><span class="glyphicon glyphicon-log-in"></span>&nbsp;登录</a></li>
+			</ul>
+		</div>
 	</div>
 	</div>
 </nav>

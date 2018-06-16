@@ -1,10 +1,41 @@
 <extend name="./Application/Admin/View/Public/main.html"/>
 
+<block name="style">
+<style>
+#login_form span{
+	padding-left:8px;
+	font-size:14px;
+	font-style:italic;
+	color:#a00
+}
+</style>
+</block>
+
 <block name="form">
-<form method="post" action="./login">
+<form id="login_form" method="post" action="./login">
 账号：<input type="text" name="username"><br/>
 密码：<input type="text" name="password"><br/>
-<input type="submit" value="提交">
+<button type="submit">登录</button>
 </form>
-{$login_info}
+<p>&nbsp;{$messages}</p>
+</block>
+
+<block name="script">
+<script src="__PUBLIC__/jquery-validation/jquery.validate.min.js"></script>
+<script src="__PUBLIC__/jquery-validation/localization/messages_zh.js"></script>
+<script>
+$(function(){
+	jQuery.validator.addMethod("lettersonly", function(value, element) {
+		return this.optional(element) || /^[^:%,'\*\"\s\<\>\&]+$/i.test(value);
+	}, "不得含有特殊字符");
+	
+	$('#login_form').validate({
+		errorElement:'span',
+		rules:{
+			username:{required:true, lettersonly:true},
+			password:{required:true}
+		}
+	});
+});
+</script>
 </block>
