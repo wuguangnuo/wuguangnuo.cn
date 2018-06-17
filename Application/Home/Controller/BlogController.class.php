@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class BlogController extends Controller {
+class BlogController extends BlogsideController {
     public function index(){
 		$Blog = M('blog');
 		$where = "1 = 1"; // 查询条件
