@@ -25,6 +25,8 @@ class IndexController extends Controller {
 	// 登录
 	public function login(){
 		session_destroy();
+		$this->assign('messages', "请输入账号密码");
+		$this->assign('meta_title', "登录");
 		if(!empty($_POST['username']) && !empty($_POST['password'])){
 			$User = M('user');
 			$where['username'] = $_POST['username'];
@@ -39,8 +41,6 @@ class IndexController extends Controller {
 				$this->assign('messages', "账号或密码错误");
 			}
 		}
-		$this->assign('messages', "请输入账号密码");
-		$this->assign('meta_title', "登录");
 		$this->display();
 	}
 	
