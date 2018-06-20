@@ -3,6 +3,16 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class DemoController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "Demo管理");
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('meta_title', "添加Demo");
+		$this->display();
+	}
+	
 	public function insert(){//添加数据
 		$Form = M('demo');
 		$Form->create();

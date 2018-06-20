@@ -3,6 +3,11 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class SqlController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "SQL管理");
+		$this->display();
+	}
+	
 	public function query(){
 		$Form = M();
 		$data['result'] = $Form->execute($_POST['sql']); 

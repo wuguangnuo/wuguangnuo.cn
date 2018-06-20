@@ -3,6 +3,16 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class DocController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "Doc管理");
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('meta_title', "添加Doc");
+		$this->display();
+	}
+	
 	public function insert(){//添加数据
 		$Form = M('doc');
 		$Form->create();

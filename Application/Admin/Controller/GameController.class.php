@@ -3,6 +3,16 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class GameController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "Game管理");
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('meta_title', "添加Game");
+		$this->display();
+	}
+	
 	public function insert(){//添加数据
 		$Form = M('game');
 		$Form->create();

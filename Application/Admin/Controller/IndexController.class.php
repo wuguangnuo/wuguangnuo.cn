@@ -39,6 +39,7 @@ class IndexController extends Controller {
 				$this->assign('messages', "账号或密码错误");
 			}
 		}
+		$this->assign('messages', "请输入账号密码");
 		$this->assign('meta_title', "登录");
 		$this->display();
 	}

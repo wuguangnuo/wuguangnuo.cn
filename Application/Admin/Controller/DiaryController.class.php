@@ -3,6 +3,16 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class DiaryController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "Diary管理");
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('meta_title', "添加Diary");
+		$this->display();
+	}
+	
 	public function insert(){//添加数据
 		$Form = M('diary');
 		$Form->create();

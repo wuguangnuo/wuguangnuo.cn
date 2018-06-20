@@ -3,6 +3,16 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class ToolController extends AdminController {
+	public function index(){
+		$this->assign('meta_title', "Tool管理");
+		$this->display();
+	}
+	
+	public function add(){
+		$this->assign('meta_title', "添加Tool");
+		$this->display();
+	}
+	
 	public function insert(){//添加数据
 		$Form = M('tool');
 		$Form->create();
