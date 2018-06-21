@@ -1,22 +1,30 @@
-$(function() {
+$(function(){
 	//标题变换
 	var OriginTitile = document.title;
 	var titleTime;
 	document.addEventListener('visibilitychange',
-	function() {
-		if (document.hidden) {
+	function(){
+		if (document.hidden){
 			document.title = '(●—●)你还会回来吗？' + OriginTitile;
 			clearTimeout(titleTime);
 		} else {
 			document.title = '今天，又是充满希望的一天！' + OriginTitile;
-			titleTime = setTimeout(function() {
+			titleTime = setTimeout(function(){
 				document.title = OriginTitile;
 			},2000);}
 	});
 
 	//提示复制
-	document.body.oncopy = function() {
+	document.body.oncopy = function(){
 		alert("复制成功！")
+	}
+	//禁止右键
+	document.body.oncontextmenu = function(){
+		return false;
+	}
+	//禁止拖动
+	document.body.ondragstart = function(){
+		return false;
 	}
 	
 	//控制台输出

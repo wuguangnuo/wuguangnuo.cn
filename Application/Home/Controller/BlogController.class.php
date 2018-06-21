@@ -12,7 +12,7 @@ class BlogController extends BlogsideController {
 		
 		foreach ($list as $key=>&$val) {
 			$val['post_date'] = cut_str($val['post_date'], 16);
-			$val['post_content'] = cut_str(htmlspecialchars($val['post_content']), 150); // 简介,转义
+			$val['post_content'] = cut_str(htmlspecialchars($val['post_content']), 150, true); // 简介,转义
 		}
 		
 		$this->assign('meta_title', "諾的博客");
@@ -71,7 +71,7 @@ class BlogController extends BlogsideController {
 		
 		foreach ($list as $key=>&$val) {
 			$val['post_date'] = cut_str($val['post_date'], 16);
-			$val['post_content'] = cut_str(htmlspecialchars($val['post_content']), 150); // 简介,转义
+			$val['post_content'] = cut_str(htmlspecialchars($val['post_content']), 150, true); // 简介,转义
 		}
 		
 		$this->assign('list', $list); // 赋值数据集
