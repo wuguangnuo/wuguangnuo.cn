@@ -3,7 +3,7 @@ namespace Admin\Controller;
 use Think\Controller;
 
 class IndexController extends Controller {
-    public function index(){
+	public function index(){
 		if(isset($_SESSION['username']) && isset($_SESSION['password'])){
 			$User = M('user');
 			$where['username'] = $_SESSION['username'];
@@ -20,7 +20,7 @@ class IndexController extends Controller {
 		else{
 			$this->redirect('Index/login','',1,'未登录');
 		}
-    }
+	}
 	
 	// 登录
 	public function login(){
