@@ -46,8 +46,8 @@ class BlogController extends BlogsideController {
 			$np['id'] = $data['id'];
 			$np['post_title'] = "无";
 		}
-		$lp['post_title'] = cut_str($lp['post_title'], 20);
-		$np['post_title'] = cut_str($np['post_title'], 20);
+		$lp['post_title'] = cut_str($lp['post_title'], 18, true);
+		$np['post_title'] = cut_str($np['post_title'], 18, true);
 		
 		$this->lp = $lp;
 		$this->np = $np;
