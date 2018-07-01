@@ -1,5 +1,9 @@
 <extend name="./Application/Admin/View/Public/main.html"/>
 
+<block name="style">
+<style>.red{color:#f00}#message{white-space:pre-wrap;word-wrap:break-word;font-family:'Courier New','Microsoft YaHei','SimSun'}</style>
+</block>
+
 <block name="info">
 {$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
 </block>
@@ -19,10 +23,10 @@ $(function(){
 			cache: false,
 			dataType: 'JSON',
 			success: function(data){
-				$('#message').html('结果：' + data.result + '<br />语句：' + data.info); 
+				$('#message').html('<span class="red">影响行数：</span>' + data.execute + '<br /><span class="red">查询语句：</span>' + data.sql + '<br /><span class="red">查询结果：</span>' + data.query);
 			},
 			error: function(){
-				$('#message').html('SQL语句错误<br />请检查重试');
+				$('#message').html('<span class="red">SQL语句错误<br />请检查重试</span>');
 			}
 		});
 	});
