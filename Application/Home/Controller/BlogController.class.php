@@ -57,17 +57,20 @@ class BlogController extends BlogsideController {
 	public function search($q = 'null') {
 		$Blog = M('blog');
 		if($q == 'null'){
-			$where = "1 = 1";
+			$where1 = "1 = 1";
+			$where2 = "1 = 1";
 		}else{
-			$where['post_title'] = array('like', '%'.$q.'%'); // 查询条件
-			$where['post_author'] = array('like', '%'.$q.'%');
-			$where['post_type'] = array('like', '%'.$q.'%');
-			$where['post_from'] = array('like', '%'.$q.'%');
-			$where['_logic'] = 'or';
+			$where1['post_title'] = array('like', '%'.$q.'%'); // 查询条件
+			$where1['post_author'] = array('like', '%'.$q.'%');
+			$where1['_logic'] = 'or'; // 搜索第一顺序
+			$where2['post_type'] = array('like', '%'.$q.'%');
+			$where2['post_from'] = array('like', '%'.$q.'%');
+			$where2['_logic'] = 'or'; // 搜索第二顺序
 		}
-		$count = $Blog->where($where)->count(); // 查询总数
+		$count = $Blog->where($where1)->where($where2)->count(); // 查询总数
 		$p = getpage($count, 8); // 每页几个
-		$list = $Blog->field(true)->where($where)->order('id desc')->limit($p->firstRow, $p->listRows)->select();
+		// 无法解决 union() 闭包用法问题，暂用原生SQL语句
+		$list = $Blog->query("(SELECT * FROM wu_blog WHERE post_title LIKE '%".$q."%' OR post_author LIKE '%".$q."%' ORDER BY id DESC) UNION (SELECT * FROM wu_blog WHERE post_type LIKE '%".$q."%' OR post_from LIKE '%".$q."%' ORDER BY id DESC) LIMIT ".$p->firstRow.",".$p->listRows);
 		
 		foreach ($list as $key=>&$val) {
 			$val['post_date'] = cut_str($val['post_date'], 16);
