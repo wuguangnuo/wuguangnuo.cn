@@ -1,5 +1,6 @@
 @charset "utf-8";
 
+/* 滚动条 */
 ::-webkit-scrollbar {
   width:10px;
   height:10px
@@ -56,8 +57,14 @@
   background-image:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAMAAAC67D+PAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAACFQTFRFsrKy/f39jIyM6urq6OjoxcXFyMjI5eXl6+vrmJiY////zoF5WAAAAAt0Uk5T/////////////wBKTwHyAAAAP0lEQVR42jyMSQ7AMAwCoV6S9P8PLsFSRxxGYBnvD1bB1EJtmq2KYajlPOZIOXpbxrUYlfu2cz5kQzGdnwADAFIoAS2MgDalAAAAAElFTkSuQmCC)
 }
 
+/* 主体样式 */
 body {
   background:url("../img/beach.jpg") repeat
+}
+hr {
+  height:2px;
+  border:none;
+  border-top:1px dashed #6cf
 }
 .bg-fixed {
   width:100%;
@@ -76,6 +83,19 @@ body {
 .postTitle span {
   color:#999
 }
+.postTitle h2 {
+  text-shadow:2px 2px 1px #999
+}
+.panel-body a:hover {
+  color:#fff;
+  background:#48b;
+  text-decoration:none
+}
+.table-responsive p {
+  white-space:pre-wrap;
+  word-wrap:break-word;
+  word-break:break-all
+}
 .postCon {
   display:block;
   padding:10px;
@@ -84,15 +104,55 @@ body {
   border:1px solid #ccc;
   border-radius:6px
 }
+.postCon h3 a {
+  color:#333;
+  font-family:"Microsoft Yahei", Tahoma, Arial, SimSun, "Hiragino Sans GB", PMingLiu, Verdana, sans-serif;
+  font-weight:500
+}
+.postCon h3 a:hover {
+  color:#f60;
+  font-weight:900;
+  text-decoration:none
+}
 .frommysql {
   display:block;
   font-size:16px;
   line-height:1.5em;
   color:#333;
   white-space:pre-wrap;
-  /*word-break:break-all;*/
-  word-wrap:break-word;
+  word-break:break-all;
+  word-wrap:break-word
 }
+
+/* 分页样式 */
+.pages a,.pages span {
+  display:inline-block;
+  padding:2px 5px;
+  margin:0 1px;
+  border:1px solid #f0f0f0;
+  -webkit-border-radius:3px;
+  -moz-border-radius:3px;
+  border-radius:3px
+}
+.pages a,.pages li {
+  display:inline-block;
+  list-style: none;
+  text-decoration:none; color:#58A0D3
+}
+.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
+  margin:0
+}
+.pages a:hover{
+  border-color:#50A8E6
+}
+.pages span.current{
+  background:#50A8E6;
+  color:#FFF;
+  font-weight:700;
+  border-color:#50A8E6
+}
+
+/* 侧边栏 */
 .sidebar {  
   -moz-user-select:none;
   -webkit-user-select:none;
@@ -116,11 +176,8 @@ body {
   -khtml-user-select:none;
   user-select:none
 }
-hr {
-  height:2px;
-  border:none;
-  border-top:1px dashed #6cf
-}
+
+/* 小工具样式 */
 #gotop div {
   left:0;
   margin:0;
@@ -170,8 +227,4 @@ hr {
   font-size:24px;
   color:#00f;
   z-index:300
-}
-
-.table-responsive {
-  border:0px!important
 }

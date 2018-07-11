@@ -1,48 +1,5 @@
 <extend name="./Application/Home/View/Public/blog.html"/>
 
-<block name="style">
-<style>
-/* 分页样式 */
-.pages a,.pages span {
-  display:inline-block;
-  padding:2px 5px;
-  margin:0 1px;
-  border:1px solid #f0f0f0;
-  -webkit-border-radius:3px;
-  -moz-border-radius:3px;
-  border-radius:3px;
-}
-.pages a,.pages li {
-  display:inline-block;
-  list-style: none;
-  text-decoration:none; color:#58A0D3;
-}
-.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-  margin:0;
-}
-.pages a:hover{
-  border-color:#50A8E6;
-}
-.pages span.current{
-  background:#50A8E6;
-  color:#FFF;
-  font-weight:700;
-  border-color:#50A8E6;
-}
-/* 文章列表样式 */
-.postCon h3 a{
-  color:#333;
-  font-family:"Microsoft Yahei", Tahoma, Arial, SimSun, "Hiragino Sans GB", PMingLiu, Verdana, sans-serif;
-  font-weight:500;
-}
-.postCon h3 a:hover{
-  color:#f60;
-  font-weight:900;
-  text-decoration:none;
-}
-</style>
-</block>
-
 <block name="post_title">
 <div class="container">
 	<div class="postTitle">
