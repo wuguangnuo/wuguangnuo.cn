@@ -114,6 +114,11 @@ hr {
   font-weight:900;
   text-decoration:none
 }
+.postCon .post_msg {
+  color:#622;
+  font-family:Georgia,"Microsoft YaHei",SimSun;
+  font-size:16px
+}
 .frommysql {
   display:block;
   font-size:16px;
@@ -122,6 +127,14 @@ hr {
   white-space:pre-wrap;
   word-break:break-all;
   word-wrap:break-word
+}
+.frommysql blockquote {
+  display:block;
+  padding:5px 0px;
+  margin:0 0 15px;
+  border-left:6px solid #ddd;
+  background:#eee;
+  overflow:auto
 }
 
 /* 分页样式 */
