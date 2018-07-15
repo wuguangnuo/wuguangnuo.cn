@@ -1,26 +1,26 @@
-$(function() {
+$(function(){
 	//初始化
 	$("#gotop").hide();//小火箭默认隐藏
 	$("#gotop2").hide();//小火箭二号
 	
-	$(".flip").addClass("btn btn-primary");//添加按钮样式
+	//Blog内容规范化
+	$(".frommysql table").css("border", "0").addClass("table table-striped table-condensed table-hover");//表格样式
 	$(".frommysql img").addClass("img-responsive img-thumbnail");//图片样式
-	
+	$(".flip").addClass("btn btn-primary");//添加按钮样式
 	$(".flip+pre").hide();//代码默认隐藏
-	$(".flip").click(function() {//代码展开功能
+	$(".flip").click(function(){//代码展开功能
 		$(".flip+pre:eq(" + $(this).index(".flip") + ")").slideToggle("slow");
 	});
 	
 	//小火箭gotop
-	var e = $("#gotop"),
-	t = $(document).scrollTop(),n,r,i = !0;
-	$(window).scroll(function() {
+	var e = $("#gotop"), t = $(document).scrollTop(), n, r, i = !0;
+	$(window).scroll(function(){
 		var t = $(document).scrollTop();
 		t == 0 ? e.css("background-position") == "0px 0px" ? e.fadeOut("slow") : i && (i = !1, $(".level-2").css("opacity", 1), e.delay(100).animate({
 			marginTop: "-1000px"
 		},
 		"normal",
-		function() {
+		function(){
 			e.css({
 				"margin-top": "-125px",
 				display: "none"
@@ -28,25 +28,25 @@ $(function() {
 			i = !0
 		})) : e.fadeIn("slow")
 	}),
-	e.hover(function() {
+	e.hover(function(){
 		$(".level-2").stop(!0).animate({
 			opacity: 1
 		})
 	},
-	function() {
+	function(){
 		$(".level-2").stop(!0).animate({
 			opacity: 0
 		})
 	}),
-	$(".level-3").click(function() {
-		function t() {
+	$(".level-3").click(function(){
+		function t(){
 			var t = e.css("background-position");
-			if (e.css("display") == "none" || i == 0) {
+			if(e.css("display") == "none" || i == 0){
 				clearInterval(n),
 				e.css("background-position", "0px 0px");
 				return
 			}
-			switch (t) {
+			switch(t){
 			case "0px 0px":
 				e.css("background-position", "-298px 0px");
 				break;
@@ -63,7 +63,7 @@ $(function() {
 				e.css("background-position", "-298px 0px");
 			}
 		}
-		if (!i) return;
+		if(!i) return;
 		n = setInterval(t, 50),
 		$("html,body").animate({
 			scrollTop: 0
@@ -73,7 +73,7 @@ $(function() {
 	
 	//小火箭二号
 	$(window).scroll(function(){
-		if($(window).scrollTop()>=100){
+		if($(window).scrollTop() >= 100){
 			$("#gotop2").fadeIn();
 		}else {
 			$("#gotop2").fadeOut();
@@ -85,7 +85,7 @@ $(function() {
 	});
 
 	//点赞区域
-	$(".newsItem").click(function(e) {
+	$(".newsItem").click(function(e){
 		var n = Math.round(Math.random() * 100);
 		var $i = $("<b>").text("+" + n + "❤");
 		var x = e.pageX,
@@ -104,102 +104,83 @@ $(function() {
 			"opacity": 0
 		},
 		1500,
-		function() {
+		function(){
 			$i.remove();
 		});
 		e.stopPropagation();
 	});
-	
 });
 
-/* sidebar.js */
-/* -- sidebar-follow-jquery.js 跟随 -- */
-
-SidebarFollow = function() {
-
+/* -- sidebar-follow- 跟随 -- */
+SidebarFollow = function(){
 	this.config = {
-		element: null, // 处理的节点
-		distanceToTop: 0 // 节点上边到页面顶部的距离
+		element: null,//处理的节点
+		distanceToTop: 0//节点上边到页面顶部的距离
 	};
-
 	this.cache = {
-		originalToTop: 0, // 原本到页面顶部的距离
-		prevElement: null, // 上一个节点
-		parentToTop: 0, // 父节点的上边到顶部距离
-		placeholder: jQuery('<div>') // 占位节点
+		originalToTop: 0,//原本到页面顶部的距离
+		prevElement: null,//上一个节点
+		parentToTop: 0,//父节点的上边到顶部距离
+		placeholder: jQuery('<div>')//占位节点
 	}
 };
 
 SidebarFollow.prototype = {
-
-	init: function(config) {
+	init: function(config){
 		this.config = config || this.config;
 		var _self = this;
 		var element = jQuery(_self.config.element);
-
 		// 如果没有找到节点, 不进行处理
-		if(element.length <= 0) {
+		if(element.length <= 0){
 			return;
 		}
-
 		// 获取上一个节点
 		var prevElement = element.prev();
-		while(prevElement.is(':hidden')) {
+		while(prevElement.is(':hidden')){
 			prevElement = prevElement.prev();
-			if(prevElement.length <= 0) {
+			if(prevElement.length <= 0){
 				break;
 			}
 		}
 		_self.cache.prevElement = prevElement;
-
 		// 计算父节点的上边到顶部距离
 		var parent = element.parent();
 		var parentToTop = parent.offset().top;
 		var parentBorderTop = parent.css('border-top');
 		var parentPaddingTop = parent.css('padding-top');
 		_self.cache.parentToTop = parentToTop + parentBorderTop + parentPaddingTop;
-
 		// 滚动屏幕
-		jQuery(window).scroll(function() {
+		jQuery(window).scroll(function(){
 			_self._scrollScreen({element:element, _self:_self});
 		});
-
 		// 改变屏幕尺寸
-		jQuery(window).resize(function() {
+		jQuery(window).resize(function(){
 			_self._scrollScreen({element:element, _self:_self});
 		});
 	},
-
-	/**
-	 * 修改节点位置
-	 */
-	_scrollScreen: function(args) {
+	//修改节点位置
+	_scrollScreen: function(args){
 		var _self = args._self;
 		var element = args.element;
 		var prevElement = _self.cache.prevElement;
-
 		// 获得到顶部的距离
 		var toTop = _self.config.distanceToTop;
-
 		// 如果 body 有 top 属性, 消除这些位移
 		var bodyToTop = parseInt(jQuery('body').css('top'), 10);
-		if(!isNaN(bodyToTop)) {
+		if(!isNaN(bodyToTop)){
 			toTop += bodyToTop;
 		}
-
 		// 获得到顶部的绝对距离
 		var elementToTop = element.offset().top - toTop;
-
 		// 如果存在上一个节点, 获得到上一个节点的距离; 否则计算到父节点顶部的距离
 		var referenceToTop = 0;
-		if(prevElement && prevElement.length === 1) {
+		if(prevElement && prevElement.length === 1){
 			referenceToTop = prevElement.offset().top + prevElement.outerHeight();
 		} else {
 			referenceToTop = _self.cache.parentToTop - toTop;
 		}
-
 		// 当节点进入跟随区域, 跟随滚动
-		if(jQuery(document).scrollTop() > elementToTop) {
+		if(jQuery(document).scrollTop() > elementToTop){
 			// 添加占位节点
 			var elementHeight = element.outerHeight();
 			_self.cache.placeholder.css('height', elementHeight).insertBefore(element);
@@ -210,9 +191,8 @@ SidebarFollow.prototype = {
 				top: toTop + 'px',
 				position: 'fixed'
 			});
-
 		// 否则回到原位
-		} else if(_self.cache.originalToTop > elementToTop || referenceToTop > elementToTop) {
+		} else if(_self.cache.originalToTop > elementToTop || referenceToTop > elementToTop){
 			// 删除占位节点
 			_self.cache.placeholder.remove();
 			// 修改样式
