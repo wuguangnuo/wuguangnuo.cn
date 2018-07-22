@@ -28,4 +28,12 @@ class GameController extends Controller {
 		$this->assign('meta_title', "搜索游戏");
 		$this->display(); // 模版输出
 	}
+	
+	public function _empty($name){
+		$this->show($name);
+	}
+	
+	public function show($name){
+		echo "<iframe src='".__ROOT__."/Application/Home/View/Game/".$name."/' height='97%' width='100%' frameborder='0' scrolling='no'></iframe>";
+	}
 }
