@@ -26,7 +26,7 @@ return array(
 	'SHOW_PAGE_TRACE' => true, // 显示页面Trace信息
 
 	// 伪静态
-	'URL_HTML_SUFFIX'=>'html|shtml|xml', // 伪静态，多个用 | 分割
+	'URL_HTML_SUFFIX'=>'html|shtml|php|xml', // 伪静态，多个用 | 分割
 	
 	// URL配置
     'URL_CASE_INSENSITIVE' => true, // 不区分大小写
