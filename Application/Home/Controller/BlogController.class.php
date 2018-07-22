@@ -85,9 +85,10 @@ class BlogController extends BlogsideController {
 			$val['post_date'] = cut_str($val['post_date'], 16);
 			$val['post_content'] = str_replace(PHP_EOL, '\r\n', htmlspecialchars(cut_str($val['post_content'], 300, true))); // 简介,转义
 		}
+		$keyword = strtoupper($q?"文章搜索：".$q:"文章分类：".$t);
 		
 		$this->assign('list', $list); // 赋值数据集
-		$this->assign('keyword', $q); // 赋值数据集
+		$this->assign('keyword', $keyword); // 赋值数据集
 		$this->assign('page', $p->show()); // 赋值分页输出
 		$this->assign('meta_title', "搜索博客");
 		$this->display(); // 模版输出
