@@ -30,10 +30,10 @@ class GameController extends Controller {
 	}
 	
 	public function _empty($name){
-		$this->show($name);
+		$this->showGame($name);
 	}
 	
-	public function show($name){
-		echo "<iframe src='".__ROOT__."/Application/Home/View/Game/".$name."/' height='97%' width='100%' frameborder='0' scrolling='no'></iframe>";
+	public function showGame($name){
+		echo "<iframe src='".__ROOT__."/Application/Home/View/Game/".$name."/' height='97%' width='100%' frameborder='0' scrolling='yes'></iframe>";
 	}
 }
