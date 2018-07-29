@@ -7,6 +7,13 @@ class DocController extends Controller {
 		$Doc = M('doc');
 		$where = "1 = 1";
 		$list = $Doc->field(true)->where($where)->order('rand()')->select(); // 结果随机排序
+		foreach($list as &$doc){
+			if(!strpos($doc['doc_link'], '://')){
+				$doc['doc_link'] = __ROOT__.'/doc/'.$doc['doc_link'];
+			}
+			$fileName = 'Application/Home/View/Doc/img/'.$doc['doc_img'];
+			$doc['doc_img'] = is_file($fileName)?$doc['doc_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "开发文档");
 		$this->display(); // 模版输出
@@ -22,6 +29,13 @@ class DocController extends Controller {
 			$where['_logic'] = 'or';
 		}
 		$list = $Doc->field(true)->where($where)->order('id asc')->select();
+		foreach($list as &$doc){
+			if(!strpos($doc['doc_link'], '://')){
+				$doc['doc_link'] = __ROOT__.'/doc/'.$doc['doc_link'];
+			}
+			$fileName = 'Application/Home/View/Doc/img/'.$doc['doc_img'];
+			$doc['doc_img'] = is_file($fileName)?$doc['doc_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
 		$this->assign('meta_title', "搜索文档");

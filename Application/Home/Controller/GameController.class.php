@@ -7,6 +7,13 @@ class GameController extends Controller {
 		$Game = M('game');
 		$where = "1 = 1";
 		$list = $Game->field(true)->where($where)->order('rand()')->select();
+		foreach($list as &$game){
+			if(!strpos($game['game_link'], '://')){
+				$game['game_link'] = __ROOT__.'/game/'.$game['game_link'];
+			}
+			$fileName = 'Application/Home/View/Game/img/'.$game['game_img'];
+			$game['game_img'] = is_file($fileName)?$game['game_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "H5游戏");
 		$this->display(); // 模版输出
@@ -23,6 +30,13 @@ class GameController extends Controller {
 			$where['_logic'] = 'or';
 		}
 		$list = $Game->field(true)->where($where)->order('id asc')->select();
+		foreach($list as &$game){
+			if(!strpos($game['game_link'], '://')){
+				$game['game_link'] = __ROOT__.'/game/'.$game['game_link'];
+			}
+			$fileName = 'Application/Home/View/Game/img/'.$game['game_img'];
+			$game['game_img'] = is_file($fileName)?$game['game_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
 		$this->assign('meta_title', "搜索游戏");

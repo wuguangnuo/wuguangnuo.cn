@@ -7,6 +7,13 @@ class DemoController extends Controller {
 		$Demo = M('demo');
 		$where = "1 = 1";
 		$list = $Demo->field(true)->where($where)->order('rand()')->select(); // 结果随机排序
+		foreach($list as &$demo){
+			if(!strpos($demo['demo_link'], '://')){
+				$demo['demo_link'] = __ROOT__.'/demo/'.$demo['demo_link'];
+			}
+			$fileName = 'Application/Home/View/Demo/img/'.$demo['demo_img'];
+			$demo['demo_img'] = is_file($fileName)?$demo['demo_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "DEMO");
 		$this->display(); // 模版输出
@@ -23,6 +30,13 @@ class DemoController extends Controller {
 			$where['_logic'] = 'or';
 		}
 		$list = $Demo->field(true)->where($where)->order('id asc')->select();
+		foreach($list as &$demo){
+			if(!strpos($demo['demo_link'], '://')){
+				$demo['demo_link'] = __ROOT__.'/demo/'.$demo['demo_link'];
+			}
+			$fileName = 'Application/Home/View/Demo/img/'.$demo['demo_img'];
+			$demo['demo_img'] = is_file($fileName)?$demo['demo_img']:'default.png';
+		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
 		$this->assign('meta_title', "搜索DEMO");
