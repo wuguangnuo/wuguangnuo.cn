@@ -26,7 +26,7 @@
 <block name="content">
 <div class="ui special eight doubling cards">
 <foreach name='list' item='doc'>
-<a class="ui link card" href="<php>if(!strpos($doc['doc_link'],'://')){echo '__VIEW__/Doc/';}</php>{$doc.doc_link}" target="_blank">
+<a class="ui link card" href="{$doc.doc_link}" target="_blank">
 <div class="blurring dimmable image">
 	<div class="ui dimmer">
 		<div class="content">
@@ -36,10 +36,7 @@
 			</div>
 		</div>
 	</div>
-	<img src="__VIEW__/Doc/img/<php>
-	$filename = 'Application/Home/View/Doc/img/'.$doc['doc_img'];
-	echo is_file($filename)?$doc['doc_img']:'default.png';
-	</php>"/>
+	<img src="__VIEW__/Doc/img/{$doc.doc_img}"/>
 </div>
 </a>
 </foreach>

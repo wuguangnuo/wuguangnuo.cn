@@ -34,7 +34,7 @@
 </empty>
 <div class="ui special eight doubling cards">
 <foreach name='list' item='tool'>
-<a class="ui link card" href="<php>if(!strpos($tool['tool_link'],'://')){echo '__ROOT__/Tool/';}</php>{$tool.tool_link}" target="_blank">
+<a class="ui link card" href="{$tool.tool_link}" target="_blank">
 <div class="blurring dimmable image">
 	<div class="ui dimmer">
 		<div class="content">
@@ -43,10 +43,7 @@
 			</div>
 		</div>
 	</div>
-	<img src="__VIEW__/Tool/img/<php>
-	$filename = 'Application/Home/View/Tool/img/'.$tool['tool_img'];
-	echo is_file($filename)?$tool['tool_img']:'default.png';
-	</php>"/>
+	<img src="__VIEW__/Tool/img/{$tool.tool_img}"/>
 </div>
 </a>
 </foreach>

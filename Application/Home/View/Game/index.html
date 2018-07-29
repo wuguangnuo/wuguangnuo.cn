@@ -26,7 +26,7 @@
 <block name="content">
 <div class="ui special eight doubling cards">
 <foreach name='list' item='game'>
-<a class="ui link card" href="<php>if(!strpos($game['game_link'],'://')){echo '__ROOT__/game/';}</php>{$game.game_link}" target="_blank">
+<a class="ui link card" href="{$game.game_link}" target="_blank">
 <div class="blurring dimmable image">
 	<div class="ui dimmer">
 		<div class="content">
@@ -35,10 +35,7 @@
 			</div>
 		</div>
 	</div>
-	<img src="__VIEW__/game/img/<php>
-	$filename = 'Application/Home/View/Game/img/'.$game['game_img'];
-	echo is_file($filename)?$game['game_img']:'default.png';
-	</php>"/>
+	<img src="__VIEW__/game/img/{$game.game_img}"/>
 </div>
 </a>
 </foreach>
