@@ -32,13 +32,13 @@ class GameController extends Controller {
 	public function _empty($name){
 		$fileName = 'Application/Home/View/Game/'.$name;
 		if(is_dir($fileName)){
-			$this->showGame($name);
+			$this->showApp($name);
 		}else{
 			$this->error("资源不存在");
 		}
 	}
 	
-	public function showGame($name){
+	public function showApp($name){
 		$this->assign('link', __ROOT__."/Application/Home/View/Game/".$name);
 		$this->display('./Application/Home/View/Public/showApp.html');
 	}

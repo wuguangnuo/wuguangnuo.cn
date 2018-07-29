@@ -28,4 +28,18 @@ class DemoController extends Controller {
 		$this->assign('meta_title', "搜索DEMO");
 		$this->display(); // 模版输出
 	}
+		
+	public function _empty($name){
+		$fileName = 'Application/Home/View/Demo/'.$name;
+		if(is_dir($fileName)){
+			$this->showApp($name);
+		}else{
+			$this->error("资源不存在");
+		}
+	}
+	
+	public function showApp($name){
+		$this->assign('link', __ROOT__."/Application/Home/View/Demo/".$name);
+		$this->display('./Application/Home/View/Public/showApp.html');
+	}
 }
