@@ -1,14 +1,4 @@
 <extend name="./Application/Home/View/Public/doc.html"/>
-
-<block name="style">
-<!--style>
-.title{
-	color:#5e5e5e!important;
-	font-family:"Helvetica Neue",Helvetica,Arial,sans-serif;
-	font-size:1.4em;
-}
-</style-->
-</block>
 	
 <block name="search">
 <form action="__ROOT__/demo/search">
@@ -36,7 +26,7 @@
 <block name="content">
 <div class="ui special eight doubling cards">
 <foreach name='list' item='demo'>
-<a class="ui link card" href="<php>if(!strpos($demo['demo_link'],'://')){echo '__VIEW__/Demo/';}</php>{$demo.demo_link}" target="_blank">
+<a class="ui link card" href="<php>if(!strpos($demo['demo_link'],'://')){echo '__ROOT__/Demo/';}</php>{$demo.demo_link}" target="_blank">
 <div class="blurring dimmable image">
 	<div class="ui dimmer">
 		<div class="content">
