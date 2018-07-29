@@ -9,8 +9,8 @@
 </block>
 
 <block name="form">
-<script type="text/javascript" src="__PUBLIC__/jquery/jquery.min.js"></script>
-<script type="text/javascript">
+<script src="__PUBLIC__/jquery/jquery.min.js"></script>
+<script>
 $(function(){
 	$('#submit').click(function(){
 		var sql = $('#textarea').val();
@@ -33,8 +33,8 @@ $(function(){
 });
 </script>
 
-SQL语句：<br/><textarea id="textarea" rows="10" cols="50">select count(id) from wu_blog</textarea>
-<br/>
+SQL语句：<br /><textarea id="textarea" rows="10" cols="50" placeholder="{$placeholder}" style="max-width:99%">select count(id) from wu_blog</textarea>
+<br />
 <button id="submit">提交</button>
 <div id="message">&nbsp;<br />&nbsp;</div>
 </block>

@@ -4,6 +4,8 @@ use Think\Controller;
 
 class SqlController extends AdminController {
 	public function index(){
+		$Form = M();
+		$this->assign('placeholder', $Form->query('select version();')[0]['version()']);
 		$this->assign('meta_title', "SQL管理");
 		$this->display();
 	}
