@@ -30,10 +30,16 @@ class GameController extends Controller {
 	}
 	
 	public function _empty($name){
-		$this->showGame($name);
+		$fileName = 'Application/Home/View/Game/'.$name;
+		if(is_dir($fileName)){
+			$this->showGame($name);
+		}else{
+			$this->error("资源不存在");
+		}
 	}
 	
 	public function showGame($name){
-		echo "<iframe src='".__ROOT__."/Application/Home/View/Game/".$name."/' height='97%' width='100%' frameborder='0' scrolling='yes'></iframe>";
+		$this->assign('link', __ROOT__."/Application/Home/View/Game/".$name);
+		$this->display('./Application/Home/View/Public/showApp.html');
 	}
 }
