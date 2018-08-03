@@ -2,7 +2,7 @@
 
 <block name="style">
 <style>
-#login_form span{
+#login_form span, p {
 	padding-left:8px;
 	font-size:14px;
 	font-style:italic;
@@ -13,18 +13,18 @@
 
 <block name="form">
 <form id="login_form" method="post" action="./login">
-账号：<input type="text" name="username"><br/>
-密码：<input type="text" name="password"><br/>
+账号：<input type="text" name="username"><br />
+密码：<input type="text" name="password"><br />
 <button type="submit">登录</button>
 </form>
-<p>&nbsp;{$messages}</p>
+<p>{$messages}</p>
 </block>
 
 <block name="script">
 <script src="__PUBLIC__/jquery-validation/jquery.validate.min.js"></script>
 <script src="__PUBLIC__/jquery-validation/localization/messages_zh.js"></script>
 <script>
-$(function(){
+$(function() {
 	jQuery.validator.addMethod("lettersonly", function(value, element) {
 		return this.optional(element) || /^[^:%,'\*\"\s\<\>\&]+$/i.test(value);
 	}, "不得含有特殊字符");
