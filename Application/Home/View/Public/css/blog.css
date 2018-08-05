@@ -145,6 +145,12 @@ time{
   background:#eee;
   overflow:auto
 }
+.frommysql pre code{
+  white-space:pre
+}
+.reprint{
+  float:left
+}
 .fa-search{
   line-height:34px;
   color:#888
@@ -256,9 +262,6 @@ time{
 }
 
 @media (max-width:767px){
-  .postCon{
-    padding:5px
-  }
   .frommysql blockquote{
     padding:4px 2px;
     margin:0
@@ -272,5 +275,9 @@ time{
   }
   .table-responsive{
     border:0
+  }
+  .postFoot{
+    margin-left:12px;
+    margin-right:12px;
   }
 }
