@@ -139,7 +139,7 @@ time{
 }
 .frommysql blockquote{
   display:block;
-  padding:5px 0px;
+  padding:12px 3px;
   margin:0 0 15px;
   border-left:6px solid #ddd;
   background:#eee;
@@ -253,4 +253,24 @@ time{
   font-size:24px;
   color:#00f;
   z-index:300
+}
+
+@media (max-width:767px){
+  .postCon{
+    padding:5px
+  }
+  .frommysql blockquote{
+    padding:4px 2px;
+    margin:0
+  }
+  .frommysql pre{
+    padding:3px
+  }
+  .column{
+    padding-left:2px;
+    padding-right:2px
+  }
+  .table-responsive{
+    border:0
+  }
 }
