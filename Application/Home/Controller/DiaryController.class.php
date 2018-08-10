@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class DiaryController extends Controller {
+class DiaryController extends VistorController {
     public function index(){
 		$this->assign('meta_title', "日记");
 		$Diary = M('diary');

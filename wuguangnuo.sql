@@ -249,6 +249,20 @@ INSERT INTO `wu_user` (`id`, `username`, `password`, `roleid`, `created_at`, `up
 (2, 'guest', '0cc175b9c0f1b6a831c399e269772661', 0, NULL, NULL, '2018-08-04 07:12:52');
 
 --
+-- 表的结构 `wu_vistor`
+--
+
+CREATE TABLE IF NOT EXISTS `wu_vistor` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `lk` varchar(255) DEFAULT NULL COMMENT 'link',
+  `ip` int(4) DEFAULT NULL COMMENT 'ip',
+  `os` varchar(64) DEFAULT NULL COMMENT 'os',
+  `br` varchar(64) DEFAULT NULL COMMENT 'broswer',
+  `tm` datetime DEFAULT NULL COMMENT 'datetime',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='访客统计' AUTO_INCREMENT=1;
+
+--
 -- Indexes for dumped tables
 --
 
