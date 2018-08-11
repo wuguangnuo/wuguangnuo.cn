@@ -1,0 +1,21 @@
+<extend name="./Application/Admin/View/Public/main.html"/>
+
+<block name="info">
+{$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
+</block>
+
+<block name="form">
+<table border="1">
+<thead><th>IP</th><th>region</th><th>city</th><th>isp</th></thead>
+	<tbody>
+	<foreach name='vistor' item='data' >
+	<tr>
+		<td>{$data.ip}</td>
+		<td>{$data.region}</td>
+		<td>{$data.city}</td>
+		<td>{$data.isp}</td>
+	</tr>
+	</foreach>
+	</tbody>
+</table>
+</block>
