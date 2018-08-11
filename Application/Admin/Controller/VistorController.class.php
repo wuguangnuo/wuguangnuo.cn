@@ -4,15 +4,15 @@ use Think\Controller;
 
 class VistorController extends AdminController {
 	public function index() {
-		$sql = 'SELECT ip FROM wu_vistor;';
+		$Vistor = M('vistor');
+		$list = $Vistor->field(true)->order('id asc')->select();
 		$url = "http://ip.taobao.com/service/getIpInfo.php?ip=";
-		$Form = M();
-		$data = json_encode($Form->query($sql), 320);
-		$arr = json_decode($data, true);
-		foreach($arr as $k=>$v) {
-			$vistor[$k] = (array)(json_decode(file_get_contents($url.long2ip($v['ip']))))->data;
+		foreach($list as &$v) {
+			$v['ip'] = long2ip($v['ip']);
+			$v = array_merge($v, (array)(json_decode(file_get_contents($url.$v['ip'])))->data);
 		}
-		$this->assign('vistor', $vistor);
+		
+		$this->assign('list', $list);
 		$this->assign('meta_title', '访客统计');
 		$this->display();
 	}
