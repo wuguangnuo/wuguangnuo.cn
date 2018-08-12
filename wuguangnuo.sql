@@ -258,6 +258,7 @@ CREATE TABLE IF NOT EXISTS `wu_vistor` (
   `ip` int(4) DEFAULT NULL COMMENT 'ip',
   `os` varchar(64) DEFAULT NULL COMMENT 'os',
   `br` varchar(64) DEFAULT NULL COMMENT 'broswer',
+  `ag` varchar(256) DEFAULT NULL COMMENT 'agent',
   `tm` datetime DEFAULT NULL COMMENT 'datetime',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='访客统计' AUTO_INCREMENT=1;
