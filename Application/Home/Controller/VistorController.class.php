@@ -41,7 +41,7 @@ class VistorController extends Controller {
 			} else if (preg_match('/win/i', $sys) && preg_match('/nt/i', $sys)){
 				$os = 'Windows NT';
 			} else if (preg_match('/android ([\d\.]+)/i', $sys, $Android)){
-				$os = 'Android' . $Android[1];
+				$os = 'Android ' . $Android[1];
 			} else if (preg_match('/iphone/i', $sys)){
 				$os = 'iPhone';
 			} else if (preg_match('/ipad/i', $sys)){
