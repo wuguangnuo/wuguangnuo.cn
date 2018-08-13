@@ -5,11 +5,11 @@ use Think\Controller;
 class VistorController extends AdminController {
 	public function index() {
 		$Vistor = M('vistor');
-		$list = $Vistor->field(true)->order('id desc')->limit('20')->select();
-		$url = "http://ip.taobao.com/service/getIpInfo.php?ip=";
+		$list = $Vistor->field(true)->order('id desc')->limit('50')->select();
+		$Location = new \Org\Net\IpLocation('UTFWry.dat');
 		foreach($list as &$v) {
 			$v['ip'] = long2ip($v['ip']);
-			$v = array_merge($v, (array)(json_decode(file_get_contents($url.$v['ip'])))->data);
+			$v = array_merge($v, $Location->getlocation($v['ip']));
 		}
 		
 		$this->assign('list', $list);

@@ -6,16 +6,15 @@
 
 <block name="form">
 <table border="1">
-	<thead><th>id</th><th>link</th><th>IP</th><th>region</th><th>city</th><th>ISP</th><th>OS</th><th>broswer</th><th>time</th></thead>
+	<thead><th>id</th><th>link</th><th>IP</th><th>area</th><th>ISP</th><th>OS</th><th>broswer</th><th>time</th></thead>
 	<tbody>
 	<foreach name='list' item='vistor'>
 	<tr>
 		<td>{$vistor.id}</td>
 		<td>{$vistor.lk}</td>
 		<td>{$vistor.ip}</td>
-		<td>{$vistor.region}</td>
-		<td>{$vistor.city}</td>
-		<td>{$vistor.isp}</td>
+		<td>{$vistor.country}</td>
+		<td>{$vistor['area']?$vistor['area']:'XX'}</td>
 		<td>{$vistor.os}</td>
 		<td>{$vistor.br}</td>
 		<td>{$vistor.tm}</td>
