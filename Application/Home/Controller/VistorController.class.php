@@ -118,7 +118,7 @@ class VistorController extends Controller {
 		$Vistor = M('vistor');
 		$Vistor->create();
 		$Vistor->lk = $_SERVER['PHP_SELF'];
-		$Vistor->ip = get_client_ip();
+		$Vistor->ip = ip2long(get_client_ip());
 		$Vistor->os = get_os();
 		$Vistor->br = get_br();
 		$Vistor->ag = $_SERVER['HTTP_USER_AGENT'];
