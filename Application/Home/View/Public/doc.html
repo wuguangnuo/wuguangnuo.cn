@@ -4,9 +4,9 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-	<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
-	<link rel="stylesheet" href="__PUBLIC__/kancloud/app.css"/>
+	<load href="__PUBLIC__/kancloud/app.css" />
 	<block name="style"></block>
 </head>
 <body class="pushable">
@@ -87,12 +87,12 @@
 				<div class="ui container">
 					<div class="w-copyright">
 						<div class="left">
-							<p>Copyright &copy; <?php echo date("Y"); ?> <a href="__ROOT__/index" target="_blank">{:C('WEB_SITE')}</a> All Rights Reserved | Author by {:C('AUTHOR_NAME')}</p>
+							<p>Copyright &copy; <?php echo date("Y"); ?> <a href="__ROOT__/index" target="_blank">{$Think.config.WUGN.WEB_SITE}</a> All Rights Reserved | Author by {$Think.config.WUGN.AUTHOR_NAME}</p>
 							<div class="ui list horizontal">
-								<a class="item" href="{:C('WEB_SITE_DOMAIN')}">Blog</a>
+								<a class="item" href="{$Think.config.WUGN.WEB_SITE_DOMAIN}">Blog</a>
 								<a class="item" href="https://weibo.com/wuguangnuo">WeiBo</a>
 								<a class="item" href="https://github.com/wuguangnuo">GitHub</a>
-								<a class="item" title="Email：{:C('AUTHOR_EMAIL')}">About</a>
+								<a class="item" title="Email：{$Think.config.WUGN.AUTHOR_EMAIL}">About</a>
 							</div>
 						</div>
 						<div class="right">
@@ -104,7 +104,7 @@
 		</div>
 	</div>
 </body>
-<script src="__PUBLIC__/kancloud/app.js"></script>
-<script src="__HOME_JS__/functions.js"></script>
+<load href="__PUBLIC__/kancloud/app.js" />
+<load href="__HOME_JS__/functions.js" />
 <block name="script"></block>
 </html>

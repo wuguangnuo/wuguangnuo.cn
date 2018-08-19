@@ -5,10 +5,9 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
 	<meta name="baidu-site-verification" content="xKR9og758I" />
-	<title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title>
-	<link rel="stylesheet" href="__HOME_CSS__/index.css">
+	<title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title>
+	<load href="__HOME_CSS__/index.css" />
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
-	<script src="__PUBLIC__/jquery/jquery.min.js"></script>
 </head>
 <body>
 <div class="container home">
@@ -24,10 +23,11 @@
 		<li><a class="button button_yellow" href="https://github.com/wuguangnuo" target="_blank" title="GitHub">GitHub</a></li>
 		<li><a class="button button_yellow" href="__ROOT__/admin.php" title="友链">友情链接</a></li>
 	</ul>
-	<div class="footer">Copyright &copy; <?php echo date("Y"); ?> {:C('WEB_SITE')} All Rights Reserved | Author by {:C('AUTHOR_NAME')}</div>
+	<div class="footer">Copyright &copy; <?php echo date("Y"); ?> {$Think.config.WUGN.WEB_SITE} All Rights Reserved | Author by {$Think.config.WUGN.AUTHOR_NAME}</div>
 </div>
 </body>
-<script src="__HOME_JS__/functions.js"></script>
-<script src="__HOME_JS__/index.js"></script>
+<load href="__PUBLIC__/jquery/jquery.min.js" />
+<load href="__HOME_JS__/functions.js" />
+<load href="__HOME_JS__/index.js" />
 <script>$(function(){$('body').iosParallax({movementFactor:75});});</script>
 </html>
