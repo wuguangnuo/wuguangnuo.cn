@@ -1,4 +1,4 @@
-<extend name="./Application/Admin/View/Public/main.html"/>
+<extend name="Public:main" />
 
 <block name="style">
 <style>
@@ -21,8 +21,8 @@
 </block>
 
 <block name="script">
-<script src="__PUBLIC__/jquery-validation/jquery.validate.min.js"></script>
-<script src="__PUBLIC__/jquery-validation/localization/messages_zh.js"></script>
+<load href="__PUBLIC__/jquery-validation/jquery.validate.min.js" />
+<load href="__PUBLIC__/jquery-validation/localization/messages_zh.js" />
 <script>
 $(function() {
 	jQuery.validator.addMethod("lettersonly", function(value, element) {

@@ -1,4 +1,4 @@
-<extend name="./Application/Admin/View/Public/main.html"/>
+<extend name="Public:main" />
 
 <block name="style">
 <style>.red{color:#f00}#message{white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:'Courier New','Microsoft YaHei','SimSun'}</style>
@@ -9,7 +9,13 @@
 </block>
 
 <block name="form">
-<script src="__PUBLIC__/jquery/jquery.min.js"></script>
+SQL语句：<br /><textarea id="textarea" rows="10" cols="50" placeholder="{$placeholder}" style="max-width:99%">select count(id) from wu_blog</textarea>
+<br />
+<button id="submit">提交</button>
+<div id="message">&nbsp;<br />&nbsp;</div>
+</block>
+
+<block name="script">
 <script>
 $(function(){
 	$('#submit').click(function(){
@@ -32,9 +38,4 @@ $(function(){
 	});
 });
 </script>
-
-SQL语句：<br /><textarea id="textarea" rows="10" cols="50" placeholder="{$placeholder}" style="max-width:99%">select count(id) from wu_blog</textarea>
-<br />
-<button id="submit">提交</button>
-<div id="message">&nbsp;<br />&nbsp;</div>
 </block>

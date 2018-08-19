@@ -4,9 +4,8 @@
 	<meta charset="utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
-	<block name="title"><title>{$meta_title}｜{:C('WEB_SITE_TITLE')}－{:C('WEB_SITE_SLOGAN')}</title></block>
+	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
-	<script src="__PUBLIC__/jquery/jquery.min.js"></script>
 	<block name="style"></block>
 	<style>
 	.hyperlink{padding:5px;font-style:italic;font-size:11px}
@@ -18,5 +17,6 @@
 	<block name="form"></block>
 	<p class="hyperlink"><a href="__ROOT__/index">返回首页</a></p>
 </body>
+<load href="__PUBLIC__/jquery/jquery.min.js" />
 <block name="script"></block>
 </html>
