@@ -12,9 +12,11 @@
 </block>
 
 <block name="form">
+<img id="verify" src="./verify"><br />
 <form id="login_form" method="post" action="./login">
-账号：<input type="text" name="username"><br />
+账号：<input type="text" name="username" autofocus="autofocus"><br />
 密码：<input type="text" name="password"><br />
+验证：<input type="text" name="verify"><br />
 <button type="submit">登录</button>
 </form>
 <p>{$messages}</p>
@@ -33,8 +35,13 @@ $(function() {
 		errorElement:'span',
 		rules:{
 			username:{required:true, lettersonly:true},
-			password:{required:true}
+			password:{required:true},
+			verify:{required:true}
 		}
+	});
+	
+	$("#verify").click(function() {
+		$("#verify").attr("src", "./verify?k="+Math.random());
 	});
 });
 </script>
