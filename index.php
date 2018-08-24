@@ -27,12 +27,12 @@ define('RUNTIME_PATH', './Runtime/');
 define('APP_PATH', './Application/');
 
 // 生成Lite文件
-define('BUILD_LITE_FILE', true);
+// define('BUILD_LITE_FILE', true);
 
 // 引入ThinkPHP入口文件
-// require './ThinkPHP/ThinkPHP.php';
+require './ThinkPHP/ThinkPHP.php';
 
 // 替换应用入口文件
-require './Runtime/lite.php';
+// require './Runtime/lite.php';
 
 // 亲^_^ 后面不需要任何代码了 就是如此简单
