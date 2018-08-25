@@ -23,7 +23,8 @@ class IndexController extends Controller {
 	
 	// 登录
 	public function login() {
-		session(null);
+		session('username', null);
+		session('password', null);
 		if($_POST['username'] && $_POST['password'] && $_POST['verify']) {
 			$v = new \Think\Verify();
 			if($v->check($_POST['verify']) === true) {
