@@ -72,6 +72,7 @@ class IndexController extends Controller {
 		$Verify->useCurve = false;
 		$Verify->useNoise = false;
 		$Verify->length = 4;
+		$Verify->codeSet = '0123456789';
 		$Verify->entry();
 	}
 }
