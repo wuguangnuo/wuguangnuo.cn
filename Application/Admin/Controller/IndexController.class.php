@@ -25,36 +25,43 @@ class IndexController extends Controller {
 	public function login() {
 		session('username', null);
 		session('password', null);
-		if($_POST['username'] && $_POST['password'] && $_POST['verify']) {
-			$v = new \Think\Verify();
-			if($v->check($_POST['verify']) === true) {
-				$User = M('user');
-				$where['username'] = $_POST['username'];
-				$where['password'] = md5($_POST['password']);
-				$data = $User->where($where)->select();
-				if(count($data) == 1) {
-					if($data[0]['roleid'] == 1) {
-						$User->login_at = date("Y-m-d H-i-s");
-						$result = $User->where($where)->save();
-						if($result) {
-							session('username', $_POST['username']);
-							session('password', md5($_POST['password']));
-							$this->redirect('Index/index', '', 1, '登录中');
+		if(IS_POST) {
+			$username = I('post.username', '');
+			$password = I('post.password', '');
+			if($username && $password && I('post.verify/b', '')) {
+				$Verify = new \Think\Verify();
+				if($Verify->check(I('post.verify')) === true) {
+					$User = M('user');
+					$where['username'] = $username;
+					$where['password'] = md5($password);
+					$data = $User->where($where)->select();
+					if(count($data) == 1) {
+						if($data[0]['roleid'] == 1) {
+							$User->login_at = date("Y-m-d H-i-s");
+							$result = $User->where($where)->save();
+							if($result) {
+								session('username', $username);
+								session('password', md5($password));
+								$this->redirect('Index/index', '', 1, '登录中');
+							} else {
+								$msg = "更新用户失败";
+							}
 						} else {
-							$this->assign('messages', "更新用户失败");
+							$msg = "权限不足";
 						}
 					} else {
-						$this->assign('messages', "权限不足");
+						$msg = "账号或密码错误";
 					}
 				} else {
-					$this->assign('messages', "账号或密码错误");
+					$msg = "验证码错误";
 				}
 			} else {
-				$this->assign('messages', "验证码错误");
+				$msg = "请填写完整";
 			}
 		} else {
-			$this->assign('messages', "请填写完整");
+			$msg = "请填写用户信息";
 		}
+		$this->assign('messages', $msg);
 		$this->assign('meta_title', "登录");
 		$this->display();
 	}
