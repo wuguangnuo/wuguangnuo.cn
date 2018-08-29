@@ -3,51 +3,51 @@ namespace Home\Controller;
 use Think\Controller;
 
 class BlogController extends BlogsideController {
-    public function index(){
+    public function index() {
 		$Blog = M('blog');
-		$where = "1 = 1"; // 查询条件
+		$where = '1 = 1';
 		$count = $Blog->where($where)->count(); // 查询总数
 		$p = getpage($count, 8); // 每页几个
 		$list = $Blog->field(true)->where($where)->order('id desc')->limit($p->firstRow, $p->listRows)->select();
 		
-		foreach ($list as $key=>&$val) {
+		foreach ($list as &$val) {
 			$val['post_date'] = cut_str($val['post_date'], 16);
 			$val['post_content'] = str_replace(PHP_EOL, '\r\n', htmlspecialchars(cut_str($val['post_content'], 300, true))); // 简介,转义
 		}
 		
-		$this->assign('meta_title', "諾的博客");
-		$this->assign('list', $list); // 赋值数据集
-		$this->assign('page', $p->show()); // 赋值分页输出
+		$this->assign('meta_title', '諾的博客');
+		$this->assign('list', $list);
+		$this->assign('page', $p->show());
 		$this->display();
     }
 	
-	public function read($id = 1){
+	public function read($id = 1) {
 		$Blog = M('blog');
 		$data = $Blog->find($id);
 		if($data) {
 			$this->data = $data; // 模板变量赋值
-		}else{
+		} else {
 			$this->error('没找到');
 		}
 		$this->assign('meta_title', $data['post_title']);
 		
 		//上一篇
 		$map['id'] = array('lt', $id);
-		$lp = $Blog->Field('id,post_title')->where($map)->order('id desc')->limit(1)->find();
+		$lp = $Blog->field('id,post_title')->where($map)->order('id desc')->limit(1)->find();
 		if(!$lp) {
 			$lp['id'] = $data['id'];
-			$lp['post_title'] = "无";
+			$lp['post_title'] = '无';
 		}
 
 		//下一篇
 		$map['id'] = array('gt', $id);
-		$np = $Blog->Field('id,post_title')->where($map)->order('id')->limit(1)->find();
+		$np = $Blog->field('id,post_title')->where($map)->order('id')->limit(1)->find();
 		if(!$np) {
 			$np['id'] = $data['id'];
-			$np['post_title'] = "无";
+			$np['post_title'] = '无';
 		}
-		$lp['post_title'] = cut_str($lp['post_title'], 18, true);
-		$np['post_title'] = cut_str($np['post_title'], 18, true);
+		$lp['post_title_cut'] = cut_str($lp['post_title'], 18, true);
+		$np['post_title_cut'] = cut_str($np['post_title'], 18, true);
 		
 		$this->lp = $lp;
 		$this->np = $np;
@@ -56,19 +56,18 @@ class BlogController extends BlogsideController {
 	
 	public function search($q = null, $t = null) {
 		$Blog = M('blog');
-		if(empty($q) && !empty($t)){
+		if(empty($q) && !empty($t)) {
 			//按标签查询
 			$arr = explode(',', $t);
-			foreach($arr as &$val){
+			foreach($arr as &$val) {
 				$val = '%'.$val.'%';
 			}
 			$where['post_type'] = array('like', $arr, 'or');
-		}
-		else{
+		} else {
 			//普通查询
-			if(empty($q)){
-				$where = "1 = 1";
-			}else{
+			if(empty($q)) {
+				$where = '1 = 1';
+			} else {
 				$where['post_title'] = array('like', '%'.$q.'%');
 				$where['post_author'] = array('like', '%'.$q.'%');
 				$where['post_type'] = array('like', '%'.$q.'%');
@@ -81,17 +80,16 @@ class BlogController extends BlogsideController {
 		$p = getpage($count, 8); // 每页几个
 		$list = $Blog->field(true)->where($where)->order('id desc')->limit($p->firstRow, $p->listRows)->select();
 		
-		foreach ($list as $key=>&$val) {
+		foreach ($list as &$val) {
 			$val['post_date'] = cut_str($val['post_date'], 16);
 			$val['post_content'] = str_replace(PHP_EOL, '\r\n', htmlspecialchars(cut_str($val['post_content'], 300, true))); // 简介,转义
 		}
-		$keyword = strtoupper($q?"文章搜索：".$q:"文章分类：".$t);
+		$keyword = strtoupper($q?'文章搜索：'.$q:'文章分类：'.$t);
 		
-		$this->assign('list', $list); // 赋值数据集
-		$this->assign('keyword', $keyword); // 赋值数据集
+		$this->assign('list', $list);
+		$this->assign('keyword', $keyword);
 		$this->assign('page', $p->show()); // 赋值分页输出
-		$this->assign('meta_title', "搜索博客");
+		$this->assign('meta_title', '搜索博客');
 		$this->display(); // 模版输出
-	
 	}
 }
