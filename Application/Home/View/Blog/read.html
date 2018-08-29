@@ -4,7 +4,7 @@
 <div class="container">
 	<div class="postTitle text-center">
 		<h2>{$data.post_title}</h2>
-		<span>作者：{$data.post_author}</span>
+		<span>作者：{$data.post_author|default="佚名"}</span>
 	</div>
 </div>
 </block>
