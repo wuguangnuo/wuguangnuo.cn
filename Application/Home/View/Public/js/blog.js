@@ -2,6 +2,9 @@ $(function(){
 	//初始化
 	$("#gotop").hide();//小火箭默认隐藏
 	$("#gotop2").hide();//小火箭二号
+	$("#signup").click(function(){
+		swal("", "暂未开放注册", "error");
+	});
 	
 	//Blog内容规范化
 	$(".frommysql table").css("border", "0").addClass("table table-striped table-condensed table-hover");//表格样式
