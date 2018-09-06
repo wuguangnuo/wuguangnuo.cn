@@ -3,7 +3,15 @@ $(function(){
 	$("#gotop").hide();//小火箭默认隐藏
 	$("#gotop2").hide();//小火箭二号
 	$("#signup").click(function(){
-		swal("", "暂未开放注册", "error");
+		swal({
+			type: 'error',
+			title: '暂未开放注册',
+			allowOutsideClick: false,
+			allowEnterKey: false,
+			confirmButtonText: '确认',
+			animation: false,
+			customClass: 'animated shake'
+		});
 	});
 	
 	//Blog内容规范化
