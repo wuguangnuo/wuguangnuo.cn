@@ -157,13 +157,13 @@ class Verify {
         if($this->useZh){ // 中文验证码
             for ($i = 0; $i<$this->length; $i++) {
                 $code[$i] = iconv_substr($this->zhSet,floor(mt_rand(0,mb_strlen($this->zhSet,'utf-8')-1)),1,'utf-8');
-                imagettftext($this->_image, $this->fontSize, mt_rand(-40, 40), $this->fontSize*($i+1)*1.5, $this->fontSize + mt_rand(10, 20), $this->_color, $this->fontttf, $code[$i]);
+                imagettftext($this->_image, $this->fontSize, mt_rand(-30, 30), $this->fontSize*($i+1)*1.5, $this->fontSize + mt_rand(10, 20), $this->_color, $this->fontttf, $code[$i]);
             }
         }else{
             for ($i = 0; $i<$this->length; $i++) {
                 $code[$i] = $this->codeSet[mt_rand(0, strlen($this->codeSet)-1)];
                 $codeNX  += mt_rand($this->fontSize*1.2, $this->fontSize*1.6);
-                imagettftext($this->_image, $this->fontSize, mt_rand(-40, 40), $codeNX, $this->fontSize*1.6, $this->_color, $this->fontttf, $code[$i]);
+                imagettftext($this->_image, $this->fontSize, mt_rand(-30, 30), $codeNX, $this->fontSize*1.6, $this->_color, $this->fontttf, $code[$i]);
             }
         }
        
