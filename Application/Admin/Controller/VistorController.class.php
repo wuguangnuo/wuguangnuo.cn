@@ -5,7 +5,9 @@ use Think\Controller;
 class VistorController extends AdminController {
 	public function index() {
 		function get_os($sys) {
-			if (preg_match('/win/i', $sys) && strpos($sys, '95')) {
+			if (preg_match('/\+http:\/\//i', $sys) && preg_match('/spider/i', $sys)) {
+				$os = '网络蜘蛛';
+			} else if (preg_match('/win/i', $sys) && strpos($sys, '95')) {
 				$os = 'Windows 95';
 			} else if (preg_match('/win/i', $sys) && preg_match('/98/i', $sys)) {
 				$os = 'Windows 98';
@@ -41,6 +43,8 @@ class VistorController extends AdminController {
 				$os = 'IBM OS/2';
 			} else if (preg_match('/Mac/i', $sys) && preg_match('/PC/i', $sys)) {
 				$os = 'Macintosh';
+			} else if (preg_match('/Macintosh/i', $sys) && preg_match('/Mac/i', $sys)) {
+				$os = 'MacOS';
 			} else if (preg_match('/PowerPC/i', $sys)) {
 				$os = 'PowerPC';
 			} else if (preg_match('/AIX/i', $sys)) {
@@ -72,40 +76,43 @@ class VistorController extends AdminController {
 		}
 		
 		function get_br($agent) {
-			if (stripos($agent, 'Firefox/')) {
+			if (preg_match('/\+http:\/\//i', $agent) && preg_match('/spider/i', $agent)) {
+				$exp[0] = '网络蜘蛛';
+				$exp[1] = '';
+			} else if (stripos($agent, 'Firefox/')) {
 				preg_match('/Firefox\/([^;)]+)+/i', $agent, $b);
 				$exp[0] = 'Firefox';
 				$exp[1] = $b[1]; //获取火狐浏览器的版本号
-			} elseif (stripos($agent, 'Maxthon')) {
+			} else if (stripos($agent, 'Maxthon')) {
 				preg_match('/Maxthon\/([\d\.]+)/i', $agent, $aoyou);
 				$exp[0] = 'Maxthon';
 				$exp[1] = $aoyou[1];
-			} elseif (stripos($agent, 'MSIE')) {
+			} else if (stripos($agent, 'MSIE')) {
 				preg_match('/MSIE\s+([^;)]+)+/i', $agent, $ie);
 				$exp[0] = 'IE';
 				$exp[1] = $ie[1]; //获取IE的版本号
-			} elseif (stripos($agent, 'OPR')) {
+			} else if (stripos($agent, 'OPR')) {
 				preg_match('/OPR\/([\d\.]+)/i', $agent, $opera);
 				$exp[0] = 'Opera';
 				$exp[1] = $opera[1];
-			} elseif(stripos($agent, 'Edge')) {
+			} else if (stripos($agent, 'Edge')) {
 			//win10 Edge浏览器 添加了chrome内核标记 在判断Chrome之前匹配
 				preg_match('/Edge\/([\d\.]+)/i', $agent, $Edge);
 				$exp[0] = 'Edge';
 				$exp[1] = $Edge[1];
-			} elseif (stripos($agent, 'Chrome')) {
+			} else if (stripos($agent, 'Chrome')) {
 				preg_match('/Chrome\/([\d\.]+)/i', $agent, $google);
 				$exp[0] = 'Chrome';
 				$exp[1] = $google[1]; //获取google chrome的版本号
-			} elseif(stripos($agent, 'Safari')) {
+			} else if (stripos($agent, 'Safari')) {
 				preg_match('/Safari\/([\d\.]+)/i', $agent, $Safari);
 				$exp[0] = 'Safari';
 				$exp[1] = $Safari[1];
-			} elseif(stripos($agent, 'rv:') && stripos($agent, 'Gecko')) {
+			} else if (stripos($agent, 'rv:') && stripos($agent, 'Gecko')) {
 				preg_match('/rv:([\d\.]+)/i', $agent, $IE);
 				$exp[0] = 'IE';
 				$exp[1] = $IE[1];
-			}else {
+			} else {
 				$exp[0] = '未知浏览器';
 				$exp[1] = '';
 			}
