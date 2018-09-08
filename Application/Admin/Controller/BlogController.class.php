@@ -31,13 +31,11 @@ class BlogController extends AdminController {
 		}
 	}
 	
-	public function read($id = 1){//读取数据，同select
-		$Form = M('blog');
-		//读取数据
-		$data = $Form->find($id);
-		//$Form->where('id=1')->getField('title');//直接获取
+	public function read(){
+		$Form = D('blog');
+		$data = $Form->getLast();
 		if($data) {
-			$this->data = $data;// 模板变量赋值
+			$this->data = $data[0];
 		}else{
 			$this->error('没找到');
 		}
