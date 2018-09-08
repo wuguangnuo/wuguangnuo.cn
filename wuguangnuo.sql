@@ -23,7 +23,7 @@ SET time_zone = "+00:00";
 CREATE TABLE IF NOT EXISTS `wu_blog` (
   `id` bigint(20) NOT NULL AUTO_INCREMENT,
   `post_title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章标题',
-  `post_author` varchar(64) NOT NULL DEFAULT '佚名' COMMENT '文章作者',
+  `post_author` varchar(64) DEFAULT NULL COMMENT '文章作者',
   `post_type` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci COMMENT '文章分类',
   `post_content` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL COMMENT '文章内容',
   `post_date` datetime NOT NULL DEFAULT '0000-00-00 00:00:00' COMMENT '发布日期',
