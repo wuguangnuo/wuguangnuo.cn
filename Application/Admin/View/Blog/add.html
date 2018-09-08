@@ -1,18 +1,150 @@
 <extend name="Public:main" />
 
+<block name="style">
+<load href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+<load href="__PUBLIC__/animate/animate.min.css" />
+<load href="__PUBLIC__/sweetalert2/sweetalert2.min.css" />
+<style type="text/css">
+#post_content {
+	border: 1px solid #ccc;
+	margin-left: 6px !important;
+	height: 196px;
+	width: 618px;
+	max-width: 99%
+}
+#post_title,
+#post_author,
+#post_type,
+#post_time,
+#post_from,
+#post_link {
+	width: 300px;
+	margin-left: 10px;
+	margin-top: 6px
+}
+#submit {
+	margin-left: 10px;
+	margin-top: 6px
+}
+</style>
+</block>
+
 <block name="info">
 {$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
 </block>
 
 <block name="form">
-<form method="post" action="./insert">
-标题：<input type="text" name="post_title"><br/>
-作者：<input type="text" name="post_author"><br/>
-类型：<input type="text" name="post_type"><br/>
-内容：<textarea name="post_content" rows="10" cols="50"></textarea><br/>
-日期：<input type="date" name="post_time1" value="{$laseDate}"><input type="time" name="post_time2"><br/>
-来源：<input type="text" name="post_from"><br/>
-原链：<input type="text" name="post_link"><br/>
-<input type="submit" value="提交">
-</form>
+<input type="text" class="form-control" id="post_title" name="post_title" placeholder="标题" />
+<input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
+<input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
+<div id="post_content_tool"></div><div id="post_content"></div>
+<input type="text" class="form-control" id="post_time" name="post_time" value="{$laseDate} 12:30:30">
+<input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
+<input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
+<input type="button" class="btn btn-default" id="submit" value="提交">
+</block>
+
+<block name="script">
+<load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
+<load href="__PUBLIC__/sweetalert2/sweetalert2.min.js" />
+<load href="__PUBLIC__/layDate/laydate.js" />
+<load href="__PUBLIC__/wangEditor/wangEditor.min.js" />
+<script>
+	laydate.render({
+		elem: '#post_time',
+		type: 'datetime',
+		//theme: '#000',
+		calendar: true
+	});
+	
+	var E = window.wangEditor
+	var editor = new E('#post_content_tool', '#post_content')
+	 editor.customConfig.menus = [
+		'head',  // 标题
+		'bold',  // 粗体
+		'italic',  // 斜体
+		'underline',  // 下划线
+		'strikeThrough',  // 删除线
+		'foreColor',  // 文字颜色
+		'backColor',  // 背景颜色
+		'link',  // 插入链接
+		'list',  // 列表
+		'justify',  // 对齐方式
+		'quote',  // 引用
+		'emoticon',  // 表情
+		'image',  // 插入图片
+		'table',  // 表格
+		//'video',  // 插入视频
+		'code',  // 插入代码
+		'undo',  // 撤销
+		'redo'  // 重复
+	]
+	/*editor.customConfig.onchange = function (html) {
+		// html 即变化之后的内容
+		console.log(html)
+	}*/
+	editor.customConfig.uploadImgShowBase64 = true;
+	//editor.customConfig.showLinkImg = false
+	editor.create()
+	//editor.txt.html('<b>用js添加内容</b><br />')
+	//editor.txt.append('<b>用js追加内容</b>')
+</script>
+<script>
+$(function(){
+	$('#submit').click(function(){
+		$.ajax({
+			url: './insert',
+			data: {
+				post_title: $("#post_title").val(),
+				post_author: $("#post_author").val(),
+				post_type: $("#post_type").val(),
+				post_content: editor.txt.html(),
+				post_date: $("#post_time").val(),
+				post_from: $("#post_from").val(),
+				post_link: $("#post_link").val()
+			},
+			type: 'POST',
+			cache: false,
+			dataType: 'JSON',
+			success: function(data) {
+				if(data == '1') {
+					swal({
+						type: 'success',
+						title: '保存成功！',
+						allowEnterKey: false,
+						animation: false,
+						customClass: 'animated jackInTheBox',
+						timer: 2000
+					}).then(
+						function () {
+							window.location.reload();
+						}
+					)
+				} else {
+					swal({
+						type: 'error',
+						title: 'AJAX success, but ' + data,
+						allowOutsideClick: false,
+						allowEnterKey: false,
+						confirmButtonText: '确认',
+						animation: false,
+						customClass: 'animated wobble'
+					});
+				}
+			},
+			error: function () {
+				swal({
+					type: 'error',
+					title: 'AJAX error',
+					allowOutsideClick: false,
+					allowEnterKey: false,
+					confirmButtonText: '确认',
+					animation: false,
+					customClass: 'animated wobble'
+				});
+			}
+		});
+	});
+});
+</script>
 </block>

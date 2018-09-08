@@ -19,16 +19,15 @@ class BlogController extends AdminController {
 		$this->display();
 	}
 	
-	public function insert(){//添加数据
+	public function insert(){
 		$Form = M('blog');
 		$Form->create();
-		$Form->post_date = $_POST['post_time1'] . ' ' . $_POST['post_time2'] . ':00';
-		$Form->post_content = $_POST['post_content']; // 防止HTML转义
+		$Form->post_content = I('post.post_content', 'get post error!', '');
 		$result = $Form->add();
 		if($result) {
-			$this->success('操作成功！');
+			$this->ajaxReturn("1");
 		}else{
-			$this->error('写入错误！');
+			$this->ajaxReturn("save error!");
 		}
 	}
 	
