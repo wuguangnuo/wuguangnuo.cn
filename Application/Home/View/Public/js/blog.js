@@ -10,7 +10,7 @@ $(function(){
 			allowEnterKey: false,
 			confirmButtonText: '确认',
 			animation: false,
-			customClass: 'animated shake'
+			customClass: 'animated wobble'
 		});
 	});
 	
