@@ -38,7 +38,7 @@
 <input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
 <div id="post_content_tool"></div><div id="post_content"></div>
-<input type="text" class="form-control" id="post_time" name="post_time" value="{$laseDate} 12:30:30">
+<input type="text" class="form-control" id="post_time" name="post_time" value="{$laseDate} 12:30:00">
 <input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
 <input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
 <input type="button" class="btn btn-default" id="submit" value="提交">
@@ -53,7 +53,7 @@
 	laydate.render({
 		elem: '#post_time',
 		type: 'datetime',
-		//theme: '#000',
+		theme: 'wugn',
 		calendar: true
 	});
 	
