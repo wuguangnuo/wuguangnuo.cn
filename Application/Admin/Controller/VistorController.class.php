@@ -5,7 +5,7 @@ use Think\Controller;
 class VistorController extends AdminController {
 	public function index() {
 		function get_os($sys) {
-			if (preg_match('/\+http:\/\//i', $sys) && preg_match('/spider/i', $sys)) {
+			if (preg_match('/\+http:\/\//i', $sys) && (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys))) {
 				$os = '网络蜘蛛';
 			} else if (preg_match('/win/i', $sys) && strpos($sys, '95')) {
 				$os = 'Windows 95';
@@ -76,7 +76,7 @@ class VistorController extends AdminController {
 		}
 		
 		function get_br($agent) {
-			if (preg_match('/\+http:\/\//i', $agent) && preg_match('/spider/i', $agent)) {
+			if (preg_match('/\+http:\/\//i', $agent) && (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent))) {
 				$exp[0] = '网络蜘蛛';
 				$exp[1] = '';
 			} else if (stripos($agent, 'Firefox/')) {
