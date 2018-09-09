@@ -99,7 +99,7 @@
   }
 
   //字符常量
-  ,MOD_NAME = 'laydate', ELEM = '.layui-laydate', THIS = 'layui-this', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'laydate-disabled', TIPS_OUT = '开始日期超出了结束日期<br>建议重新选择', LIMIT_YEAR = [100, 200000]
+  ,MOD_NAME = 'laydate', ELEM = '.layui-laydate', THIS = 'layui-this',TODAY = 'layui-today', SHOW = 'layui-show', HIDE = 'layui-hide', DISABLED = 'laydate-disabled', TIPS_OUT = '开始日期超出了结束日期<br>建议重新选择', LIMIT_YEAR = [100, 200000]
   
   ,ELEM_STATIC = 'layui-laydate-static', ELEM_LIST = 'layui-laydate-list', ELEM_SELECTED = 'laydate-selected', ELEM_HINT = 'layui-laydate-hint', ELEM_PREV = 'laydate-day-prev', ELEM_NEXT = 'laydate-day-next', ELEM_FOOTER = 'layui-laydate-footer', ELEM_CONFIRM = '.laydate-btns-confirm', ELEM_TIME_TEXT = 'laydate-time-text', ELEM_TIME_BTN = '.laydate-btns-time'
   
@@ -399,7 +399,7 @@
     ,options = that.config
     ,text = {
       cn: {
-        weeks: ['日', '一', '二', '三', '四', '五', '六']
+      weeks: ['一', '二', '三', '四', '五', '六', '日']
         ,time: ['时', '分', '秒']
         ,timeTips: '选择时间'
         ,startTime: '开始时间'
@@ -963,6 +963,16 @@
     return that;
   };
   
+  //今日高亮
+  Class.prototype.today = function(td, YMD){
+    if((new Date().getFullYear() == YMD[0])
+    && (new Date().getMonth() + 1 == YMD[1])
+    && new Date().getDate() == YMD[2]){
+      td.addClass(TODAY)
+    }
+    return this;
+  };
+  
   //无效日期范围的标记
   Class.prototype.limit = function(elem, date, index, time){
     var that = this
@@ -1015,7 +1025,7 @@
     
     //计算当前月第一天的星期
     thisDate.setFullYear(dateTime.year, dateTime.month, 1);
-    startWeek = thisDate.getDay();
+    startWeek = thisDate.getDay() - 1;
     
     prevMaxDate = laydate.getEndDate(dateTime.month || 12, dateTime.year); //计算上个月的最后一天
     thisMaxDate = laydate.getEndDate(dateTime.month + 1, dateTime.year); //计算当前月的最后一天
@@ -1042,7 +1052,7 @@
       YMD[1]++;
       YMD[2] = st + 1;
       item.attr('lay-ymd', YMD.join('-')).html(YMD[2]);
-      that.mark(item, YMD).limit(item, {
+      that.mark(item, YMD).today(item, YMD).limit(item, {
         year: YMD[0]
         ,month: YMD[1] - 1
         ,date: YMD[2]
