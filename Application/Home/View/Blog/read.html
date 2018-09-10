@@ -14,7 +14,7 @@
 </block>
 
 <block name="post_foot">
-	<div class="reprint"><a href="{$data.post_link}" target="_blank">转载：{$data.post_from}</a></div>
+	<div class="reprint"><a href="{$data.post_link|default='#'}" target="_blank">转载：{$data.post_from|default="WuGN"}</a></div>
 	<div class="postDesc text-right"><time>{$data.post_date}<time></div>
 	<div class="flippage text-center">上一篇：<a href="__ROOT__/blog/{$lp.id}" title="{$lp.post_title}">{$lp.post_title_cut}</a>&nbsp;|&nbsp;下一篇：<a href="__ROOT__/blog/{$np.id}" title="{$np.post_title}">{$np.post_title_cut}</a></div>
 </block>
