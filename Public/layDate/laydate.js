@@ -965,7 +965,8 @@
   
   //今日高亮
   Class.prototype.today = function(td, YMD){
-    if((new Date().getFullYear() == YMD[0])
+    if(this.config.today
+    && (new Date().getFullYear() == YMD[0])
     && (new Date().getMonth() + 1 == YMD[1])
     && new Date().getDate() == YMD[2]){
       td.addClass(TODAY)
