@@ -391,6 +391,7 @@
     ,zIndex: null //控件层叠顺序
     ,done: null //控件选择完毕后的回调，点击清空/现在/确定也均会触发
     ,change: null //日期时间改变后的回调
+    ,today: false // 是否今日高亮
   };
   
   //多语言
@@ -399,7 +400,7 @@
     ,options = that.config
     ,text = {
       cn: {
-      weeks: ['一', '二', '三', '四', '五', '六', '日']
+        weeks: ['日', '一', '二', '三', '四', '五', '六']
         ,time: ['时', '分', '秒']
         ,timeTips: '选择时间'
         ,startTime: '开始时间'
@@ -1026,7 +1027,7 @@
     
     //计算当前月第一天的星期
     thisDate.setFullYear(dateTime.year, dateTime.month, 1);
-    startWeek = thisDate.getDay() - 1;
+    startWeek = thisDate.getDay();
     
     prevMaxDate = laydate.getEndDate(dateTime.month || 12, dateTime.year); //计算上个月的最后一天
     thisMaxDate = laydate.getEndDate(dateTime.month + 1, dateTime.year); //计算当前月的最后一天
