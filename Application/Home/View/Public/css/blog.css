@@ -141,7 +141,8 @@ time{
   display:block;
   padding:12px 3px;
   margin:0 0 15px;
-  border-left:6px solid #ddd;
+  border-left:6px solid #ccc;
+  border-radius:4px;
   background:#eee;
   overflow:auto
 }
