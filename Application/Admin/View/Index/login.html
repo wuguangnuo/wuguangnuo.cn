@@ -1,32 +1,77 @@
-<extend name="Public:main" />
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
+	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+	<load href="__PUBLIC__/font-awesome/css/font-awesome.min.css" />
+	<load href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+	<load href="__PUBLIC__/animate/animate.min.css" />
+	<load href="__PUBLIC__/sweetalert2/sweetalert2.min.css" />
+	<load href="__HOME_CSS__/main.css" />
+	<block name="style"></block>
+</head>
 
-<block name="style">
-<style>
-#login_form span, p {
-	padding-left:8px;
-	font-size:14px;
-	font-style:italic;
-	color:#a00
-}
-</style>
-</block>
+<body>
+<div class="navbar navbar-inverse navbar-static-top hidden-print">
+	<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg" aria-hidden="true" title="切换导航"></i>
+			<span class="sr-only">切换导航</span>
+		</button>
+		<a class="navbar-brand" href="__ROOT__/admin.php">{$Think.config.WUGN.WEB_SITE}</a>
+	</div>
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<a id="register_nav">还没有账号<i class="fa fa-question" aria-hidden="true"></i>立即注册</a>
+			</li>
+			<li>
+				<a href="__ROOT__/index"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;返回主页</a>
+			</li>
+		</ul>
+	</div>
+	</div>
+</div>
 
-<block name="form">
-<img id="verify" src="./verify" width="160" height="50" /><br />
-<form id="login_form" method="post" action="./login">
-账号：<input type="text" name="username" autofocus="autofocus"><br />
-密码：<input type="text" name="password"><br />
-验证：<input type="text" name="verify"><br />
-<button type="submit">登录</button>
-</form>
-<p>{$messages}</p>
-</block>
-
-<block name="script">
+<div class="account-container">
+	<form id="login_form" method="post" action="./login">
+		<h2>用户登录</h2>
+		<p>{$messages}</p>
+		<div class="form-group">
+			<input type="text" name="username" class="form-control" placeholder="请输入账号" maxlength="32" autofocus="autofocus" />
+		</div>
+		<div class="form-group">
+			<input type="text" name="password" class="form-control" placeholder="请输入密码" maxlength="32" />
+		</div>
+		<div class="form-group">
+			<input type="text" name="verify" class="form-control" placeholder="请输入验证码" maxlength="8" />
+		</div>
+		<div class="form-group">
+			<img id="verify" src="./verify" width="160" height="50" class="img-rounded"/>
+		</div>
+		<div class="pull-left">
+			<button type="submit" class="btn btn-success">登录</button>
+		</div>
+		<div class="pull-right">
+			<a id="forget">忘记密码？</a>
+		</div>
+	</form>
+</div>
+<div class="login-extra">
+	还没有账号?&nbsp;<a id="register_foot">立即注册</a>
+</div>
+</body>
+<load href="__PUBLIC__/jquery/jquery.min.js" />
+<load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
+<load href="__PUBLIC__/sweetalert2/sweetalert2.min.js" />
 <load href="__PUBLIC__/jquery-validation/jquery.validate.min.js" />
 <load href="__PUBLIC__/jquery-validation/localization/messages_zh.js" />
 <script>
-$(function() {
+$(function(){
 	jQuery.validator.addMethod("lettersonly", function(value, element) {
 		return this.optional(element) || /^[^:%,'\*\"\s\<\>\&]+$/i.test(value);
 	}, "不得含有特殊字符");
@@ -39,10 +84,27 @@ $(function() {
 			verify:{required:true}
 		}
 	});
-	
+
 	$("#verify").click(function() {
 		$("#verify").attr("src", "./verify?k="+Math.random());
 	});
+
+	var registerNo = function(){
+		swal({
+			type: 'error',
+			title: '暂未开放注册',
+			allowOutsideClick: false,
+			allowEnterKey: false,
+			confirmButtonText: '确认',
+			animation: false,
+			customClass: 'animated wobble'
+		});
+	};
+	
+	$("#register_nav").click(registerNo);
+	$("#register_foot").click(registerNo);
+	$("#forget").click(registerNo);
 });
 </script>
-</block>
+<block name="script"></block>
+</html>
