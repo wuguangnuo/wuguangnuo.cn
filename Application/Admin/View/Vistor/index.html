@@ -1,11 +1,7 @@
 <extend name="Public:main" />
 
-<block name="info">
-{$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
-</block>
-
-<block name="form">
-<table border="1">
+<block name="container">
+<table class="table table-hover table-condensed">
 	<thead><th>id</th><th>link</th><th>IP</th><th>area</th><th>ISP</th><th>OS</th><th>broswer</th><th>time</th></thead>
 	<tbody>
 	<foreach name='list' item='vistor'>
