@@ -1,13 +1,11 @@
 <extend name="Public:main" />
 
 <block name="style">
-<load href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
-<load href="__PUBLIC__/animate/animate.min.css" />
-<load href="__PUBLIC__/sweetalert2/sweetalert2.min.css" />
 <style type="text/css">
 #post_content {
 	border: 1px solid #ccc;
 	margin-left: 6px !important;
+	background-color: #fff;
 	height: 196px;
 	width: 618px;
 	max-width: 99%
@@ -29,11 +27,7 @@
 </style>
 </block>
 
-<block name="info">
-{$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
-</block>
-
-<block name="form">
+<block name="container">
 <input type="text" class="form-control" id="post_title" name="post_title" placeholder="标题" />
 <input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
@@ -41,12 +35,10 @@
 <input type="text" class="form-control" id="post_time" name="post_time" value="{$laseDate} 12:30:00">
 <input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
 <input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
-<input type="button" class="btn btn-default" id="submit" value="提交">
+<input type="button" class="btn btn-sm btn-success" id="submit" value="提交">
 </block>
 
 <block name="script">
-<load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
-<load href="__PUBLIC__/sweetalert2/sweetalert2.min.js" />
 <load href="__PUBLIC__/layDate/laydate.min.js" />
 <load href="__PUBLIC__/wangEditor/wangEditor.min.js" />
 <script>
