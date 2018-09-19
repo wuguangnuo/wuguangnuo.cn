@@ -1,22 +1,72 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta charset="utf-8" />
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+	<meta name="apple-mobile-web-app-capable" content="yes">
 	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico">
+	<load href="__PUBLIC__/font-awesome/css/font-awesome.min.css" />
+	<load href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
+	<load href="__PUBLIC__/animate/animate.min.css" />
+	<load href="__PUBLIC__/sweetalert2/sweetalert2.min.css" />
+	<load href="__HOME_CSS__/main.css" />
 	<block name="style"></block>
-	<style>
-	.hyperlink{padding:5px;font-style:italic;font-size:11px}
-	</style>
 </head>
+
 <body>
-	账号:<block name="info">未登录&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/login">登录</a></block>
-	<p class="hyperlink"><a href="__ROOT__/admin.php">管理首页</a></p>
-	<block name="form"></block>
-	<p class="hyperlink"><a href="__ROOT__/index">返回首页</a></p>
+<div class="navbar navbar-inverse navbar-static-top hidden-print">
+	<div class="container">
+	<div class="navbar-header">
+		<button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+			<i class="fa fa-bars fa-lg" aria-hidden="true" title="切换导航"></i>
+			<span class="sr-only">切换导航</span>
+		</button>
+		<a class="navbar-brand" href="__ROOT__/admin.php">{$Think.config.WUGN.WEB_SITE}</a>
+	</div>
+	<notempty name="username">
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<a href="#"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;{$username}</a>
+			</li>
+			<li class="dropdown dropdown-split-right hidden-xs">
+				<a href="" class="dropdown-toggle" data-toggle="dropdown">
+					<i class="fa fa-cog" aria-hidden="true"></i>&nbsp;操&nbsp;作&nbsp;
+					<i class="fa fa-caret-down" aria-hidden="true"></i>
+				</a>
+				<ul class="dropdown-menu pull-right">
+					<li><a href="__ROOT__/admin.php/Index/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;注&nbsp;销&nbsp;</a></li>
+					<li><a href="#"><i class="fa fa-question" aria-hidden="true"></i>&nbsp;帮&nbsp;助&nbsp;</a></li>
+				</ul>
+			</li>
+			<li class="hidden-lg hidden-md hidden-sm"><a href="__ROOT__/admin.php/Index/logout"><i class="fa fa-sign-out" aria-hidden="true"></i>&nbsp;注&nbsp;销&nbsp;</a></li>
+			<li class="hidden-lg hidden-md hidden-sm"><a href="#"><i class="fa fa-question" aria-hidden="true"></i>&nbsp;帮&nbsp;助&nbsp;</a></li>
+		</ul>
+	</div>
+	<else />
+	<div class="collapse navbar-collapse">
+		<ul class="nav navbar-nav pull-right">
+			<li>
+				<a id="register_nav">还没有账号<i class="fa fa-question" aria-hidden="true"></i>立即注册</a>
+			</li>
+			<li>
+				<a href="__ROOT__/index"><i class="fa fa-chevron-left" aria-hidden="true"></i>&nbsp;返回主页</a>
+			</li>
+		</ul>
+	</div>
+	</notempty>
+	</div>
+</div>
+<div class="main">
+	<block name="container"></block>
+</div>
 </body>
 <load href="__PUBLIC__/jquery/jquery.min.js" />
+<load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
+<load href="__PUBLIC__/sweetalert2/sweetalert2.min.js" />
+<load href="__PUBLIC__/jquery-validation/jquery.validate.min.js" />
+<load href="__PUBLIC__/jquery-validation/localization/messages_zh.js" />
 <block name="script"></block>
 </html>
