@@ -4,14 +4,10 @@
 <style>.red{color:#f00}#message{white-space:pre-wrap;word-wrap:break-word;word-break:break-all;font-family:'Courier New','Microsoft YaHei','SimSun'}</style>
 </block>
 
-<block name="info">
-{$username}&nbsp;<a class="hyperlink" href="__ROOT__/admin.php/Index/logout">注销</a>
-</block>
-
-<block name="form">
-SQL语句：<br /><textarea id="textarea" rows="10" cols="50" placeholder="{$placeholder}" style="max-width:99%">select count(id) from wu_blog</textarea>
+<block name="container">
+SQL语句：<br /><textarea id="textarea" class="form-control" rows="10" placeholder="{$placeholder}" style="max-width:99%">select count(id) from wu_blog</textarea>
 <br />
-<button id="submit">提交</button>
+<button id="submit" class="btn btn-sm btn-success">提交</button>
 <div id="message">&nbsp;<br />&nbsp;</div>
 </block>
 
