@@ -10,6 +10,6 @@ class VistorController extends Controller {
 		$Vistor->ip = ip2long(get_client_ip());
 		$Vistor->ag = $_SERVER['HTTP_USER_AGENT'];
 		$Vistor->tm = date('Y-m-d H:i:s');
-		$result = $Vistor->add();
+		$Vistor->add();
 	}
 }

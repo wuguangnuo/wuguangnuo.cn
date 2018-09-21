@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class DocController extends Controller {
+class DocController extends VistorController {
     public function index(){
 		$Doc = M('doc');
 		$where = "1 = 1";

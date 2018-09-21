@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class GameController extends Controller {
+class GameController extends VistorController {
     public function index(){
 		$Game = M('game');
 		$where = "1 = 1";

@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class ToolController extends Controller {
+class ToolController extends VistorController {
     public function index(){
 		$Tool = M('tool');
 		$where = "1 = 1";

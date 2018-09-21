@@ -2,7 +2,7 @@
 namespace Home\Controller;
 use Think\Controller;
 
-class DemoController extends Controller {
+class DemoController extends VistorController {
      public function index(){
 		$Demo = M('demo');
 		$where = "1 = 1";
