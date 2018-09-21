@@ -35,7 +35,7 @@ class BlogController extends AdminController {
 		$Form = D('blog');
 		$data = $Form->getLast();
 		if($data) {
-			$this->data = $data[0];
+			$this->data = $data;
 		}else{
 			$this->error('没找到');
 		}
