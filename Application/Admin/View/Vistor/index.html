@@ -118,7 +118,6 @@
 			},
 			type: 'POST',
 			cache: false,
-			async: false,
 			dataType: 'JSON',
 			beforeSend: function(){
 				ajaxLoading();
@@ -143,7 +142,7 @@
 		var list = data.list;
 		for(var i in list){
 			$("#tbody").append
-				("<tr><td><a data-toggle='tooltip' data-html='true' data-placement='right' title='<h6><strong>USER AGENT:</strong></h6>" + list[i].ag + "'>" + list[i].id + 
+				("<tr><td><a data-toggle='popover' data-placement='right' data-trigger='hover' data-html='true' title='USER AGENT' data-content='" + list[i].ag + "'>" + list[i].id + 
 				"</a></td><td>" + list[i].lk + 
 				"</td><td>" + list[i].ip + 
 				"</td><td>" + list[i].country + 
@@ -153,7 +152,7 @@
 				"</td><td>" + list[i].tm + "</td></tr>");
 		}
 		$("#pages").html(data.pages);
-		$("[data-toggle='tooltip']").tooltip();
+		$("[data-toggle='popover']").popover();
 	},
 	ajaxLoading = function(){
 		swal({
