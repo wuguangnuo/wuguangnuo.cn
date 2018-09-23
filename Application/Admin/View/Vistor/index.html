@@ -118,6 +118,7 @@
 			},
 			type: 'POST',
 			cache: false,
+			async: false,
 			dataType: 'JSON',
 			beforeSend: function(){
 				ajaxLoading();
@@ -142,8 +143,8 @@
 		var list = data.list;
 		for(var i in list){
 			$("#tbody").append
-				("<tr><td>" + list[i].id + 
-				"</td><td>" + list[i].lk + 
+				("<tr><td><a data-toggle='tooltip' data-html='true' data-placement='right' title='<h6><strong>USER AGENT:</strong></h6>" + list[i].ag + "'>" + list[i].id + 
+				"</a></td><td>" + list[i].lk + 
 				"</td><td>" + list[i].ip + 
 				"</td><td>" + list[i].country + 
 				"</td><td>" + (list[i]['area']?list[i]['area']:'XX') + 
@@ -152,6 +153,7 @@
 				"</td><td>" + list[i].tm + "</td></tr>");
 		}
 		$("#pages").html(data.pages);
+		$("[data-toggle='tooltip']").tooltip();
 	},
 	ajaxLoading = function(){
 		swal({
