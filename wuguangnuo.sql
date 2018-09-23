@@ -125,4 +125,18 @@ CREATE TABLE IF NOT EXISTS `wu_vistor` (
   `tm` datetime DEFAULT NULL COMMENT 'datetime',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COMMENT='访客统计' AUTO_INCREMENT=1;
+
+--
+-- 表的结构 `wu_dictionary`
+--
+
+CREATE TABLE IF NOT EXISTS `wu_dictionary` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_key` varchar(32) NOT NULL COMMENT '字典类型',
+  `code_index` varchar(64) NOT NULL COMMENT '字典索引',
+  `code_value` varchar(255) NOT NULL COMMENT '字典值',
+  `code_note` varchar(64) NOT NULL COMMENT '字典注释',
+  PRIMARY KEY (`id`),
+  KEY `group_key` (`group_key`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典表' AUTO_INCREMENT=1;
 COMMIT;
