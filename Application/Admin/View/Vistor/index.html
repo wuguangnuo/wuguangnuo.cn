@@ -1,21 +1,182 @@
 <extend name="Public:main" />
 
+<block name="style">
+<load href="__PUBLIC__/bootstrap-select/css/bootstrap-select.min.css" />
+<style>
+.main{
+  padding-top:12px;
+  background-color:#fafafa;
+}
+</style>
+</block>
+
 <block name="container">
-<table class="table table-hover table-condensed">
-	<thead><th>id</th><th>link</th><th>IP</th><th>area</th><th>ISP</th><th>OS</th><th>broswer</th><th>time</th></thead>
-	<tbody>
-	<foreach name='list' item='vistor'>
-	<tr>
-		<td>{$vistor.id}</td>
-		<td>{$vistor.lk}</td>
-		<td>{$vistor.ip}</td>
-		<td>{$vistor.country}</td>
-		<td>{$vistor['area']?$vistor['area']:'XX'}</td>
-		<td>{$vistor.os}</td>
-		<td>{$vistor.br}</td>
-		<td>{$vistor.tm}</td>
-	</tr>
-	</foreach>
-	</tbody>
-</table>
+<div class="container">
+	<div class="row clearfix">
+		<div class="col-md-12 column">
+			<div class="form-inline">
+				<div class="form-group">
+					<label for="link">受访页面</label>
+					<select id="link" class="selectpicker" multiple>
+						<foreach name='link' item='link' >
+							<option value="{$link.code_value}">{$link.code_note}</option>
+						</foreach>
+					</select>
+				</div>
+				<div class="form-group">
+					<label for="date1">时间区间</label>
+					<input type="text" id="date1" class="form-control input-sm" />
+				</div>
+				<div class="form-group">
+					<label for="date2">至</label>
+					<input type="text" id="date2" class="form-control input-sm" />
+				</div>
+				<div class="form-group">
+					<select class="form-control input-sm" id="check">
+						<option value="all">显示全部</option>
+						<option value="vis">网站访客</option>
+						<option value="bot">网络蜘蛛</option>
+					</select>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-sm btn-success" id="search">查询</button>
+				</div>
+			</div>
+			<hr />
+			<div class="table-responsive">
+				<table class="table table-hover table-condensed">
+					<thead><th>编号</th><th>受访页面</th><th>IP</th><th>地区</th><th>ISP</th><th>OS</th><th>broswer</th><th>时间</th></thead>
+					<tbody id="tbody"></tbody>
+				</table>
+			</div>
+			<div id="pages" class="pages"></div>
+		</div>
+	</div>
+</div>
+</block>
+
+<block name="script">
+<load href="__PUBLIC__/bootstrap-select/js/bootstrap-select.min.js" />
+<load href="__PUBLIC__/bootstrap-select/js/i18n/defaults-zh_CN.min.js" />
+<load href="__PUBLIC__/layDate/laydate.min.js" />
+
+<script>
+(function(){
+	"use strict";
+
+	var init = function(){
+		initPage();
+		bindEvent();
+		loadTable();
+	},
+	initPage = function(){
+		$(".selectpicker").selectpicker({
+			noneSelectedText : '请选择',
+			style : 'btn-default btn-sm',
+			//liveSearch : true,
+			actionsBox : true,
+		});
+		$(".bootstrap-select").find("input").addClass('input-sm');
+		laydate.render({
+			elem: '#date1',
+			type: 'datetime',
+			theme: 'wugn',
+			calendar: true,
+			today: true
+		});
+		laydate.render({
+			elem: '#date2',
+			type: 'datetime',
+			theme: 'wugn',
+			calendar: true,
+			today: true
+		});
+	},
+	bindEvent = function(){
+		$("#search").click(function(){
+			loadTable();
+		});
+		$("#pages").on("click", "a" ,function(){
+			loadTable(this.href);
+			return false;
+		});
+	},
+	loadTable = function(url){
+		var link = $("#link").val()?$("#link").val().toString():"",
+		date1 = $("#date1").val(),
+		date2 = $("#date2").val(),
+		check = $("#check").val(),
+		url = url?url:'__APP__/Vistor/loadTable';
+		
+		$.ajax({
+			url: url,
+			data: {
+				link: link,
+				date1: date1,
+				date2: date2,
+				check: check
+			},
+			type: 'POST',
+			cache: false,
+			dataType: 'JSON',
+			beforeSend: function(){
+				ajaxLoading();
+			},
+			success: function(data){
+				if(data.list.length == 0){
+					$("#tbody").empty();
+					$("#tbody").append("<h3>查询结果为空！</h3>");
+				} else {
+					fillTable(data);
+				}
+				swal.close();
+			},
+			error: function(){
+				ajaxError();
+			},
+			complete: function(){}
+		});
+	},
+	fillTable = function(data){
+		$("#tbody").empty();
+		var list = data.list;
+		for(var i in list){
+			$("#tbody").append
+				("<tr><td>" + list[i].id + 
+				"</td><td>" + list[i].lk + 
+				"</td><td>" + list[i].ip + 
+				"</td><td>" + list[i].country + 
+				"</td><td>" + (list[i]['area']?list[i]['area']:'XX') + 
+				"</td><td>" + list[i].os + 
+				"</td><td>" + list[i].br + 
+				"</td><td>" + list[i].tm + "</td></tr>");
+		}
+		$("#pages").html(data.pages);
+	},
+	ajaxLoading = function(){
+		swal({
+			title: "获取数据中...", 
+			imageUrl: "__PUBLIC__/wugn/img/ajax-loading.gif",
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			showConfirmButton: false
+		});
+	},
+	ajaxError = function(){
+		swal({
+			type: 'error',
+			title: 'ajax 加载失败',
+			allowOutsideClick: false,
+			allowEnterKey: false,
+			confirmButtonText: '确认',
+			animation: false,
+			customClass: 'animated wobble'
+		});
+	};
+
+	$(function(){
+		init();
+	});
+})();
+</script>
 </block>
