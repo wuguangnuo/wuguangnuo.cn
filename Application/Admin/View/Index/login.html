@@ -2,7 +2,7 @@
 
 <block name="container">
 <div class="account-container">
-	<form id="login_form" method="post" action="./login">
+	<form id="login_form" method="post" action="__APP__/Index/login">
 		<h2>用户登录</h2>
 		<p>{$messages}</p>
 		<div class="form-group">
@@ -15,7 +15,7 @@
 			<input type="text" name="verify" class="form-control" placeholder="请输入验证码" maxlength="8" />
 		</div>
 		<div class="form-group">
-			<img id="verify" src="./verify" width="160" height="50" class="img-rounded" style="cursor:pointer;" />
+			<img id="verify" src="__APP__/Index/verify" width="160" height="50" class="img-rounded" style="cursor:pointer;" />
 		</div>
 		<div class="pull-left">
 			<button type="submit" class="btn btn-success">登录</button>

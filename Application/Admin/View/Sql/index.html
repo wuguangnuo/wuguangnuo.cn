@@ -17,7 +17,7 @@ $(function(){
 	$('#submit').click(function(){
 		var sql = $('#textarea').val();
 		$.ajax({
-			url: './query',
+			url: '__APP__/Sql/query',
 			data: {
 				sql: sql,
 			},
