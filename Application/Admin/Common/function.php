@@ -13,6 +13,8 @@ function get_os($sys) {
 		$os = 'Windows 2000';
 	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.1/i', $sys)) {
 		$os = 'Windows XP';
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.2/i', $sys)) {
+		$os = 'Windows XP';
 	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.0/i', $sys)) {
 		$os = 'Windows Vista';
 	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.1/i', $sys)) {
