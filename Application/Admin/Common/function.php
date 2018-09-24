@@ -5,27 +5,25 @@
 function get_os($sys) {
 	if (preg_match('/\+http:\/\//i', $sys) && (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys))) {
 		$os = '网络蜘蛛';
-	} else if (preg_match('/win/i', $sys) && strpos($sys, '95')) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]95/i', $sys)) {
 		$os = 'Windows 95';
-	} else if (preg_match('/win/i', $sys) && preg_match('/98/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]98/i', $sys)) {
 		$os = 'Windows 98';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 5/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.0/i', $sys)) {
 		$os = 'Windows 2000';
-	} else if (preg_match('/win 9x/i', $sys) && strpos($sys, '4.90')) {
-		$os = 'Windows ME';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 5.1/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.1/i', $sys)) {
 		$os = 'Windows XP';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 6.0/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.0/i', $sys)) {
 		$os = 'Windows Vista';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 6.1/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.1/i', $sys)) {
 		$os = 'Windows 7';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 6.2/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.2/i', $sys)) {
 		$os = 'Windows 8';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt 10.0/i', $sys)) {
+	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*10.0/i', $sys)) {
 		$os = 'Windows 10';
 	} else if (preg_match('/win/i', $sys) && preg_match('/nt/i', $sys)) {
 		$os = 'Windows NT';
-	} else if (preg_match('/android ([\d\.]+)/i', $sys, $Android)) {
+	} else if (preg_match('/android\s*([\d\.]+)/i', $sys, $Android)) {
 		$os = 'Android ' . $Android[1];
 	} else if (preg_match('/iphone/i', $sys)) {
 		$os = 'iPhone';
@@ -89,7 +87,7 @@ function get_br($agent) {
 		$exp[0] = 'Maxthon';
 		$exp[1] = $aoyou[1];
 	} else if (stripos($agent, 'MSIE')) {
-		preg_match('/MSIE\s+([^;)]+)+/i', $agent, $ie);
+		preg_match('/MSIE\s*([^;)]+)+/i', $agent, $ie);
 		$exp[0] = 'IE';
 		$exp[1] = $ie[1]; //获取IE的版本号
 	} else if (stripos($agent, 'OPR')) {
