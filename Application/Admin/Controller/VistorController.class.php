@@ -39,7 +39,7 @@ class VistorController extends AdminController {
 		
 		$Vistor = M('vistor');
 		$count = $Vistor->where($where)->count();
-		$p = getpage($count, 5);
+		$p = getpage($count, 20);
 		$list = $Vistor->field(true)->where($where)->order('id desc')->limit($p->firstRow, $p->listRows)->select();
 		
 		$Location = new \Org\Net\IpLocation('UTFWry.dat');
