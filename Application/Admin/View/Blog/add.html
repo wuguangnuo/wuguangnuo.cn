@@ -86,7 +86,7 @@
 $(function(){
 	$('#submit').click(function(){
 		$.ajax({
-			url: './insert',
+			url: '__APP__/blog/insert',
 			data: {
 				post_title: $("#post_title").val(),
 				post_author: $("#post_author").val(),
