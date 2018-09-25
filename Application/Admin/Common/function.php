@@ -3,8 +3,8 @@
  * 获取操作系统
  */
 function get_os($sys) {
-	if (preg_match('/\+http:\/\//i', $sys) && (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys))) {
-		$os = '网络蜘蛛';
+	if (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys)) {
+		$os = get_sp($sys);
 	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]95/i', $sys)) {
 		$os = 'Windows 95';
 	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]98/i', $sys)) {
@@ -118,5 +118,54 @@ function get_br($agent) {
 		$exp[1] = '';
 	}
 	return $exp[0].'('.$exp[1].')';
+}
+
+/**
+ * 获取网络蜘蛛
+ */
+function get_sp($sys) {
+	if (preg_match('/Baiduspider/i', $sys)) {
+		return '百度蜘蛛';
+	} else if (preg_match('/Googlebot/i', $sys)) {
+		return '谷歌蜘蛛';
+	} else if (preg_match('/360Spider/i', $sys)) {
+		return '360蜘蛛';
+	} else if (preg_match('/Sosospider/i', $sys)) {
+		return 'SOSO蜘蛛';
+	} else if (preg_match('/Yahoo!/i', $sys)) {
+		return '雅虎蜘蛛';
+	} else if (preg_match('/YoudaoBot/i', $sys) || preg_match('/YodaoBot/i', $sys)) {
+		return '有道蜘蛛';
+	} else if (preg_match('/Sogou/i', $sys) && preg_match('/spider/i', $sys)) {
+		return '搜狗蜘蛛';
+	} else if (preg_match('/msnbot/i', $sys)) {
+		return 'MSN蜘蛛';
+	} else if (preg_match('/bingbot/i', $sys)) {
+		return '必应蜘蛛';
+	} else if (preg_match('/YisouSpider/i', $sys)) {
+		return '一搜蜘蛛';
+	} else if (preg_match('/ia_archiver/i', $sys)) {
+		return 'Alexa蜘蛛';
+	} else if (preg_match('/EasouSpider/i', $sys)) {
+		return '宜sou蜘蛛';
+	} else if (preg_match('/JikeSpider/i', $sys)) {
+		return '即刻蜘蛛';
+	} else if (preg_match('/EtaoSpider/i', $sys)) {
+		return '一淘蜘蛛';
+	} else if (preg_match('/YandexBot/i', $sys)) {
+		return 'Yandex蜘蛛';
+	} else if (preg_match('/AhrefsBot/i', $sys)) {
+		return 'Ahrefs蜘蛛';
+	} else if (preg_match('/ezooms.bot/i', $sys)) {
+		return 'ezooms蜘蛛';
+	} else if (preg_match('/MJ12bot/i', $sys)) {
+		return 'MJ12蜘蛛';
+	} else if (preg_match('/Linkdex/i', $sys)) {
+		return 'Linkdex蜘蛛';
+	} else if (preg_match('/archive/i', $sys)) {
+		return 'Archive蜘蛛';
+	} else {
+		return '其他蜘蛛';
+	}
 }
 ?>
