@@ -4,55 +4,48 @@
 <load href="__PUBLIC__/bootstrap-select/css/bootstrap-select.min.css" />
 <style>
 .main{
-  padding-top:12px;
   background-color:#fafafa;
 }
 </style>
 </block>
 
 <block name="container">
-<div class="container">
-	<div class="row clearfix">
-		<div class="col-md-12 column">
-			<div class="form-inline">
-				<div class="form-group">
-					<label for="link">受访页面</label>
-					<select id="link" class="selectpicker" multiple>
-						<foreach name='link' item='link' >
-							<option value="{$link.code_value}">{$link.code_note}</option>
-						</foreach>
-					</select>
-				</div>
-				<div class="form-group">
-					<label for="date1">时间区间</label>
-					<input type="text" id="date1" class="form-control input-sm" />
-				</div>
-				<div class="form-group">
-					<label for="date2">至</label>
-					<input type="text" id="date2" class="form-control input-sm" />
-				</div>
-				<div class="form-group">
-					<select class="form-control input-sm" id="check">
-						<option value="all">显示全部</option>
-						<option value="vis">网站访客</option>
-						<option value="bot">网络蜘蛛</option>
-					</select>
-				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-sm btn-success" id="search">查询</button>
-				</div>
-			</div>
-			<hr />
-			<div class="table-responsive">
-				<table class="table table-hover table-condensed">
-					<thead><th>编号</th><th>受访页面</th><th>IP</th><th>地区</th><th>ISP</th><th>操作系统</th><th>浏览器</th><th>时间</th></thead>
-					<tbody id="tbody"></tbody>
-				</table>
-			</div>
-			<div id="pages" class="pages"></div>
-		</div>
+<div class="form-inline">
+	<div class="form-group">
+		<label for="link">受访页面</label>
+		<select id="link" class="selectpicker" multiple>
+			<foreach name='link' item='link' >
+				<option value="{$link.code_value}">{$link.code_note}</option>
+			</foreach>
+		</select>
+	</div>
+	<div class="form-group">
+		<label for="date1">时间区间</label>
+		<input type="text" id="date1" class="form-control input-sm" />
+	</div>
+	<div class="form-group">
+		<label for="date2">至</label>
+		<input type="text" id="date2" class="form-control input-sm" />
+	</div>
+	<div class="form-group">
+		<select class="form-control input-sm" id="check">
+			<option value="all">显示全部</option>
+			<option value="vis">网站访客</option>
+			<option value="bot">网络蜘蛛</option>
+		</select>
+	</div>
+	<div class="form-group">
+		<button type="submit" class="btn btn-sm btn-success" id="search">查询</button>
 	</div>
 </div>
+<hr />
+<div class="table-responsive">
+	<table class="table table-hover table-condensed">
+		<thead><th>编号</th><th>受访页面</th><th>IP</th><th>地区</th><th>ISP</th><th>操作系统</th><th>浏览器</th><th>时间</th></thead>
+		<tbody id="tbody"></tbody>
+	</table>
+</div>
+<div class="pages"></div>
 </block>
 
 <block name="script">
@@ -96,7 +89,7 @@
 		$("#search").click(function(){
 			loadTable();
 		});
-		$("#pages").on("click", "a" ,function(){
+		$(".pages").on("click", "a" ,function(){
 			loadTable(this.href);
 			return false;
 		});
@@ -151,7 +144,7 @@
 				"</td><td>" + list[i].br + 
 				"</td><td>" + list[i].tm + "</td></tr>");
 		}
-		$("#pages").html(data.pages);
+		$(".pages").html(data.pages);
 		$("[data-toggle='popover']").popover();
 	},
 	ajaxLoading = function(){

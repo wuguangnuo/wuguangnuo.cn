@@ -99,6 +99,11 @@ body {
 a {
   cursor:pointer;
 }
+hr{
+  height:2px;
+  border:none;
+  border-top:1px dashed #6cf
+}
 
 /**
  * navbar
@@ -244,6 +249,18 @@ input.error, textarea.error {
 }
 input.valid, textarea.valid {
   border:2px solid #1abc9c;
+}
+
+/**
+ * main
+ */
+.main{
+  padding-top:12px;
+}
+.popover .popover-content{
+  white-space:pre-wrap;
+  word-wrap:break-word;
+  word-break:break-all
 }
 
 /**

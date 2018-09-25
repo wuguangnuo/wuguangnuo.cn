@@ -70,7 +70,23 @@
 	</div>
 </div>
 <div class="main">
-	<block name="container"></block>
+	<div class="container">
+		<div class="row clearfix">
+			<div class="col-md-12 column">
+				<block name="container"></block>
+			</div>
+		</div>
+	</div>
+	<footer>
+		<div class="container">
+		<hr />
+			<div class="row footer-bottom">
+			<ul class="list-inline text-center">
+				<li>Copyright &copy; <?php echo date("Y"); ?></li> <li><a href="__ROOT__/index" target="_blank">{$Think.config.WUGN.WEB_SITE}</a></li><li> All Rights Reserved | Author by {$Think.config.WUGN.AUTHOR_NAME}</li>
+			</ul>
+			</div>
+		</div>
+	</footer>
 </div>
 </body>
 <load href="__PUBLIC__/jquery/jquery.min.js" />
