@@ -266,31 +266,49 @@ input.valid, textarea.valid {
 /**
  * pages
  */
-.pages a,.pages span{
-  display:inline-block;
-  padding:2px 5px;
-  margin:0 1px;
-  border:1px solid #f0f0f0;
-  -webkit-border-radius:3px;
-  -moz-border-radius:3px;
-  border-radius:3px
+.pages{
+  -moz-user-select:none;
+  -webkit-user-select:none;
+  -ms-user-select:none;
+  -khtml-user-select:none;
+  user-select:none
 }
-.pages a,.pages li{
+.pages a, .pages span{
   display:inline-block;
   list-style: none;
-  text-decoration:none; color:#58A0D3
+  text-decoration:none;
+  color:#333
 }
-.pages a.first,.pages a.prev,.pages a.next,.pages a.end{
-  margin:0
+.pages a, .pages .current{
+  min-width:28px;
+  margin-right:4px;
+  padding:2px 6px;
+  height:28px;
+  border:1px #ccc solid;
+  border-radius:3px;
+  font-size:12px;
+  text-align:center;
+  line-height:24px
 }
-.pages a:hover{
-  border-color:#50A8E6
+.pages a:hover {
+  color:#18e;
+  border:1px #18e solid
 }
-.pages span.current{
-  background:#50A8E6;
-  color:#FFF;
+.pages .current{
+  background-color:#49d;
+  color:#fff;
   font-weight:700;
-  border-color:#50A8E6
+  border-color:#49d
+}
+.pages .pageEllipsis {
+  font-family:"Courier New","Microsoft YaHei",SimSun;
+  color:#666
+}
+.pages .pageRemark {
+  color:#666
+}
+.pages .pageRemark strong {
+  color:#e00
 }
 
 /**
