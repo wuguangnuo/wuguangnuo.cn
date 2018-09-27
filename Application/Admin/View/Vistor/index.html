@@ -116,12 +116,7 @@
 				ajaxLoading();
 			},
 			success: function(data){
-				if(data.list.length == 0){
-					$("#tbody").empty();
-					$("#tbody").append("<h3>查询结果为空！</h3>");
-				} else {
-					fillTable(data);
-				}
+				fillTable(data);
 				swal.close();
 			},
 			error: function(){
@@ -132,19 +127,23 @@
 	},
 	fillTable = function(data){
 		$("#tbody").empty();
-		var list = data.list;
-		for(var i in list){
-			$("#tbody").append
-				("<tr><td><a data-toggle='popover' data-placement='right' data-trigger='hover' data-html='true' title='USER AGENT' data-content='" + list[i].ag + "'>" + list[i].id + 
-				"</a></td><td>" + list[i].lk + 
-				"</td><td>" + list[i].ip + 
-				"</td><td>" + list[i].country + 
-				"</td><td>" + (list[i]['area']?list[i]['area']:'XX') + 
-				"</td><td>" + list[i].os + 
-				"</td><td>" + list[i].br + 
-				"</td><td>" + list[i].tm + "</td></tr>");
-		}
 		$(".pages").html(data.pages);
+		if(data.list.length == 0){
+			$("#tbody").append("<h3>查询结果为空！</h3>");
+		} else {
+			var list = data.list;
+			for(var i in list){
+				$("#tbody").append
+					("<tr><td><a data-toggle='popover' data-placement='right' data-trigger='hover' data-html='true' title='USER AGENT' data-content='" + list[i].ag + "'>" + list[i].id
+					 + "</a></td><td>" + list[i].lk
+					 + "</td><td>" + list[i].ip
+					 + "</td><td>" + list[i].country
+					 + "</td><td>" + (list[i]['area']?list[i]['area']:'XX')
+					 + "</td><td>" + list[i].os
+					 + "</td><td>" + list[i].br
+					 + "</td><td>" + list[i].tm + "</td></tr>");
+			}
+		}
 		$("[data-toggle='popover']").popover();
 	},
 	ajaxLoading = function(){
