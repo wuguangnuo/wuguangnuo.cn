@@ -46,35 +46,17 @@ class BlogController extends BlogsideController {
 	}
 	
 	public function read($id = 1) {
-		$Blog = M('blog');
+		$Blog = D('blog');
 		$data = $Blog->find($id);
 		if($data) {
-			$this->data = $data; // 模板变量赋值
+			$this->data = $data;
 		} else {
 			$this->error('没找到');
 		}
+		$flippage = $Blog->getFlippage($id);
+		
 		$this->assign('meta_title', $data['post_title']);
-		
-		//上一篇
-		$map['id'] = array('lt', $id);
-		$lp = $Blog->field('id,post_title')->where($map)->order('id desc')->limit(1)->find();
-		if(!$lp) {
-			$lp['id'] = $data['id'];
-			$lp['post_title'] = '无';
-		}
-
-		//下一篇
-		$map['id'] = array('gt', $id);
-		$np = $Blog->field('id,post_title')->where($map)->order('id')->limit(1)->find();
-		if(!$np) {
-			$np['id'] = $data['id'];
-			$np['post_title'] = '无';
-		}
-		$lp['post_title_cut'] = cut_str($lp['post_title'], 18, true);
-		$np['post_title_cut'] = cut_str($np['post_title'], 18, true);
-		
-		$this->lp = $lp;
-		$this->np = $np;
+		$this->flippage = $flippage;
 		$this->display();
 	}
 }
