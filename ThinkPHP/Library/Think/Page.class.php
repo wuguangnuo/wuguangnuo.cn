@@ -16,7 +16,7 @@ class Page{
     public $parameter; // 分页跳转时要带的参数
     public $totalRows; // 总行数
     public $totalPages; // 分页总页面数
-    public $rollPage = 5; // 分页栏每页显示的页数
+    public $rollPage = 7; // 分页栏每页显示的页数
     public $lastSuffix = true; // 最后一页是否显示总页数
 
     private $p       = 'p'; //分页参数名
@@ -124,13 +124,13 @@ class Page{
 
 		//左省略符
         $ellipsisLeft = '';
-        if($this->nowPage > $now_cool_page_ceil){
+        if($this->totalPages > $this->rollPage && $this->nowPage > $now_cool_page_ceil){
             $ellipsisLeft = '<span class="pageEllipsis">' . $this->config['ellipsis'] . '</span>';
         }
 
 		//右省略符
         $ellipsisRight = '';
-        if($this->nowPage + $now_cool_page_ceil <= $this->totalPages){
+        if($this->totalPages > $this->rollPage && $this->nowPage + $now_cool_page_ceil <= $this->totalPages){
             $ellipsisRight = '<span class="pageEllipsis">' . $this->config['ellipsis'] . '</span>';
         }
         
