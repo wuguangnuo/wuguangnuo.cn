@@ -3,7 +3,7 @@
 <block name="post_title">
 <div class="container">
 	<div class="postTitle">
-		<h2>最近文章</h2>
+		<h2 id="keyword">最近文章</h2>
 		<span>&nbsp;</span>
 	</div>
 </div>
@@ -11,24 +11,108 @@
 
 <block name="post_content">
 <div class="table-responsive">
-		<foreach name='list' item='post' >
-		<div>
-		<h3><a href="__ROOT__/blog/{$post.id}" title="{$post.post_title}">{$post.post_title}</a></h3>
-		<div class="post_msg">
-			日期：<time>{$post.post_date}&nbsp;</time>
-			<span>标签：<a href="__ROOT__/blog/search?t={$post.post_type}">{$post.post_type}</a></span>
-		</div>
-		<div>
-			<p>{$post.post_content}</p>
-			<p><a href="__ROOT__/blog/{$post.id}" title="继续阅读：{$post.post_title}">继续阅读 &raquo;</a></p>
-		</div>
-		<hr />
-		</div>
-		</foreach>
-	<div class="pages">{$page}</div>
+	<div id="blogTable"></div>
+	<div class="pages"></div>
 </div>
 </block>
 
-<block name="post_foot">
+<block name="post_foot"></block>
 
+<block name="script">
+<load href="__PUBLIC__/jquery-tmpl/jquery.tmpl.min.js" />
+
+<script id="tpl_blogTable" type="text/x-jquery-tmpl">
+	<h3><a href="__ROOT__/blog/${id}" title="${post_title}">${post_title}</a></h3>
+	<div class="post_msg">
+		日期：<time>${post_date}&nbsp;</time>
+		<span>标签：<a href="__ROOT__/blog/loadTable?t=${post_type}">${post_type}</a></span>
+	</div>
+	<div>
+		<p>${post_content}</p>
+		<p><a href="__ROOT__/blog/${id}" title="继续阅读：${post_title}">继续阅读 &raquo;</a></p>
+	</div>
+	<hr />
+</script>
+
+<script>
+(function(){
+	"use strict";
+
+	var init = function(){
+		bindEvent();
+		loadTable();
+	},
+	bindEvent = function(){
+		$(".pages").on("click", "a" ,function(){
+			loadTable(this.href);
+			return false;
+		});
+		$("#blogTable").on("click", ".post_msg span a" ,function(){
+			loadTable(this.href);
+			return false;
+		});
+		$("input[name='q']").keydown(function(e){
+			if (e.keyCode == 13) {
+				loadTable("__ROOT__/blog/loadTable?q="+this.value);
+				this.value = "";
+			}
+		});
+	},
+	loadTable = function(url){
+		var url = url?url:'__APP__/Blog/loadTable';
+		$.ajax({
+			url: url,
+			data: {},
+			type: 'POST',
+			cache: false,
+			dataType: 'JSON',
+			beforeSend: function(){
+				ajaxLoading();
+			},
+			success: function(data){
+				fillTable(data);
+				swal.close();
+			},
+			error: function(){
+				ajaxError();
+			},
+			complete: function(){}
+		});
+	},
+	fillTable = function(data){
+		$("#blogTable").empty();
+		$("#keyword").html(data.keyword);
+		$(".pages").html(data.pages);
+		if(data.list.length == 0){
+			$("#blogTable").append("<h2>查询结果为空！</h2>");
+		} else {
+			$("#tpl_blogTable").tmpl(data.list).appendTo('#blogTable');
+		}
+	},
+	ajaxLoading = function(){
+		swal({
+			title: "获取数据中...", 
+			imageUrl: "__PUBLIC__/wugn/img/ajax-loading.gif",
+			allowOutsideClick: false,
+			allowEscapeKey: false,
+			showConfirmButton: false
+		});
+	},
+	ajaxError = function(){
+		swal({
+			type: 'error',
+			title: 'ajax 加载失败',
+			allowOutsideClick: false,
+			allowEnterKey: false,
+			confirmButtonText: '确认',
+			animation: false,
+			customClass: 'animated wobble'
+		});
+	};
+	
+	$(function(){
+		init();
+	});
+})();
+</script>
 </block>
