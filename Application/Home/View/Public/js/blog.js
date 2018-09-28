@@ -15,8 +15,8 @@ $(function(){
 	});
 	
 	//Blog内容规范化
-	$(".frommysql table").css("border", "0").addClass("table table-striped table-condensed table-hover");//表格样式
-	$(".frommysql img").addClass("img-responsive img-thumbnail");//图片样式
+	$(".post-content table").css("border", "0").addClass("table table-striped table-condensed table-hover");//表格样式
+	$(".post-content img").addClass("img-responsive img-thumbnail");//图片样式
 	$(".flip").addClass("btn btn-primary").css("margin-bottom","6px");//添加按钮样式
 	$(".flip+pre").hide();//代码默认隐藏
 	$(".flip").click(function(){//代码展开功能
