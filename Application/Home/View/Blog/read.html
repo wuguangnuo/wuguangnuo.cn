@@ -10,7 +10,7 @@
 </block>
 
 <block name="post_content">
-	<div class="frommysql">{$data.post_content}</div>
+	<div class="post-content">{$data.post_content}</div>
 </block>
 
 <block name="post_foot">
@@ -19,4 +19,29 @@
 	<div class="flippage text-center">上一篇：<a href="__ROOT__/blog/{$flippage.previous.id}" title="{$flippage.previous.post_title}">{$flippage.previous.post_title_cut}</a>
 	&nbsp;|&nbsp;
 	下一篇：<a href="__ROOT__/blog/{$flippage.next.id}" title="{$flippage.next.post_title}">{$flippage.next.post_title_cut}</a></div>
+</block>
+
+<block name="script">
+<script>
+(function(){
+	"use strict";
+
+	var init = function(){
+		bindEvent();
+	},
+	bindEvent = function(){
+		$("input[name='q']").keydown(function(e){
+			if (e.keyCode == 13 || e.keyCode == 108) {
+				window.location.href = "__ROOT__/blog/index?q="+this.value;
+				this.value = "";
+				return false;
+			}
+		});
+	};
+	
+	$(function(){
+		init();
+	});
+})();
+</script>
 </block>

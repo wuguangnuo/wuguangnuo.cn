@@ -161,7 +161,7 @@ a {
   font-size:16px;
   font-family:Georgia,"Microsoft YaHei",SimSun
 }
-.frommysql{
+.post-content{
   display:block;
   font-size:16px;
   line-height:1.5em;
@@ -170,7 +170,7 @@ a {
   word-break:break-all;
   word-wrap:break-word
 }
-.frommysql blockquote{
+.post-content blockquote{
   display:block;
   padding:12px 3px;
   margin:0 0 15px;
@@ -179,7 +179,7 @@ a {
   background:#eee;
   overflow:auto
 }
-.frommysql pre code{
+.post-content pre code{
   white-space:pre
 }
 .reprint{
@@ -306,11 +306,11 @@ a {
 }
 
 @media (max-width:767px){
-  .frommysql blockquote{
+  .post-content blockquote{
     padding:4px 2px;
     margin:0
   }
-  .frommysql pre{
+  .post-content pre{
     padding:3px
   }
   .column{
