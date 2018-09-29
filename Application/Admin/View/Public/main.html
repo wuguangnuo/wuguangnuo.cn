@@ -69,6 +69,19 @@
 	</notempty>
 	</div>
 </div>
+<block name="subnavbar">
+<div class="subnavbar">
+	<div class="subnavbar-inner">
+		<div class="container">
+		<ul class="mainnav">
+			<li class="" id=""><a href="__ROOT__"><i class="fa fa-home" aria-hidden="true"></i><span>首页</span></a></li>
+			<li class="active" id=""><a href="__APP__"><i class="fa fa-users" aria-hidden="true"></i><span>管理中心</span></a></li>
+			<li class="" id=""><a href="#"><i class="fa fa-user" aria-hidden="true"></i><span>个人中心</span></a></li>
+		</ul>
+		</div>
+	</div>
+</div>
+</block>
 <div class="main">
 	<div class="container">
 		<div class="row clearfix">
@@ -88,6 +101,9 @@
 		</div>
 	</footer>
 </div>
+<div id="gotop" class="text-center" title="返回顶部">
+	<i class="fa fa-angle-up"></i>
+</div>
 </body>
 <load href="__PUBLIC__/jquery/jquery.min.js" />
 <load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
@@ -95,4 +111,18 @@
 <load href="__PUBLIC__/jquery-validation/jquery.validate.min.js" />
 <load href="__PUBLIC__/jquery-validation/localization/messages_zh.js" />
 <block name="script"></block>
+<script>
+$("#gotop").hide();
+$(window).scroll(function(){
+	if($(window).scrollTop() >= 100){
+		$("#gotop").fadeIn();
+	} else {
+		$("#gotop").fadeOut();
+	}
+});
+
+$("#gotop").click(function(event){
+	$('html,body').animate({scrollTop:0},100);
+});
+</script>
 </html>
