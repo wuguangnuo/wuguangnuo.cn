@@ -67,7 +67,9 @@
 			type: 'POST',
 			cache: false,
 			dataType: 'JSON',
-			beforeSend: function(){},
+			beforeSend: function(){
+				ajaxLoading();
+			},
 			success: function(data){
 				fillTable(data);
 				swal.close();
