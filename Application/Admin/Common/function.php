@@ -77,7 +77,7 @@ function get_os($sys) {
  * 获取浏览器
  */
 function get_br($agent) {
-	if (preg_match('/\+http:\/\//i', $agent) && (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent))) {
+	if (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent)) {
 		$exp[0] = '网络蜘蛛';
 		$exp[1] = '';
 	} else if (stripos($agent, 'Firefox/')) {
@@ -136,7 +136,7 @@ function get_sp($sys) {
 		return '雅虎蜘蛛';
 	} else if (preg_match('/YoudaoBot/i', $sys) || preg_match('/YodaoBot/i', $sys)) {
 		return '有道蜘蛛';
-	} else if (preg_match('/Sogou/i', $sys) && preg_match('/spider/i', $sys)) {
+	} else if (preg_match('/Sogou/i', $sys)) {
 		return '搜狗蜘蛛';
 	} else if (preg_match('/msnbot/i', $sys)) {
 		return 'MSN蜘蛛';
