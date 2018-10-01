@@ -1,0 +1,4 @@
+# robots.txt generated
+User-agent: *
+Crawl-delay: 600
+# Disallow: /Application/Admin/
