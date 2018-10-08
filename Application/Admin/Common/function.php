@@ -3,7 +3,9 @@
  * 获取操作系统
  */
 function get_os($sys) {
-	if (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys)) {
+	if (preg_match('/sitemap/i', $sys) || preg_match('/Parser/i', $sys)) {
+		$os = '地图爬虫';
+	} else if (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys)) {
 		$os = get_sp($sys);
 	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]95/i', $sys)) {
 		$os = 'Windows 95';
@@ -77,7 +79,10 @@ function get_os($sys) {
  * 获取浏览器
  */
 function get_br($agent) {
-	if (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent)) {
+	if (preg_match('/sitemap/i', $agent) || preg_match('/Parser/i', $agent)) {
+		$exp[0] = '地图爬虫';
+		$exp[1] = '';
+	} else if (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent)) {
 		$exp[0] = '网络蜘蛛';
 		$exp[1] = '';
 	} else if (stripos($agent, 'Firefox/')) {
