@@ -139,4 +139,28 @@ CREATE TABLE IF NOT EXISTS `wu_dictionary` (
   PRIMARY KEY (`id`),
   KEY `group_key` (`group_key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='字典表' AUTO_INCREMENT=1;
+
+CREATE TABLE num (i int); -- 创建一个表用来储存0-9的数字
+INSERT INTO num (i) VALUES (0), (1), (2), (3), (4), (5), (6), (7), (8), (9); -- 生成0-9的数字，方便以后计算时间
+
+CREATE TABLE IF NOT EXISTS wu_calendar(datelist date); -- 生成一个存储日期的表，datalist是字段名
+-- 这里是生成并插入日期数据
+INSERT INTO wu_calendar(datelist) SELECT
+    adddate(
+        (   -- 这里的起始日期，你可以换成当前日期
+            DATE_FORMAT("2018-01-01", '%Y-%m-%d') 
+        ),
+        numlist.id
+    ) AS `date`
+FROM
+    (
+        SELECT
+            n1.i + n10.i * 10 + n100.i * 100 + n1000.i * 1000+ n10000.i * 10000 AS id
+        FROM
+            num n1
+        CROSS JOIN num AS n10
+        CROSS JOIN num AS n100
+        CROSS JOIN num AS n1000
+        CROSS JOIN num AS n10000
+    ) AS numlist;
 COMMIT;
