@@ -64,9 +64,11 @@ class VistorController extends AdminController {
 		$Vistor = D('vistor');
 		$allDate = array_column($Vistor->getCountGroupDate('all'), 'ddate');
 
-		$data['title'] = array('text' => '访客类型统计图');
+		$data['title'] = array('left' => '5%', 'text' => '访客类型统计图', 'subtext' => C('WUGN.WEB_SITE'));
 		$data['tooltip'] = array('trigger' => 'axis');
 		$data['legend'] = array('data' => array('总访问量', '访客', '谷歌蜘蛛', '必应蜘蛛', 'Ahrefs蜘蛛', 'MJ12蜘蛛', 'Archive蜘蛛'));
+		$data['toolbox'] = array('right' => '5%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'saveAsImage' => array()));
+		$data['dataZoom'] = array(array('startValue' => '2018-09-20'), array('type' => 'inside'));
 		$data['xAxis'] = array('type' => 'category', 'boundaryGap' => false, 'data' => $allDate);
 		$data['yAxis'] = array('type' => 'value');
 		$data['series'] = array(array('name' => '总访问量', 'type' => 'line', 'data' => array_column($Vistor->getCountGroupDate('all'), 'num')),
