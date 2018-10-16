@@ -1,0 +1,72 @@
+<extend name="Public:main" />
+
+<block name="style">
+<style>
+.main{
+  background-color:#fafafa;
+}
+</style>
+</block>
+
+<block name="container">
+<div id="vistorChart" style="height:400px;"></div>
+</block>
+
+<block name="script">
+<load href="__PUBLIC__/echarts/echarts.common.min.js" />
+
+<script>
+(function(){
+	"use strict";
+
+	var init = function(){
+		initPage();
+		bindEvent();
+		loadChart();
+	},
+	initPage = function(){
+	},
+	bindEvent = function(){
+	},
+	loadChart = function(){
+		$("#vistorChart").empty();
+		var myChart = echarts.init($("#vistorChart")[0]);
+		myChart.showLoading();
+		$.ajax({
+			url: '__APP__/Vistor/loadChart',
+			data: {
+			},
+			type: 'POST',
+			cache: false,
+			dataType: 'JSON',
+			beforeSend: function(){},
+			complete: function(){}
+		}).done(function(data){
+			myChart.hideLoading();
+			myChart.setOption({
+				title: data.title,
+				tooltip: data.tooltip,
+				legend: data.legend,
+				xAxis: data.xAxis,
+				yAxis: data.yAxis,
+				series: data.series
+			});
+		}).fail(function(){
+				swal({
+				type: 'error',
+				title: '加载失败',
+				allowOutsideClick: false,
+				allowEnterKey: false,
+				confirmButtonText: '确认',
+				animation: false,
+				customClass: 'animated wobble'
+			});
+		});
+	};
+
+	$(function(){
+		init();
+	});
+})();
+</script>
+</block>
