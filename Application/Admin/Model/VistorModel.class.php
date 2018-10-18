@@ -9,19 +9,52 @@ class VistorModel extends Model {
 				SELECT datelist AS dday FROM wu_calendar WHERE DATE(datelist) BETWEEN '2018-08-12' AND CURDATE()
 				UNION ALL
 				SELECT tm FROM wu_vistor WHERE (";
-
-		if($type == 'all'){
+		switch ($type){
+		case 'all':
 			$sql .= "1=1";
-		} else if($type == 'guest'){
+			break;
+		case 'vistor':
 			$sql .= "ag NOT LIKE '%spider%' AND ag NOT LIKE '%bot%' AND ag NOT LIKE '%sitemap%' AND ag NOT LIKE '%parser%'";
-		} else if($type == 'sitemap'){
+			break;
+		case 'sitemap':
 			$sql .= "ag LIKE '%sitemap%' OR ag LIKE '%parser%'";
-		} else {
+			break;
+		default:
 			$sql .= "(ag LIKE '%spider%' OR ag LIKE '%bot%') AND ag LIKE '%{$type}%'";
 		}
 		$sql .= ") AND (DATE(tm) BETWEEN '2018-08-12' AND CURDATE())
 				)T GROUP BY ddate ORDER BY ddate";
 		return $this->query($sql);
+	}
+	
+	public function getCountGroupLink($type){
+		$Dic = D('dictionary');
+		$linkCode = array_column($Dic->getDictionary('vistor_link'), 'code_value');
+
+		switch ($type){
+		case 'all':
+			$where['ag'] = array('neq','null');
+			break;
+		case 'vistor':
+			$where['ag'] = array('notlike',array('%spider%','%bot%'),'AND');
+			break;
+		case 'spider':
+			$where['ag'] = array('like',array('%spider%','%bot%'),'OR');
+			break;
+		}
+		
+		$data = array();
+		foreach($linkCode as $v){
+			$where['lk'] = array('like', explode(',', $v), 'or');
+			array_push($data, $this->field('count(id) as num')->where($where)->find());
+		}
+		return $data;
+	}
+	
+	public function getCountLike($type){ //!!简单统计，易重复数据
+		$where['ag'] = array('like', "%{$type}%");
+		$data = $this->field('count(id) as num')->where($where)->find();
+		return $data['num'];
 	}
 }
 ?>

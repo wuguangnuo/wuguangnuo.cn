@@ -9,7 +9,17 @@
 </block>
 
 <block name="container">
-<div id="vistorChart" style="height:400px;"></div>
+<div class="btn-inline">
+	<div id="btnGroup" class="btn-group btn-group-sm">
+		<button id="vistor" class="btn btn-success">访客类型</button>
+		<button id="link" class="btn btn-success">受访页面</button>
+		<button id="system" class="btn btn-success">操作系统</button>
+		<button id="browser" class="btn btn-success">客户端</button>
+	</div>
+	<a class="btn btn-sm btn-primary" href="__APP__/Vistor/index">返回表格</a>
+</div>
+<hr />
+<div id="vistorChart"></div>
 </block>
 
 <block name="script">
@@ -22,19 +32,37 @@
 	var init = function(){
 		initPage();
 		bindEvent();
-		loadChart();
+		$("#vistor").click();
 	},
 	initPage = function(){
+		 $("#vistorChart").css("height", "500px");
 	},
 	bindEvent = function(){
+		$("#btnGroup button").click(function(){
+			$("#btnGroup button").removeClass("active");
+			$(this).addClass("active");
+		});
+		$("#vistor").click(function(){
+			loadChart('vistor');
+		});
+		$("#link").click(function(){
+			loadChart('link');
+		});
+		$("#system").click(function(){
+			loadChart('system');
+		});
+		$("#browser").click(function(){
+			loadChart('browser');
+		});
 	},
-	loadChart = function(){
-		$("#vistorChart").empty();
+	loadChart = function(type){
+		$('#vistorChart').removeAttr('_echarts_instance_').empty();
 		var myChart = echarts.init($("#vistorChart")[0]);
 		myChart.showLoading();
 		$.ajax({
 			url: '__APP__/Vistor/loadChart',
 			data: {
+				type: type
 			},
 			type: 'POST',
 			cache: false,
@@ -43,16 +71,7 @@
 			complete: function(){}
 		}).done(function(data){
 			myChart.hideLoading();
-			myChart.setOption({
-				title: data.title,
-				tooltip: data.tooltip,
-				legend: data.legend,
-				toolbox: data.toolbox,
-				dataZoom: data.dataZoom,
-				xAxis: data.xAxis,
-				yAxis: data.yAxis,
-				series: data.series
-			});
+			myChart.setOption(data);
 		}).fail(function(){
 				swal({
 				type: 'error',

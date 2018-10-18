@@ -2,72 +2,72 @@
 /**
  * 获取操作系统
  */
-function get_os($sys) {
-	if (preg_match('/sitemap/i', $sys) || preg_match('/Parser/i', $sys)) {
+function get_os($agent) {
+	if (preg_match('/sitemap/i', $agent) || preg_match('/Parser/i', $agent)) {
 		$os = '地图爬虫';
-	} else if (preg_match('/spider/i', $sys) || preg_match('/bot/i', $sys)) {
-		$os = get_sp($sys);
-	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]95/i', $sys)) {
+	} else if (preg_match('/spider/i', $agent) || preg_match('/bot/i', $agent)) {
+		$os = get_sp($agent);
+	} else if (preg_match('/win/i', $agent) && preg_match('/[^.\d]95/i', $agent)) {
 		$os = 'Windows 95';
-	} else if (preg_match('/win/i', $sys) && preg_match('/[^.\d]98/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/[^.\d]98/i', $agent)) {
 		$os = 'Windows 98';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.0/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*5.0/i', $agent)) {
 		$os = 'Windows 2000';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.1/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*5.1/i', $agent)) {
 		$os = 'Windows XP';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*5.2/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*5.2/i', $agent)) {
 		$os = 'Windows XP';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.0/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*6.0/i', $agent)) {
 		$os = 'Windows Vista';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.1/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*6.1/i', $agent)) {
 		$os = 'Windows 7';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*6.2/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*6.2/i', $agent)) {
 		$os = 'Windows 8';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt\s*10.0/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt\s*10.0/i', $agent)) {
 		$os = 'Windows 10';
-	} else if (preg_match('/win/i', $sys) && preg_match('/nt/i', $sys)) {
+	} else if (preg_match('/win/i', $agent) && preg_match('/nt/i', $agent)) {
 		$os = 'Windows NT';
-	} else if (preg_match('/android\s*([\d\.]+)/i', $sys, $Android)) {
+	} else if (preg_match('/android\s*([\d\.]+)/i', $agent, $Android)) {
 		$os = 'Android ' . $Android[1];
-	} else if (preg_match('/iphone/i', $sys)) {
+	} else if (preg_match('/iphone/i', $agent)) {
 		$os = 'iPhone';
-	} else if (preg_match('/ipad/i', $sys)) {
+	} else if (preg_match('/ipad/i', $agent)) {
 		$os = 'iPad';
-	} else if (preg_match('/linux/i', $sys)) {
+	} else if (preg_match('/linux/i', $agent)) {
 		$os = 'Linux';
-	} else if (preg_match('/unix/i', $sys)) {
+	} else if (preg_match('/unix/i', $agent)) {
 		$os = 'Unix';
-	} else if (preg_match('/sun/i', $sys) && preg_match('/os/i', $sys)) {
+	} else if (preg_match('/sun/i', $agent) && preg_match('/os/i', $agent)) {
 		$os = 'SunOS';
-	} else if (preg_match('/ibm/i', $sys) && preg_match('/os/i', $sys)) {
+	} else if (preg_match('/ibm/i', $agent) && preg_match('/os/i', $agent)) {
 		$os = 'IBM OS/2';
-	} else if (preg_match('/Mac/i', $sys) && preg_match('/PC/i', $sys)) {
+	} else if (preg_match('/Mac/i', $agent) && preg_match('/PC/i', $agent)) {
 		$os = 'Macintosh';
-	} else if (preg_match('/Macintosh/i', $sys) && preg_match('/Mac/i', $sys)) {
+	} else if (preg_match('/Macintosh/i', $agent) && preg_match('/Mac/i', $agent)) {
 		$os = 'MacOS';
-	} else if (preg_match('/PowerPC/i', $sys)) {
+	} else if (preg_match('/PowerPC/i', $agent)) {
 		$os = 'PowerPC';
-	} else if (preg_match('/AIX/i', $sys)) {
+	} else if (preg_match('/AIX/i', $agent)) {
 		$os = 'AIX';
-	} else if (preg_match('/HPUX/i', $sys)) {
+	} else if (preg_match('/HPUX/i', $agent)) {
 		$os = 'HPUX';
-	} else if (preg_match('/NetBSD/i', $sys)) {
+	} else if (preg_match('/NetBSD/i', $agent)) {
 		$os = 'NetBSD';
-	} else if (preg_match('/BSD/i', $sys)) {
+	} else if (preg_match('/BSD/i', $agent)) {
 		$os = 'BSD';
-	} else if (preg_match('/OSF1/i', $sys)) {
+	} else if (preg_match('/OSF1/i', $agent)) {
 		$os = 'OSF1';
-	} else if (preg_match('/IRIX/i', $sys)) {
+	} else if (preg_match('/IRIX/i', $agent)) {
 		$os = 'IRIX';
-	} else if (preg_match('/FreeBSD/i', $sys)) {
+	} else if (preg_match('/FreeBSD/i', $agent)) {
 		$os = 'FreeBSD';
-	} else if (preg_match('/teleport/i', $sys)) {
+	} else if (preg_match('/teleport/i', $agent)) {
 		$os = 'teleport';
-	} else if (preg_match('/flashget/i', $sys)) {
+	} else if (preg_match('/flashget/i', $agent)) {
 		$os = 'flashget';
-	} else if (preg_match('/webzip/i', $sys)) {
+	} else if (preg_match('/webzip/i', $agent)) {
 		$os = 'webzip';
-	} else if (preg_match('/offline/i', $sys)) {
+	} else if (preg_match('/offline/i', $agent)) {
 		$os = 'offline';
 	} else {
 		$os = '未知操作系统';
@@ -128,46 +128,46 @@ function get_br($agent) {
 /**
  * 获取网络蜘蛛
  */
-function get_sp($sys) {
-	if (preg_match('/Baiduspider/i', $sys)) {
+function get_sp($agent) {
+	if (preg_match('/Baiduspider/i', $agent)) {
 		return '百度蜘蛛';
-	} else if (preg_match('/Googlebot/i', $sys)) {
+	} else if (preg_match('/Googlebot/i', $agent)) {
 		return '谷歌蜘蛛';
-	} else if (preg_match('/360Spider/i', $sys)) {
+	} else if (preg_match('/360Spider/i', $agent)) {
 		return '360蜘蛛';
-	} else if (preg_match('/Sosospider/i', $sys)) {
+	} else if (preg_match('/Sosospider/i', $agent)) {
 		return 'SOSO蜘蛛';
-	} else if (preg_match('/Yahoo!/i', $sys)) {
+	} else if (preg_match('/Yahoo!/i', $agent)) {
 		return '雅虎蜘蛛';
-	} else if (preg_match('/YoudaoBot/i', $sys) || preg_match('/YodaoBot/i', $sys)) {
+	} else if (preg_match('/YoudaoBot/i', $agent) || preg_match('/YodaoBot/i', $agent)) {
 		return '有道蜘蛛';
-	} else if (preg_match('/Sogou/i', $sys)) {
+	} else if (preg_match('/Sogou/i', $agent)) {
 		return '搜狗蜘蛛';
-	} else if (preg_match('/msnbot/i', $sys)) {
+	} else if (preg_match('/msnbot/i', $agent)) {
 		return 'MSN蜘蛛';
-	} else if (preg_match('/bingbot/i', $sys)) {
+	} else if (preg_match('/bingbot/i', $agent)) {
 		return '必应蜘蛛';
-	} else if (preg_match('/YisouSpider/i', $sys)) {
+	} else if (preg_match('/YisouSpider/i', $agent)) {
 		return '一搜蜘蛛';
-	} else if (preg_match('/ia_archiver/i', $sys)) {
+	} else if (preg_match('/ia_archiver/i', $agent)) {
 		return 'Alexa蜘蛛';
-	} else if (preg_match('/EasouSpider/i', $sys)) {
+	} else if (preg_match('/EasouSpider/i', $agent)) {
 		return '宜sou蜘蛛';
-	} else if (preg_match('/JikeSpider/i', $sys)) {
+	} else if (preg_match('/JikeSpider/i', $agent)) {
 		return '即刻蜘蛛';
-	} else if (preg_match('/EtaoSpider/i', $sys)) {
+	} else if (preg_match('/EtaoSpider/i', $agent)) {
 		return '一淘蜘蛛';
-	} else if (preg_match('/YandexBot/i', $sys)) {
+	} else if (preg_match('/YandexBot/i', $agent)) {
 		return 'Yandex蜘蛛';
-	} else if (preg_match('/AhrefsBot/i', $sys)) {
+	} else if (preg_match('/AhrefsBot/i', $agent)) {
 		return 'Ahrefs蜘蛛';
-	} else if (preg_match('/ezooms.bot/i', $sys)) {
+	} else if (preg_match('/ezooms.bot/i', $agent)) {
 		return 'ezooms蜘蛛';
-	} else if (preg_match('/MJ12bot/i', $sys)) {
+	} else if (preg_match('/MJ12bot/i', $agent)) {
 		return 'MJ12蜘蛛';
-	} else if (preg_match('/Linkdex/i', $sys)) {
+	} else if (preg_match('/Linkdex/i', $agent)) {
 		return 'Linkdex蜘蛛';
-	} else if (preg_match('/archive/i', $sys)) {
+	} else if (preg_match('/archive/i', $agent)) {
 		return 'Archive蜘蛛';
 	} else {
 		return '其他蜘蛛';
