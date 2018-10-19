@@ -67,25 +67,25 @@ class VistorController extends AdminController {
 		$Vistor = D('vistor');
 		$Dic = D('dictionary');
 
-		$vistorShow = array('all' => '总访问量', 'vistor' => '访客', 'Googlebot' => '谷歌蜘蛛', 'bingbot' => '必应蜘蛛', 'AhrefsBot' => 'Ahrefs蜘蛛', 'other' => '其他流量');
+		$vistorShow = array('all' => '总访问量', 'vistor' => '访客', 'Googlebot' => '谷歌蜘蛛', 'bingbot' => '必应蜘蛛', 'Baiduspider' => '百度蜘蛛', 'AhrefsBot' => 'Ahrefs蜘蛛', 'MJ12bot' => 'MJ12蜘蛛', 'others' => '其他流量');
 		$linkShow = array('all' => '访问总量', 'vistor' => '访客', 'spider' => '爬虫');
-		$systemShow = array('win' => 'Windows', 'android' => '安卓', 'iphone' => 'iPhone', 'linux' => 'Linux', 'spider' => '网络蜘蛛', 'bot' => '机器人', 'sitemap' => '地图爬虫', 'other' => '其他系统');
-		$browserShow = array('Firefox' => 'Firefox', 'MSIE' => 'IE', 'OPR' => 'Opera', 'Edge' => 'Edge', 'Chrome' => 'Chrome', 'Safari' => 'Safari', 'spider' => '网络蜘蛛', 'bot' => '机器人', 'sitemap' => '地图爬虫', 'other' => '其他客户端');
+		$systemShow = array('Windows 10', 'Windows 8', 'Windows 7', 'Windows XP', 'Windows Vista', 'Windows NT', 'Linux', 'MacOS', 'Android', 'iPhone', 'spider', 'sitemap', 'others');
+		$browserShow = array('Chrome', 'Firefox', 'Safari', 'IE', 'Opera', 'Edge', 'Maxthon', 'spider', 'sitemap', 'others');
 
 		switch ($type){
 		case 'vistor':
 			$countGroupDate = array();//临时存放数据，计算其余类型
 			$vistorCountGroupDate = array_column($Vistor->getCountGroupDate('all'), 'num');//总量线
-			$data['title'] = array('left' => '5%', 'text' => '访客类型统计图', 'subtext' => C('WUGN.WEB_SITE'));
+			$data['title'] = array('left' => '2%', 'text' => '访客类型统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'axis');
 			$data['legend'] = array('data' => array_values($vistorShow));
-			$data['toolbox'] = array('right' => '5%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'dataView' => array(), 'saveAsImage' => array()));
+			$data['toolbox'] = array('right' => '2%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'dataView' => array(), 'saveAsImage' => array()));
 			$data['dataZoom'] = array(array('startValue' => '2018-09-20'), array('type' => 'inside'));
 			$data['xAxis'] = array('type' => 'category', 'boundaryGap' => false, 'data' => array_column($Vistor->getCountGroupDate('all'), 'ddate'));
 			$data['yAxis'] = array('type' => 'value');
 			$data['series'] = array();
 			foreach($vistorShow as $k=>$v) {
-				if($k != 'other'){
+				if($k != 'others'){
 					$temp = array_column($Vistor->getCountGroupDate($k), 'num');//本条线
 					array_push($data['series'], array('name' => $v, 'type' => 'line', 'data' => $temp));
 					foreach($temp as $i=>$j){
@@ -112,36 +112,25 @@ class VistorController extends AdminController {
 			}
 			break;
 		case 'system':
-			$countGroupSystem = 0;//临时存放数据，计算其余类型
 			$data['title'] = array('left' => '5%', 'text' => '操作系统统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'item', 'formatter' => '{a}<br />{b}：{c}({d}%)');
-			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => array_values($systemShow));
+			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => $systemShow);
 			$data['toolbox'] = array('right' => '5%', 'bottom' => '0', 'feature' => array('dataView' => array('readOnly' => true), 'restore' => array(), 'saveAsImage' => array()));
 			$data['series'] = array('name' => '操作系统', 'type' => 'pie', 'itemStyle' => array('emphasis' => array('shadowBlur' => '10', 'shadowOffsetX' => '0', 'shadowColor' => 'rgba(0, 0, 0, 0.5)')), 'data' => array());
-			foreach($systemShow as $k=>$v){
-				if($k != 'other'){
-					$value = $Vistor->getCountLike($k);
-					array_push($data['series']['data'], array('value' => $value, 'name' => $v));
-					$countGroupSystem += $value;
-				}
-			}//!!其他类型统计错误
-			array_push($data['series']['data'], array('value' => abs($Vistor->getCountLike('') - $countGroupSystem), 'name' => '其他系统'));
+			foreach($Vistor->getSystemCount($systemShow) as $k=>$v){
+				array_push($data['series']['data'], array('value' => $v, 'name' => $k));
+			}
 			break;
 		case 'browser':
 			$countGroupBrowser = 0;//临时存放数据，计算其余类型
 			$data['title'] = array('left' => '5%', 'text' => '用户客户端统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'item', 'formatter' => '{a}<br />{b}：{c}({d}%)');
-			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => array_values($browserShow));
+			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => $browserShow);
 			$data['toolbox'] = array('right' => '5%', 'bottom' => '0', 'feature' => array('dataView' => array('readOnly' => true), 'restore' => array(), 'saveAsImage' => array()));
 			$data['series'] = array('name' => '客户端', 'type' => 'pie', 'itemStyle' => array('emphasis' => array('shadowBlur' => '10', 'shadowOffsetX' => '0', 'shadowColor' => 'rgba(0, 0, 0, 0.5)')), 'data' => array());
-			foreach($browserShow as $k=>$v){
-				if($k != 'other'){
-					$value = $Vistor->getCountLike($k);
-					array_push($data['series']['data'], array('value' => $value, 'name' => $v));
-					$countGroupBrowser += $value;
-				}
-			}//!!其他类型统计错误
-			array_push($data['series']['data'], array('value' => abs($Vistor->getCountLike('') - $countGroupBrowser), 'name' => '其他客户端'));
+			foreach($Vistor->getBrowserCount($browserShow) as $k=>$v){
+				array_push($data['series']['data'], array('value' => $v, 'name' => $k));
+			}
 			break;
 		}
 		$this->ajaxReturn($data);
