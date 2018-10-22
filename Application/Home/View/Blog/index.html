@@ -58,6 +58,12 @@
 				return false;
 			}
 		});
+		$(".pages").on("keydown", ".pageTurn input" ,function(e){
+			if(e.keyCode == 13 || e.keyCode == 108){
+				var url = "__APP__/Blog/loadTable/p/" + this.value;
+				loadTable(url);
+			}
+		});
 	},
 	loadTable = function(url){
 		var url = url?url:('__APP__/Blog/loadTable'+window.location.search);

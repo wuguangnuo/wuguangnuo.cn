@@ -215,7 +215,7 @@ a {
   text-align:center;
   line-height:24px
 }
-.pages a:hover {
+.pages a:hover, .pages .pageTurn:hover {
   color:#18e;
   border:1px #18e solid
 }
@@ -234,6 +234,19 @@ a {
 }
 .pages .pageRemark strong {
   color:#e00
+}
+.pages .pageTurn{
+	border:1px #ccc solid;
+	border-radius:3px;
+	padding-left:4px;
+	padding-right:4px;
+	height:26px;
+	font-weight:500;
+}
+.pages .pageTurn input{
+	border:0px;
+	max-width:32px;
+	outline:none;
 }
 
 /* 侧边栏 */

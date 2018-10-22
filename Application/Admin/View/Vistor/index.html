@@ -93,6 +93,12 @@
 		$(".pages").on("click", "a" ,function(){
 			loadTable(this.href);
 			return false;
+		});		
+		$(".pages").on("keydown", ".pageTurn input" ,function(e){
+			if(e.keyCode == 13 || e.keyCode == 108){
+				var url = "__APP__/Vistor/loadTable/p/" + this.value;
+				loadTable(url);
+			}
 		});
 	},
 	loadTable = function(url){

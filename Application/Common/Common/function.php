@@ -24,7 +24,7 @@ function getpage($count, $pagesize = 8) {
 	$p->setConfig('next', '下一页');
 	$p->setConfig('last', '尾页');
 	$p->setConfig('first', '首页');
-	$p->setConfig('theme', '%FIRST%%UP_PAGE%%ELLIPSIS_LEFT%%LINK_PAGE%%ELLIPSIS_RIGHT%%DOWN_PAGE%%END%%HEADER%');
+	$p->setConfig('theme', '%FIRST%%UP_PAGE%%ELLIPSIS_LEFT%%LINK_PAGE%%ELLIPSIS_RIGHT%%DOWN_PAGE%%END%%PAGE_TURN%');
 	$p->lastSuffix = false; // 最后一页不显示为总页数
 	return $p;
 }

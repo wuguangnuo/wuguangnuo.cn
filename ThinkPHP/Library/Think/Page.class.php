@@ -135,7 +135,7 @@ class Page{
         }
         
         //数字连接
-        $link_page = "";
+        $link_page = '';
         for($i = 1; $i <= $this->rollPage; $i++){
             if(($this->nowPage - $now_cool_page) <= 0 ){
                 $page = $i;
@@ -158,10 +158,13 @@ class Page{
             }
         }
 
+		//快速翻页跳转
+		$pageTurn = '<label class="pageTurn"><input title="输入页码，按回车快速跳转" value="' . $this->nowPage . '"></input><span title="共 ' . $this->totalPages . ' 页"> / ' . $this->totalPages . ' 页</span></label>';
+
         //替换分页内容
         $page_str = str_replace(
-            array('%HEADER%', '%NOW_PAGE%', '%UP_PAGE%', '%DOWN_PAGE%', '%FIRST%', '%LINK_PAGE%', '%END%', '%TOTAL_ROW%', '%TOTAL_PAGE%', '%ELLIPSIS_LEFT%', '%ELLIPSIS_RIGHT%'),
-            array($this->config['header'], $this->nowPage, $up_page, $down_page, $the_first, $link_page, $the_end, $this->totalRows, $this->totalPages, $ellipsisLeft, $ellipsisRight),
+            array('%HEADER%', '%NOW_PAGE%', '%UP_PAGE%', '%DOWN_PAGE%', '%FIRST%', '%LINK_PAGE%', '%END%', '%TOTAL_ROW%', '%TOTAL_PAGE%', '%ELLIPSIS_LEFT%', '%ELLIPSIS_RIGHT%', '%PAGE_TURN%'),
+            array($this->config['header'], $this->nowPage, $up_page, $down_page, $the_first, $link_page, $the_end, $this->totalRows, $this->totalPages, $ellipsisLeft, $ellipsisRight, $pageTurn),
             $this->config['theme']);
         return "<div>{$page_str}</div>";
     }
