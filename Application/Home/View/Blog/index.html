@@ -60,7 +60,7 @@
 		});
 		$(".pages").on("keydown", ".pageTurn input" ,function(e){
 			if(e.keyCode == 13 || e.keyCode == 108){
-				var url = "__APP__/Blog/loadTable/p/" + this.value;
+				var url = this.getAttribute("data-url").replace(/%5BPAGE%5D/, this.value);
 				loadTable(url);
 			}
 		});

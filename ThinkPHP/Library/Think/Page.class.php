@@ -159,7 +159,7 @@ class Page{
         }
 
 		//快速翻页跳转
-		$pageTurn = '<label class="pageTurn"><input title="输入页码，按回车快速跳转" value="' . $this->nowPage . '"></input><span title="共 ' . $this->totalPages . ' 页"> / ' . $this->totalPages . ' 页</span></label>';
+		$pageTurn = '<label class="pageTurn"><input data-url="' .$this->url . '" title="输入页码，按回车快速跳转" value="' . $this->nowPage . '"></input><span title="共 ' . $this->totalPages . ' 页"> / ' . $this->totalPages . ' 页</span></label>';
 
         //替换分页内容
         $page_str = str_replace(
