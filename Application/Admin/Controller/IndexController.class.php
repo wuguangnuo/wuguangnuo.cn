@@ -52,7 +52,7 @@ class IndexController extends Controller {
 							if($result) {
 								session('username', $username);
 								session('password', md5($password));
-								$this->redirect('Index/index', '', 1, '登录中');
+								$this->redirect('Index/index', '', 1, 'Signing in ...');
 							} else {
 								$msg = "更新用户失败";
 							}
