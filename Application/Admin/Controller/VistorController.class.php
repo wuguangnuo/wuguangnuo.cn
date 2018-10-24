@@ -67,10 +67,10 @@ class VistorController extends AdminController {
 		$Vistor = D('vistor');
 		$Dic = D('dictionary');
 
-		$vistorShow = array('all' => '总访问量', 'vistor' => '访客', 'Googlebot' => '谷歌蜘蛛', 'bingbot' => '必应蜘蛛', 'Baiduspider' => '百度蜘蛛', 'AhrefsBot' => 'Ahrefs蜘蛛', 'MJ12bot' => 'MJ12蜘蛛', 'others' => '其他流量');
+		$vistorShow = array_column($Dic->getDictionary('vistor_show'), 'code_note', 'code_index');
 		$linkShow = array('all' => '访问总量', 'vistor' => '访客', 'spider' => '爬虫');
-		$systemShow = array('Windows 10', 'Windows 8', 'Windows 7', 'Windows XP', 'Windows Vista', 'Windows NT', 'Linux', 'MacOS', 'Android', 'iPhone', 'spider', 'sitemap', 'others');
-		$browserShow = array('Chrome', 'Firefox', 'Safari', 'IE', 'Opera', 'Edge', 'Maxthon', 'spider', 'sitemap', 'others');
+		$systemShow = array_column($Dic->getDictionary('system_show'), 'code_value');
+		$browserShow = array_column($Dic->getDictionary('browser_show'), 'code_value');
 
 		switch ($type){
 		case 'vistor':
@@ -78,7 +78,7 @@ class VistorController extends AdminController {
 			$vistorCountGroupDate = array_column($Vistor->getCountGroupDate('all'), 'num');//总量线
 			$data['title'] = array('left' => '2%', 'text' => '访客类型统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'axis');
-			$data['legend'] = array('data' => array_values($vistorShow));
+			$data['legend'] = array('data' => $vistorShow);
 			$data['toolbox'] = array('right' => '2%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'dataView' => array(), 'saveAsImage' => array()));
 			$data['dataZoom'] = array(array('startValue' => '2018-09-20'), array('type' => 'inside'));
 			$data['xAxis'] = array('type' => 'category', 'boundaryGap' => false, 'data' => array_column($Vistor->getCountGroupDate('all'), 'ddate'));
@@ -101,7 +101,7 @@ class VistorController extends AdminController {
 		case 'link':
 			$data['title'] = array('left' => '5%', 'text' => '受访页面统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'axis', 'axisPointer' => array('type' => 'cross'));
-			$data['legend'] = array('data' => array_values($linkShow));
+			$data['legend'] = array('data' => $linkShow);
 			$data['toolbox'] = array('right' => '5%', 'feature' => array('dataView' => array('readOnly' => true), 'magicType' => array('type' => array('line', 'bar')), 'restore' => array(), 'saveAsImage' => array()));
 			$data['xAxis'] = array('type' => 'category', 'axisPointer' => array('type' => 'shadow'), 'data' => array_column($Dic->getDictionary('vistor_link'), 'code_note'));
 			$data['yAxis'] = array('type' => 'value');
