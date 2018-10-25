@@ -16,7 +16,7 @@ class AdminController extends Controller {
 			}
 		}
 		else {
-			$this->redirect('Index/login','',1,'未登录');
+			$this->redirect('Index/login','',1,'Please waitting ...');
 		}
 	}
 }

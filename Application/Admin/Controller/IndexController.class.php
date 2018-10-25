@@ -27,7 +27,7 @@ class IndexController extends Controller {
 				$this->redirect('Index/login', '', 1, '登录状态失效');
 			}
 		} else {
-			$this->redirect('Index/login', '', 1, '未登录');
+			$this->redirect('Index/login', '', 1, 'Please waitting ...');
 		}
 	}
 	
