@@ -80,7 +80,7 @@ class VistorController extends AdminController {
 			$data['tooltip'] = array('trigger' => 'axis');
 			$data['legend'] = array('data' => $vistorShow);
 			$data['toolbox'] = array('right' => '2%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'dataView' => array(), 'saveAsImage' => array()));
-			$data['dataZoom'] = array(array('startValue' => '2018-09-20'), array('type' => 'inside'));
+			$data['dataZoom'] = array(array('startValue' => date('Y-m-d', strtotime("-30 day"))), array('type' => 'inside'));
 			$data['xAxis'] = array('type' => 'category', 'boundaryGap' => false, 'data' => array_column($Vistor->getCountGroupDate('all'), 'ddate'));
 			$data['yAxis'] = array('type' => 'value');
 			$data['series'] = array();
