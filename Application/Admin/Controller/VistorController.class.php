@@ -78,7 +78,7 @@ class VistorController extends AdminController {
 			$vistorCountGroupDate = array_column($Vistor->getCountGroupDate('all'), 'num');//总量线
 			$data['title'] = array('left' => '2%', 'text' => '访客类型统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'axis');
-			$data['legend'] = array('data' => $vistorShow);
+			$data['legend'] = array('data' => array_values($vistorShow));
 			$data['toolbox'] = array('right' => '2%', 'feature' => array('dataZoom' => array('yAxisIndex' => 'none'), 'restore' => array(), 'dataView' => array(), 'saveAsImage' => array()));
 			$data['dataZoom'] = array(array('startValue' => date('Y-m-d', strtotime("-30 day"))), array('type' => 'inside'));
 			$data['xAxis'] = array('type' => 'category', 'boundaryGap' => false, 'data' => array_column($Vistor->getCountGroupDate('all'), 'ddate'));
@@ -101,7 +101,7 @@ class VistorController extends AdminController {
 		case 'link':
 			$data['title'] = array('left' => '5%', 'text' => '受访页面统计图', 'subtext' => C('WUGN.WEB_SITE'));
 			$data['tooltip'] = array('trigger' => 'axis', 'axisPointer' => array('type' => 'cross'));
-			$data['legend'] = array('data' => $linkShow);
+			$data['legend'] = array('data' => array_values($linkShow));
 			$data['toolbox'] = array('right' => '5%', 'feature' => array('dataView' => array('readOnly' => true), 'magicType' => array('type' => array('line', 'bar')), 'restore' => array(), 'saveAsImage' => array()));
 			$data['xAxis'] = array('type' => 'category', 'axisPointer' => array('type' => 'shadow'), 'data' => array_column($Dic->getDictionary('vistor_link'), 'code_note'));
 			$data['yAxis'] = array('type' => 'value');
