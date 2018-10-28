@@ -11,8 +11,6 @@ class GameController extends VistorController {
 			if(!strpos($game['game_link'], '://')){
 				$game['game_link'] = __ROOT__.'/game/'.$game['game_link'];
 			}
-			$fileName = 'Application/Home/View/Game/img/'.$game['game_img'];
-			$game['game_img'] = is_file($fileName)?$game['game_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "H5游戏");
@@ -34,8 +32,6 @@ class GameController extends VistorController {
 			if(!strpos($game['game_link'], '://')){
 				$game['game_link'] = __ROOT__.'/game/'.$game['game_link'];
 			}
-			$fileName = 'Application/Home/View/Game/img/'.$game['game_img'];
-			$game['game_img'] = is_file($fileName)?$game['game_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
