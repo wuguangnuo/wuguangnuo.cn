@@ -13,6 +13,7 @@ return array(
         'WEB_SITE_SLOGAN' => '造轮子ing', // 描述
         'WEB_DESCRIPTION' => 'My Blog Site Source Code. 这是我的个人网站 wuguangnuo.cn 第三代源代码。基于thinkPHP框架', // 网站描述
         'WEB_KEYWORDS'    => 'Information Technology, Science, Education, JAVA, Git, HTML, JavaScript, Maven, PHP, Python, SQL', // 网站关键词
+        'COS'             => 'https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com',
     ),
 
     // 数据库
