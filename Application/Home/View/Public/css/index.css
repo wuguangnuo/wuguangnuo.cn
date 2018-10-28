@@ -20,10 +20,10 @@ body{
   user-select:none
 }
 body,html{
-  cursor:url("../img/default.cur"),default
+  cursor:url("https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/public/img/default.cur"),default
 }
 a{
-  cursor:url("../img/select.cur"),default
+  cursor:url("https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/public/img/select.cur"),default
 }
 .home{
   z-index:999;
