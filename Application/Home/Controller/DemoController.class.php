@@ -11,8 +11,6 @@ class DemoController extends VistorController {
 			if(!strpos($demo['demo_link'], '://')){
 				$demo['demo_link'] = __ROOT__.'/demo/'.$demo['demo_link'];
 			}
-			$fileName = 'Application/Home/View/Demo/img/'.$demo['demo_img'];
-			$demo['demo_img'] = is_file($fileName)?$demo['demo_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "DEMO");
@@ -34,8 +32,6 @@ class DemoController extends VistorController {
 			if(!strpos($demo['demo_link'], '://')){
 				$demo['demo_link'] = __ROOT__.'/demo/'.$demo['demo_link'];
 			}
-			$fileName = 'Application/Home/View/Demo/img/'.$demo['demo_img'];
-			$demo['demo_img'] = is_file($fileName)?$demo['demo_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集

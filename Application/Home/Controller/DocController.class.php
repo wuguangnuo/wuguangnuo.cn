@@ -31,8 +31,6 @@ class DocController extends VistorController {
 			if(!strpos($doc['doc_link'], '://')){
 				$doc['doc_link'] = __ROOT__.'/doc/'.$doc['doc_link'];
 			}
-			$fileName = 'Application/Home/View/Doc/img/'.$doc['doc_img'];
-			$doc['doc_img'] = is_file($fileName)?$doc['doc_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
