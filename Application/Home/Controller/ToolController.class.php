@@ -11,8 +11,6 @@ class ToolController extends VistorController {
 			if(!strpos($tool['tool_link'], '://')){
 				$tool['tool_link'] = __ROOT__.'/tool/'.$tool['tool_link'];
 			}
-			$fileName = 'Application/Home/View/Tool/img/'.$tool['tool_img'];
-			$tool['tool_img'] = is_file($fileName)?$tool['tool_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('meta_title', "工具箱");
@@ -34,8 +32,6 @@ class ToolController extends VistorController {
 			if(!strpos($tool['tool_link'], '://')){
 				$tool['tool_link'] = __ROOT__.'/tool/'.$tool['tool_link'];
 			}
-			$fileName = 'Application/Home/View/Tool/img/'.$tool['tool_img'];
-			$tool['tool_img'] = is_file($fileName)?$tool['tool_img']:'default.png';
 		}
 		$this->assign('list', $list); // 赋值数据集
 		$this->assign('keyword', $q); // 赋值数据集
