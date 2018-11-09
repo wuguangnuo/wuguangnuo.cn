@@ -14,11 +14,11 @@
 	<meta name="keywords" content="{$Think.config.WUGN.WEB_KEYWORDS}" />
 	<meta name="author" content="{$Think.config.WUGN.AUTHOR_NAME}" />
 	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
-	<load href="__PUBLIC__/bootstrap/css/bootstrap.min.css" />
-	<load href="__PUBLIC__/highlight.js/styles/default.css" />
-	<load href="__PUBLIC__/font-awesome/css/font-awesome.min.css" />
-	<load href="__PUBLIC__/animate/animate.min.css" />
-	<load href="__PUBLIC__/sweetalert2/sweetalert2.min.css" />
+	<load href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+	<load href="https://cdn.bootcss.com/highlight.js/9.7.0/styles/default.min.css" />
+	<load href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
+	<load href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" />
+	<load href="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.css" />
 	<load href="__HOME_CSS__/blog.css" />
 	<link rel="icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
@@ -148,18 +148,20 @@
 	<i class="fa fa-angle-up"></i>
 </div>
 </body>
-<load href="__PUBLIC__/jquery/jquery.min.js" />
+<load href="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js" />
 <load href="__HOME_JS__/functions.js" />
 <load href="__HOME_JS__/blog.js" />
 <load href="__PUBLIC__/wugn/js/canvasTime.js" />
-<load href="__PUBLIC__/bootstrap/js/bootstrap.min.js" />
-<load href="__PUBLIC__/sweetalert2/sweetalert2.min.js" />
-<load href="__PUBLIC__/highlight.js/highlight.pack.js" />
-<load href="__PUBLIC__/jquery_lazyload/jquery.lazyload.min.js" />
+<load href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js" />
+<load href="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.js" />
+<load href="https://cdn.bootcss.com/highlight.js/9.7.0/highlight.min.js" />
+<load href="https://cdn.bootcss.com/jquery_lazyload/1.9.7/jquery.lazyload.min.js" />
 <!-- 侧边栏跟随,代码高亮,图片懒加载 -->
-<script>(new SidebarFollow()).init({element: jQuery('#sidebar-follow'),distanceToTop: 5});</script>
-<script>hljs.initHighlightingOnLoad();</script>
-<script>$(function(){$("img.lazy").lazyload({effect:"fadeIn"});});</script>
+<script>
+	(new SidebarFollow()).init({element: jQuery('#sidebar-follow'),distanceToTop: 5});
+	hljs.initHighlightingOnLoad();
+	$(function(){$("img.lazy").lazyload({effect:"fadeIn"});});
+</script>
 <block name="script"></block>
 </html>
 
