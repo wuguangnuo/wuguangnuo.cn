@@ -14,6 +14,7 @@
 	<meta name="keywords" content="{$Think.config.WUGN.WEB_KEYWORDS}" />
 	<meta name="author" content="{$Think.config.WUGN.AUTHOR_NAME}" />
 	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
+	<load href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<load href="https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/cdn/wugn/css/app.css" />
 	<link rel="icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
@@ -49,7 +50,7 @@
 					<a class="item" href="__ROOT__/game">游戏</a>
 					<a class="item" href="#">帮助</a>
 					<div class="right menu ">
-						<a class="toc item" data-selector="sidebar toc"><i class="ellipsis vertical icon"></i></a>
+						<a class="toc item" data-selector="sidebar toc"><i class="fa fa-ellipsis-v icon" aria-hidden="true"></i></a>
 						<block name="search"></block>
 						<a class="item" href="__ROOT__/admin.php">登录</a>
 						<a class="item" href="#">注册</a>
@@ -62,14 +63,14 @@
 				<div class="w-breadcrumb">
 					<div class="ui container">
 					<block name="subject">
-						<a class="toc"><i class="align justify icon"></i></a>
+						<a class="toc"><i class="fa fa-align-justify icon" aria-hidden="true"></i></a>
 						<div class="ui huge breadcrumb">
 							<div class="active section">###</div>
 						</div>
 						<div>分享到：
-							<a data-selector="share" data-type="weibo" href=""><i class="icon weibo"></i></a>
-							<a data-selector="share" data-type="qq" href=""><i class="icon qq"></i></a>
-							<a data-selector="share" data-type="wechat" href=""><i class="icon wechat"></i></a>
+							<a data-selector="share" data-type="weibo" href=""><i class="fa fa-weibo icon" aria-hidden="true"></i></a>
+							<a data-selector="share" data-type="qq" href=""><i class="fa fa-qq icon" aria-hidden="true"></i></a>
+							<a data-selector="share" data-type="wechat" href=""><i class="fa fa-wechat icon" aria-hidden="true"></i></a>
 						</div>
 					</block>
 					</div>
