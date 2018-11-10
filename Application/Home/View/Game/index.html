@@ -1,10 +1,10 @@
 <extend name="Public:doc" />
 
 <block name="search">
-<form action="__ROOT__/game/search">
+<form action="__ROOT__/game/">
 	<div class="item">
 		<div class="ui icon input">
-			<input name="q" type="text" placeholder="搜索游戏..." />
+			<input name="k" type="text" placeholder="搜索游戏..." />
 			<i class="fa fa-search icon" aria-hidden="true"></i>
 		</div>
 	</div>
@@ -14,7 +14,7 @@
 <block name="subject">
 <a class="toc"><i class="fa fa-align-justify icon" aria-hidden="true"></i></a>
 <div class="ui huge breadcrumb">
-	<div class="active section">H5游戏</div>
+	<div class="active section">{$meta_title}</div>
 </div>
 <div>分享到：
 	<a data-selector="share" data-type="weibo" href="#"><i class="fa fa-weibo icon" aria-hidden="true"></i></a>
@@ -24,6 +24,14 @@
 </block>
 
 <block name="content">
+<empty name="list">
+<div class="ui basic very padded secondary segment">
+	<div class="ui center aligned icon header">
+		<i class="fa fa-search icon" aria-hidden="true"></i>
+		<p>没有搜索到相关结果</p>
+	</div>
+</div>
+</empty>
 <div class="ui special eight doubling cards">
 <foreach name='list' item='game'>
 <a class="ui link card" href="{$game.game_link}" target="_blank">

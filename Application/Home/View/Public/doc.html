@@ -16,6 +16,8 @@
 	<block name="title"><title>{$meta_title}｜{$Think.config.WUGN.WEB_SITE_TITLE}－{$Think.config.WUGN.WEB_SITE_SLOGAN}</title></block>
 	<load href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" />
 	<load href="https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/cdn/wugn/css/app.css" />
+	<load href="https://cdn.bootcss.com/animate.css/3.7.0/animate.min.css" />
+	<load href="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.css" />
 	<link rel="icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
 	<link rel="shortcut icon" type="image/x-icon" href="__ROOT__/favicon.ico" />
 	<link rel="bookmark" type="image/x-icon" href="__ROOT__/favicon.ico" />
@@ -33,7 +35,7 @@
 		<a class="item" href="__ROOT__/game">游戏</a>
 		<a class="item" href="#">帮助</a>
 		<a class="item" href="__ROOT__/admin.php">登录</a>
-		<a class="item" href="#">注册</a>
+		<a class="item" id="registerv_nav_sm">注册</a>
 	</div>
 	</block>
 	<div class="pusher">
@@ -53,7 +55,7 @@
 						<a class="toc item" data-selector="sidebar toc"><i class="fa fa-ellipsis-v icon" aria-hidden="true"></i></a>
 						<block name="search"></block>
 						<a class="item" href="__ROOT__/admin.php">登录</a>
-						<a class="item" href="#">注册</a>
+						<a class="item" id="registerv_nav">注册</a>
 					</div>
 				</div>
 			</div>
@@ -104,7 +106,7 @@
 								<a class="item" href="{$Think.config.WUGN.WEB_SITE_DOMAIN}">Blog</a>
 								<a class="item" href="https://weibo.com/wuguangnuo">WeiBo</a>
 								<a class="item" href="https://github.com/wuguangnuo">GitHub</a>
-								<a class="item" title="Email：{$Think.config.WUGN.AUTHOR_EMAIL}">About</a>
+								<a class="item" href="#" title="Email：{$Think.config.WUGN.AUTHOR_EMAIL}">About</a>
 							</div>
 						</div>
 						<div class="right">
@@ -117,6 +119,25 @@
 	</div>
 </body>
 <load href="https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/cdn/wugn/js/app.js" />
+<load href="https://cdn.bootcss.com/limonte-sweetalert2/7.21.1/sweetalert2.min.js" />
 <load href="__HOME_JS__/functions.js" />
+<script>
+$(function(){
+	var registerNo = function(){
+		swal({
+			type: 'error',
+			title: '暂未开放注册',
+			allowOutsideClick: false,
+			allowEnterKey: false,
+			confirmButtonText: '确认',
+			animation: false,
+			customClass: 'animated wobble'
+		});
+	};
+	
+	$("#registerv_nav_sm").click(registerNo);
+	$("#registerv_nav").click(registerNo);
+});
+</script>
 <block name="script"></block>
 </html>
