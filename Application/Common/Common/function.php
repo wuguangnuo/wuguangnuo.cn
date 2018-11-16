@@ -29,4 +29,13 @@ function getpage($count, $pagesize = 8) {
 	$p->lastSuffix = false; // 最后一页不显示为总页数
 	return $p;
 }
+
+/**
+ * 图片地址 src 转换成 data-original
+ */
+function srcToOriginal($content = ''){
+	$pregRule = "/<[img|IMG].*?src=[\'|\"](.*?(?:[\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.webp]))[\'|\"].*?[\/]?>/";
+	$content = preg_replace($pregRule, '<img data-original="${1}">', $content);
+	return $content;
+}
 ?>

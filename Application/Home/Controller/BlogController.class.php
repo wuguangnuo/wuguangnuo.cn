@@ -49,6 +49,7 @@ class BlogController extends BlogsideController {
 		$Blog = D('blog');
 		$data = $Blog->find($id);
 		if($data) {
+			$data['post_content'] = srcToOriginal($data['post_content']);
 			$this->data = $data;
 		} else {
 			$this->error('没找到');
