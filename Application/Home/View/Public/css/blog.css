@@ -191,13 +191,6 @@ a {
 }
 
 /* 分页样式 */
-.pages{
-  -moz-user-select:none;
-  -webkit-user-select:none;
-  -ms-user-select:none;
-  -khtml-user-select:none;
-  user-select:none
-}
 .pages a, .pages span{
   display:inline-block;
   list-style: none;
@@ -251,7 +244,7 @@ a {
 }
 
 /* 侧边栏 */
-.sidebar .postDesc, .flippage, .pages, footer{
+.sidebar .postDesc, .flippage, .pages, footer, #replyImg{
   -moz-user-select:none;
   -webkit-user-select:none;
   -ms-user-select:none;
@@ -317,6 +310,33 @@ a {
   font-size:24px;
   color:#00f;
   z-index:300
+}
+
+.postCon img {
+  cursor: url(https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/public/img/big.cur), default
+}
+#replyImg {
+  text-align: center;
+  position: fixed;
+  z-index: 1000;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,.6);
+}
+#replyImg img {
+  max-height: 98%;
+  max-width: 98%;
+  border: 0;
+  margin: auto;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #fff;
+  cursor: url(https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/public/img/small.cur), default
 }
 
 @media (max-width:767px){

@@ -2,6 +2,8 @@ $(function(){
 	//初始化
 	$("#gotop").hide();//小火箭默认隐藏
 	$("#gotop2").hide();//小火箭二号
+	$("#replyImg").hide();//图片放大
+	
 	$("#signup").click(function(){
 		swal({
 			type: 'error',
@@ -14,6 +16,18 @@ $(function(){
 		});
 	});
 	
+	$(".postCon img").click(function(){
+		imgShow("#replyImg", "#bigImg", $(this).attr("src"));
+	});
+
+	function imgShow(div, img, src){
+		$(div).css("height", $(window).height()*3 + "px").css("top", 0-$(window).height() + "px").attr('display', 'block').fadeIn("fast");
+		$(img).css("max-height", ($(window).height()-80) + "px").css("top", "50px").attr("src", src);
+		$(div).click(function(){
+			$(this).fadeOut("fast");
+		});
+	};
+
 	//Blog内容规范化
 	$(".post-content table").css("border", "0").addClass("table table-striped table-condensed table-hover");//表格样式
 	$(".post-content img").addClass("img-responsive img-thumbnail");//图片样式
