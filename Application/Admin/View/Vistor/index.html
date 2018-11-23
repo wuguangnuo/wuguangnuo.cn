@@ -1,7 +1,7 @@
 <extend name="Public:main" />
 
 <block name="style">
-<load href="__PUBLIC__/bootstrap-select/css/bootstrap-select.min.css" />
+<load href="https://cdn.bootcss.com/bootstrap-select/1.13.2/css/bootstrap-select.min.css" />
 <style>
 .main{
   background-color:#fafafa;
@@ -50,8 +50,8 @@
 </block>
 
 <block name="script">
-<load href="__PUBLIC__/bootstrap-select/js/bootstrap-select.min.js" />
-<load href="__PUBLIC__/bootstrap-select/js/i18n/defaults-zh_CN.min.js" />
+<load href="https://cdn.bootcss.com/bootstrap-select/1.13.2/js/bootstrap-select.min.js" />
+<load href="https://cdn.bootcss.com/bootstrap-select/1.13.2/js/i18n/defaults-zh_CN.min.js" />
 <load href="__PUBLIC__/layDate/laydate.min.js" />
 
 <script>
@@ -156,7 +156,7 @@
 	ajaxLoading = function(){
 		swal({
 			title: "获取数据中...", 
-			imageUrl: "__PUBLIC__/wugn/img/ajax-loading.gif",
+			imageUrl: "{$Think.config.WUGN.CDN}/img/ajax-loading.gif",
 			allowOutsideClick: false,
 			allowEscapeKey: false,
 			showConfirmButton: false

@@ -19,7 +19,7 @@
 <block name="post_foot"></block>
 
 <block name="script">
-<load href="__PUBLIC__/jquery-tmpl/jquery.tmpl.min.js" />
+<load href="{$Think.config.WUGN.CDN}/jquery-tmpl/jquery.tmpl.min.js" />
 
 <script id="tpl_blogTable" type="text/x-jquery-tmpl">
 	<h3><a href="__ROOT__/blog/${id}" title="${post_title}">${post_title}</a></h3>
@@ -99,7 +99,7 @@
 	ajaxLoading = function(){
 		swal({
 			title: "获取数据中...", 
-			imageUrl: "__PUBLIC__/wugn/img/ajax-loading.gif",
+			imageUrl: "{$Think.config.WUGN.CDN}/img/ajax-loading.gif",
 			allowOutsideClick: false,
 			allowEscapeKey: false,
 			showConfirmButton: false

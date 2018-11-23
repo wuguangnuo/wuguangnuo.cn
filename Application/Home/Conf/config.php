@@ -11,9 +11,6 @@ return array(
         '__ROOT__'      => __ROOT__,
         '__PUBLIC__'    => __ROOT__ . '/Public',
         '__VIEW__'      => __ROOT__ . ltrim(APP_PATH, '.') . 'Home/View',
-        '__HOME_CSS__'  => __ROOT__ . ltrim(APP_PATH, '.') . 'Home/View/Public/css',
-        '__HOME_JS__'   => __ROOT__ . ltrim(APP_PATH, '.') . 'Home/View/Public/js',
-        '__HOME_IMG__'  => __ROOT__ . ltrim(APP_PATH, '.') . 'Home/View/Public/img',
     ),
     
     // 模版开始/结束定界符，默认{}
