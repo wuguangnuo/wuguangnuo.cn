@@ -10,6 +10,7 @@
 	width: 618px;
 	max-width: 99%
 }
+#post_id,
 #post_title,
 #post_author,
 #post_type,
@@ -28,11 +29,12 @@
 </block>
 
 <block name="container">
+<input type="text" class="form-control" id="post_id" value="Bolg-ID：{$nextID}" disabled />
 <input type="text" class="form-control" id="post_title" name="post_title" placeholder="标题" />
 <input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
 <div id="post_content_tool"></div><div id="post_content"></div>
-<input type="text" class="form-control" id="post_time" name="post_time" value="{$laseDate} 12:30:00">
+<input type="text" class="form-control" id="post_time" name="post_time" value="{$lastDate} 12:30:00">
 <input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
 <input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
 <input type="button" class="btn btn-sm btn-success" id="submit" value="提交">
