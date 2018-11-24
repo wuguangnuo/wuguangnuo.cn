@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Read Page</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <block name="style"></block>
+<style>
+body {
+  margin:10px;
+}
+table {
+    background-color: transparent;
+    border-spacing: 0;
+    border-collapse: collapse;
+}
+table tr {
+    display: table-row;
+    vertical-align: inherit;
+    border-color: inherit;
+}
+table tr td {
+  padding:4px 10px;
+      display: table-cell;
+    vertical-align: inherit;
+}
+.post_content {
+  background-color:#afa;
+  white-space:pre-wrap;
+  /*word-break:break-all;*/
+  word-wrap:break-word;
+}
+.post_content pre {
+  padding:3px!important;
+}
+</style>
+	<block name="script"></block>
+</head>
+<body>
+<table border="1">
+<block name="readTable"></block>
+</table>
+<block name="readContent"></block>
+</body>
+</html>

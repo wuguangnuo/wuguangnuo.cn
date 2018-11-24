@@ -1,12 +1,6 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Read Page</title>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-<table>
+<extend name="Public:read" />
+
+<block name="readTable">
 <tr>
     <td>id:</td>
     <td>{$data.id}</td>
@@ -27,7 +21,4 @@
     <td>图片：</td>
     <td>{$data.doc_img}</td>
 </tr>
-</table>
-<br />
-</body>
-</html>
+</block>
