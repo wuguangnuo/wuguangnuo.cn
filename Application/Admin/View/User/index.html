@@ -36,17 +36,18 @@
 
 <block name="script">
 <script>
-	$(".subnavbar .mainnav li").eq(2).addClass("active");
-	$("#submit").click(function(){
-		swal({
-			type: 'error',
-			title: '该功能暂未开放',
-			allowOutsideClick: false,
-			allowEnterKey: false,
-			confirmButtonText: '确认',
-			animation: false,
-			customClass: 'animated wobble'
-		});
+$(".subnavbar .mainnav li").removeClass("active");
+$(".subnavbar .mainnav li").eq(2).addClass("active");
+$("#submit").click(function(){
+	swal({
+		type: 'error',
+		title: '该功能暂未开放',
+		allowOutsideClick: false,
+		allowEnterKey: false,
+		confirmButtonText: '确认',
+		animation: false,
+		customClass: 'animated wobble'
 	});
+});
 </script>
 </block>
