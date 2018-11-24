@@ -16,7 +16,7 @@ class DiaryController extends AdminController {
 	public function insert(){//添加数据
 		$Form = M('diary');
 		$Form->create();
-		$Form->diary_date = $_POST['diary_time1'] . ' ' . $_POST['diary_time2'] . ':00';
+		$Form->diary_date = $_POST['diary_time'];
 		$Form->diary_content = $_POST['diary_content']; // 防止HTML转义
 		$result = $Form->add();
 		if($result) {

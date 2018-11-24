@@ -1,11 +1,25 @@
 <extend name="Public:main" />
 
+<block name="style">
+<style>
+.main form input[type=text] {
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 6px
+}
+#submit {
+    margin-left: 10px;
+    margin-top: 6px
+}
+</style>
+</block>
+
 <block name="container">
 <form method="post" action="./insert">
-DEMO名称：<input type="text" name="demo_title"><br/>
-DEMO作者：<input type="text" name="demo_author"><br/>
-DEMO链接：<input type="text" name="demo_link"><br/>
-DEMO图片：<input type="text" name="demo_img"><br/>
-<input type="submit" value="提交">
+    <input type="text" class="form-control" name="demo_title" placeholder="DEMO名称" />
+    <input type="text" class="form-control" name="demo_author" placeholder="DEMO作者" />
+    <input type="text" class="form-control" name="demo_link" placeholder="DEMO链接" />
+    <input type="text" class="form-control" name="demo_img" placeholder="DEMO图片" />
+    <input type="submit" id="submit" class="btn btn-sm btn-success" value="提交">
 </form>
 </block>

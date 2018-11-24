@@ -1,11 +1,30 @@
 <extend name="Public:main" />
 
+<block name="style">
+<style>
+.main form input[type=text] {
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 6px
+}
+.main form textarea {
+    width:auto;
+    margin-left: 10px;
+    margin-top: 6px
+}
+#submit {
+    margin-left: 10px;
+    margin-top: 6px
+}
+</style>
+</block>
+
 <block name="container">
 <form method="post" action="./insert">
-文档名称：<input type="text" name="doc_title"><br/>
-文档价格：<input type="number" name="doc_price"><br/>
-文档链接：<input type="text" name="doc_link"><br/>
-文档图片：<input type="text" name="doc_img"><br/>
-<input type="submit" value="提交">
+    <input type="text" class="form-control" name="doc_title" placeholder="文档名称" />
+    <input type="text" class="form-control" name="doc_price" placeholder="文档价格" />
+    <input type="text" class="form-control" name="doc_link" placeholder="文档链接" />
+    <input type="text" class="form-control" name="doc_img" placeholder="文档图片" />
+    <input type="submit" id="submit" class="btn btn-sm btn-success" value="提交">
 </form>
 </block>

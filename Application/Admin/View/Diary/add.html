@@ -1,11 +1,43 @@
 <extend name="Public:main" />
 
+<block name="style">
+<style>
+.main form input[type=text] {
+    width: 300px;
+    margin-left: 10px;
+    margin-top: 6px
+}
+.main form textarea {
+    width:auto;
+    margin-left: 10px;
+    margin-top: 6px
+}
+#submit {
+    margin-left: 10px;
+    margin-top: 6px
+}
+</style>
+</block>
+
 <block name="container">
 <form method="post" action="./insert">
-标题：<input type="text" name="diary_title"><br/>
-关键词：<input type="text" name="diary_key"><br/>
-内容：<textarea name="diary_content" rows="10" cols="50"></textarea><br/>
-日期：<input type="date" name="diary_time1"><input type="time" name="diary_time2"><br/>
-<input type="submit" value="提交">
+    <input type="text" class="form-control" name="diary_title" placeholder="标题" />
+    <input type="text" class="form-control" name="diary_key" placeholder="关键词" />
+    <textarea class="form-control" name="diary_content" rows="10" cols="50" placeholder="内容"></textarea>
+    <input type="text" class="form-control" name="diary_time" id="diary_time" value="">
+    <input type="submit" id="submit" class="btn btn-sm btn-success" value="提交">
 </form>
+</block>
+
+<block name="script">
+<script>
+    laydate.render({
+        elem: '#diary_time',
+        type: 'datetime',
+        theme: 'wugn',
+        calendar: true,
+        today: true,
+        value: new Date()
+    });
+</script>
 </block>
