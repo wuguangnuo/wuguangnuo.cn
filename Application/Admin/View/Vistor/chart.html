@@ -9,14 +9,27 @@
 </block>
 
 <block name="container">
-<div class="btn-inline">
-	<div id="btnGroup" class="btn-group btn-group-sm">
-		<button id="vistor" class="btn btn-success">访客类型</button>
-		<button id="link" class="btn btn-success">受访页面</button>
-		<button id="system" class="btn btn-success">操作系统</button>
-		<button id="browser" class="btn btn-success">客户端</button>
+<div class="form-inline">
+	<div class="btn-inline">
+		<div id="btnGroup" class="btn-group btn-group-sm">
+			<button id="vistor" class="btn btn-success">访客类型</button>
+			<button id="link" class="btn btn-success">受访页面</button>
+			<button id="system" class="btn btn-success">操作系统</button>
+			<button id="browser" class="btn btn-success">客户端</button>
+		</div>
+		<a class="btn btn-sm btn-primary" href="__APP__/Vistor/index">返回表格</a>
+		<div id="date">
+			<div class="form-group">
+				<label for="date1">时间区间</label>
+				<input type="text" id="date1" class="form-control input-sm" />
+			</div>
+			<div class="form-group">
+				<label for="date2">至</label>
+				<input type="text" id="date2" class="form-control input-sm" />
+			</div>
+		</div>
 	</div>
-	<a class="btn btn-sm btn-primary" href="__APP__/Vistor/index">返回表格</a>
+	
 </div>
 <hr />
 <div id="vistorChart"></div>
@@ -36,6 +49,23 @@
 	},
 	initPage = function(){
 		 $("#vistorChart").css("height", "500px");
+		 $("#date").css("float", "right");
+		 laydate.render({
+			elem: '#date1',
+			type: 'date',
+			theme: 'wugn',
+			calendar: true,
+			today: true,
+			value: new Date((new Date().getTime() - 7*24*3600*1000))
+		});
+		laydate.render({
+			elem: '#date2',
+			type: 'date',
+			theme: 'wugn',
+			calendar: true,
+			today: true,
+			value: new Date()
+		});
 	},
 	bindEvent = function(){
 		$("#btnGroup button").click(function(){
@@ -43,15 +73,19 @@
 			$(this).addClass("active");
 		});
 		$("#vistor").click(function(){
+			$("#date").hide();
 			loadChart('vistor');
 		});
 		$("#link").click(function(){
+			$("#date").show();
 			loadChart('link');
 		});
 		$("#system").click(function(){
+			$("#date").show();
 			loadChart('system');
 		});
 		$("#browser").click(function(){
+			$("#date").show();
 			loadChart('browser');
 		});
 	},
@@ -62,7 +96,9 @@
 		$.ajax({
 			url: '__APP__/Vistor/loadChart',
 			data: {
-				type: type
+				type: type,
+				date1: $("#date1").val(),
+				date2: $("#date2").val()
 			},
 			type: 'POST',
 			cache: false,

@@ -27,10 +27,17 @@ class VistorModel extends Model {
 		return $this->query($sql);
 	}
 	
-	public function getCountGroupLink($type){
-		$Dic = D('dictionary');
-		$linkCode = array_column($Dic->getDictionary('vistor_link'), 'code_value');
-
+	public function getCountGroupLink($type, $date){
+		$date1 = $date['date1'];
+		$date2 = $date['date2'];
+		if(!empty($date1) && !empty($date2)){
+			$where['tm'] = array('between', "$date1,$date2");
+		} else if (!empty($date1)){
+			$where['tm'] = array('gt', "$date1");
+		} else if (!empty($date2)){
+			$where['tm'] = array('lt', "$date2");
+		}
+		
 		switch ($type){
 		case 'all':
 			$where['ag'] = array('neq','null');
@@ -42,7 +49,9 @@ class VistorModel extends Model {
 			$where['ag'] = array('like',array('%spider%','%bot%'),'OR');
 			break;
 		}
-		
+
+		$Dic = D('dictionary');
+		$linkCode = array_column($Dic->getDictionary('vistor_link'), 'code_value');
 		$data = array();
 		foreach($linkCode as $v){
 			$where['lk'] = array('like', explode(',', $v), 'or');
@@ -50,21 +59,41 @@ class VistorModel extends Model {
 		}
 		return $data;
 	}
-	
+	/*
 	public function getCountLike($type){
 		$where['ag'] = array('like', "%{$type}%");
 		$data = $this->field('count(id) as num')->where($where)->find();
 		return $data['num'];
 	}
-	
-	public function getSystemCount($systemShow){
+	*/
+	public function getSystemCount($systemShow, $date){
+		$date1 = $date['date1'];
+		$date2 = $date['date2'];
+		if(!empty($date1) && !empty($date2)){
+			$where['tm'] = array('between', "$date1,$date2");
+		} else if (!empty($date1)){
+			$where['tm'] = array('gt', "$date1");
+		} else if (!empty($date2)){
+			$where['tm'] = array('lt', "$date2");
+		}
+
 		$where['ag'] = array('notlike', '%bot%');
 		$agent = $this->field('ag')->where($where)->select();
 		$data = get_os_count($agent, $systemShow);
 		return $data;
 	}
 	
-	public function getBrowserCount($browserShow){
+	public function getBrowserCount($browserShow, $date){
+		$date1 = $date['date1'];
+		$date2 = $date['date2'];
+		if(!empty($date1) && !empty($date2)){
+			$where['tm'] = array('between', "$date1,$date2");
+		} else if (!empty($date1)){
+			$where['tm'] = array('gt', "$date1");
+		} else if (!empty($date2)){
+			$where['tm'] = array('lt', "$date2");
+		}
+
 		$where['ag'] = array('notlike', '%bot%');
 		$agent = $this->field('ag')->where($where)->select();
 		$data = get_br_count($agent, $browserShow);

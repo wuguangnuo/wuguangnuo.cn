@@ -33,7 +33,7 @@ class VistorController extends AdminController {
 			$where['tm'] = array('gt',"$date1");
 		} else if (!empty($date2)){
 			$where['tm'] = array('lt',"$date2");
-		}		
+		}
 		switch ($check){
 		case 'bot':
 			$where['ag'] = array('like',array('%spider%','%bot%'),'OR');
@@ -63,7 +63,18 @@ class VistorController extends AdminController {
 		$this->ajaxReturn($data);
 	}
 	
-	public function loadChart($type = 'vistor') {
+	public function loadChart($type = 'vistor', $date1 = null, $date2 = null) {
+		if(!empty($date1) && !empty($date2) && ($date1 > $date2)){
+			$date1 = $date1 ^ $date2;
+			$date2 = $date1 ^ $date2;
+			$date1 = $date1 ^ $date2;
+		}
+		$titleSubtext = C('WUGN.WEB_SITE') . '  ' . str_replace('-', '/', $date1) . '-' . str_replace('-', '/', $date2);
+		if(!empty($date1)) $date1 .= ' 00:00:00';
+		if(!empty($date2)) $date2 .= ' 23:59:59';
+		$date['date1'] = $date1;
+		$date['date2'] = $date2;
+
 		$Vistor = D('vistor');
 		$Dic = D('dictionary');
 
@@ -99,7 +110,7 @@ class VistorController extends AdminController {
 			array_push($data['series'], array('name' => '其他流量', 'type' => 'line', 'data' => $countGroupDate));
 			break;
 		case 'link':
-			$data['title'] = array('left' => '5%', 'text' => '受访页面统计图', 'subtext' => C('WUGN.WEB_SITE'));
+			$data['title'] = array('left' => '5%', 'text' => '受访页面统计图', 'subtext' =>$titleSubtext);
 			$data['tooltip'] = array('trigger' => 'axis', 'axisPointer' => array('type' => 'cross'));
 			$data['legend'] = array('data' => array_values($linkShow));
 			$data['toolbox'] = array('right' => '5%', 'feature' => array('dataView' => array('readOnly' => true), 'magicType' => array('type' => array('line', 'bar')), 'restore' => array(), 'saveAsImage' => array()));
@@ -107,28 +118,28 @@ class VistorController extends AdminController {
 			$data['yAxis'] = array('type' => 'value');
 			$data['series'] = array();
 			foreach($linkShow as $k=>$v){
-				$temp = array_column($Vistor->getCountGroupLink($k), 'num');
+				$temp = array_column($Vistor->getCountGroupLink($k, $date), 'num');
 				array_push($data['series'], array('name' => $v, 'type' => ($k=='all'?'line':'bar'), 'data' => $temp));
 			}
 			break;
 		case 'system':
-			$data['title'] = array('left' => '5%', 'text' => '操作系统统计图', 'subtext' => C('WUGN.WEB_SITE'));
+			$data['title'] = array('left' => '5%', 'text' => '操作系统统计图', 'subtext' => $titleSubtext);
 			$data['tooltip'] = array('trigger' => 'item', 'formatter' => '{a}<br />{b}：{c}({d}%)');
 			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => $systemShow);
 			$data['toolbox'] = array('right' => '5%', 'bottom' => '0', 'feature' => array('dataView' => array('readOnly' => true), 'restore' => array(), 'saveAsImage' => array()));
 			$data['series'] = array('name' => '操作系统', 'type' => 'pie', 'itemStyle' => array('emphasis' => array('shadowBlur' => '10', 'shadowOffsetX' => '0', 'shadowColor' => 'rgba(0, 0, 0, 0.5)')), 'data' => array());
-			foreach($Vistor->getSystemCount($systemShow) as $k=>$v){
+			foreach($Vistor->getSystemCount($systemShow, $date) as $k=>$v){
 				array_push($data['series']['data'], array('value' => $v, 'name' => $k));
 			}
 			break;
 		case 'browser':
 			$countGroupBrowser = 0;//临时存放数据，计算其余类型
-			$data['title'] = array('left' => '5%', 'text' => '用户客户端统计图', 'subtext' => C('WUGN.WEB_SITE'));
+			$data['title'] = array('left' => '5%', 'text' => '用户客户端统计图', 'subtext' => $titleSubtext);
 			$data['tooltip'] = array('trigger' => 'item', 'formatter' => '{a}<br />{b}：{c}({d}%)');
 			$data['legend'] = array('orient' => 'vertical', 'right' => '5%', 'data' => $browserShow);
 			$data['toolbox'] = array('right' => '5%', 'bottom' => '0', 'feature' => array('dataView' => array('readOnly' => true), 'restore' => array(), 'saveAsImage' => array()));
 			$data['series'] = array('name' => '客户端', 'type' => 'pie', 'itemStyle' => array('emphasis' => array('shadowBlur' => '10', 'shadowOffsetX' => '0', 'shadowColor' => 'rgba(0, 0, 0, 0.5)')), 'data' => array());
-			foreach($Vistor->getBrowserCount($browserShow) as $k=>$v){
+			foreach($Vistor->getBrowserCount($browserShow, $date) as $k=>$v){
 				array_push($data['series']['data'], array('value' => $v, 'name' => $k));
 			}
 			break;
