@@ -13,8 +13,8 @@ class BlogModel extends Model {
 	}
 	
 	public function getLastDate() {
-		$data = $this->field('year(post_date),month(post_date),day(post_date)')->order('id desc')->limit(1)->find(); // »ñÈ¡×îºóÒ»Ìì
-		$post_month = $data['month(post_date)']>9?$data['month(post_date)']:'0'.$data['month(post_date)']; // ½«Ğ¡ÓÚ 10 µÄ²¹ 0
+		$data = $this->field('year(post_date),month(post_date),day(post_date)')->order('id desc')->limit(1)->find(); // è·å–æœ€åä¸€å¤©
+		$post_month = $data['month(post_date)']>9?$data['month(post_date)']:'0'.$data['month(post_date)']; // å°†å°äº 10 çš„è¡¥ 0
 		$post_day = $data['day(post_date)']>9?$data['day(post_date)']:'0'.$data['day(post_date)'];
 		$lastDate = $data['year(post_date)'].'-'.$post_month.'-'.$post_day;
 		return $lastDate;
