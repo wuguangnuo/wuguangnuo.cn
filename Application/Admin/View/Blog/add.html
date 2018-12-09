@@ -124,7 +124,7 @@ $(function(){
 				post_title: $("#post_title").val(),
 				post_author: $("#post_author").val(),
 				post_type: $("#post_type").val(),
-				post_content: editor.txt.html(),
+				post_content: isShowDiv ? editor.txt.html() : $("#post_textarea textarea").val(),
 				post_date: $("#post_time").val(),
 				post_from: $("#post_from").val(),
 				post_link: $("#post_link").val()
