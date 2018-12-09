@@ -2,12 +2,12 @@
 
 <block name="style">
 <style type="text/css">
-#post_content {
+#post_content, #post_textarea textarea {
 	border: 1px solid #ccc;
 	margin-left: 6px !important;
 	background-color: #fff;
 	height: 196px;
-	width: 618px;
+	width: 650px;
 	max-width: 99%
 }
 #post_id,
@@ -25,14 +25,6 @@
 	margin-left: 10px;
 	margin-top: 6px
 }
-#insertImg{
-	padding: 3px 10px!important;
-	z-index: 101;
-}
-#insertImg img{
-	width: 14px;
-	height: 14px;
-}
 </style>
 </block>
 
@@ -42,9 +34,13 @@
 <input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
 <div id="post_content_tool">
-	<div class="w-e-menu" id="insertImg"><img src="__ROOT__/favicon.ico" title="添加图片(仅限标准格式)" /></div>
+	<div class="w-e-menu" style="z-index:101;" id="insertImg"><i class="fa fa-image" aria-hidden="true" title="添加图片(仅限标准格式)"></i></div>
+	<div class="w-e-menu" style="z-index:101;" id="codeEdit"><i class="fa fa-code" aria-hidden="true" title="编辑源码"></i></div>
 </div>
 <div id="post_content"></div>
+<div id="post_textarea">
+	<textarea></textarea>
+</div>
 <input type="text" class="form-control" id="post_time" name="post_time" value="{$lastDate} 12:30:00">
 <input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
 <input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
@@ -96,10 +92,29 @@
 </script>
 <script>
 $(function(){
-	var imgNO = 1;
+	var imgNO = 1, isShowDiv = true,
+	showTextdiv = function(){
+		$("#post_content").show();
+		$("#post_textarea").hide();
+		editor.txt.html($("#post_textarea textarea").val());
+		isShowDiv = true;
+	}, showTextarea = function(){
+		$("#post_content").hide();
+		$("#post_textarea").show();
+		$("#post_textarea textarea").val(editor.txt.html());
+		isShowDiv = false;
+	};
+	showTextdiv();
 	$("#insertImg").click(function(){
 		editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.jpg" style="max-width:100%;">');
 		imgNO++;
+	});
+	$("#codeEdit").click(function(){
+		if(isShowDiv){
+			showTextarea();
+		}else{
+			showTextdiv();
+		}
 	});
 
 	$('#submit').click(function(){
