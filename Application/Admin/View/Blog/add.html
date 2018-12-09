@@ -42,7 +42,7 @@
 <input type="text" class="form-control" id="post_author" name="post_author" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" placeholder="类型" />
 <div id="post_content_tool">
-	<div class="w-e-menu" id="insertImg"><img src="__ROOT__/favicon.ico" title="添加图片" /></div>
+	<div class="w-e-menu" id="insertImg"><img src="__ROOT__/favicon.ico" title="添加图片(仅限标准格式)" /></div>
 </div>
 <div id="post_content"></div>
 <input type="text" class="form-control" id="post_time" name="post_time" value="{$lastDate} 12:30:00">
@@ -96,13 +96,10 @@
 </script>
 <script>
 $(function(){
-	var id = {$nextID};
-		imgNO = 1;
+	var imgNO = 1;
 	$("#insertImg").click(function(){
-	
-		editor.cmd.do('insertHTML', '<img src="https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/blog/{$nextID}/1.jpg" style="max-width:100%;">');
-
-		id++;
+		editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.jpg" style="max-width:100%;">');
+		imgNO++;
 	});
 
 	$('#submit').click(function(){
