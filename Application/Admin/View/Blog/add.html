@@ -2,7 +2,8 @@
 
 <block name="style">
 <style type="text/css">
-#post_content, #post_textarea textarea {
+#post_content,
+#post_textarea textarea {
 	border: 1px solid #ccc;
 	margin-left: 6px !important;
 	background-color: #fff;
@@ -50,106 +51,84 @@
 <block name="script">
 <load href="{$Think.config.WUGN.CDN}/wangEditor/wangEditor.min.js" />
 <script>
-	laydate.render({
-		elem: '#post_time',
-		type: 'datetime',
-		theme: 'wugn',
-		calendar: true,
-		today: true
-	});
-	
-	var E = window.wangEditor
-	var editor = new E('#post_content_tool', '#post_content')
-	 editor.customConfig.menus = [
-		'head',  // 标题
-		'bold',  // 粗体
-		'italic',  // 斜体
-		'underline',  // 下划线
-		'strikeThrough',  // 删除线
-		'foreColor',  // 文字颜色
-		'backColor',  // 背景颜色
-		'link',  // 插入链接
-		'list',  // 列表
-		'justify',  // 对齐方式
-		'quote',  // 引用
-		'emoticon',  // 表情
-		'image',  // 插入图片
-		'table',  // 表格
-		//'video',  // 插入视频
-		'code',  // 插入代码
-		'undo',  // 撤销
-		'redo'  // 重复
-	]
-	/*editor.customConfig.onchange = function (html) {
-		// html 即变化之后的内容
-		console.log(html)
-	}*/
+(function () {
+	var E = window.wangEditor,
+	imgNO = 1,
+	isShowDiv = true;
+	editor = new E('#post_content_tool', '#post_content');
+	editor.customConfig.menus = ['head', 'bold', 'italic', 'underline', 'strikeThrough', 'foreColor', 'backColor', 'link', 'list', 'justify', 'quote', 'emoticon', 'image', 'table', 'code', 'undo', 'redo'];
 	editor.customConfig.uploadImgShowBase64 = true;
-	//editor.customConfig.showLinkImg = false
-	editor.create()
-	//editor.txt.html('<b>用js添加内容</b><br />')
-	//editor.txt.append('<b>用js追加内容</b>')
-</script>
-<script>
-$(function(){
-	var imgNO = 1, isShowDiv = true,
-	showTextdiv = function(){
-		$("#post_content").show();
-		$("#post_textarea").hide();
-		editor.txt.html($("#post_textarea textarea").val());
-		isShowDiv = true;
-	}, showTextarea = function(){
-		$("#post_content").hide();
-		$("#post_textarea").show();
-		$("#post_textarea textarea").val(editor.txt.html());
-		isShowDiv = false;
-	};
-	showTextdiv();
-	$("#insertImg").click(function(){
-		editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.jpg" style="max-width:100%;">');
-		imgNO++;
-	});
-	$("#codeEdit").click(function(){
-		if(isShowDiv){
-			showTextarea();
-		}else{
-			showTextdiv();
-		}
-	});
 
-	$('#submit').click(function(){
-		$.ajax({
-			url: '__APP__/blog/insert',
-			data: {
-				post_title: $("#post_title").val(),
-				post_author: $("#post_author").val(),
-				post_type: $("#post_type").val(),
-				post_content: isShowDiv ? editor.txt.html() : $("#post_textarea textarea").val(),
-				post_date: $("#post_time").val(),
-				post_from: $("#post_from").val(),
-				post_link: $("#post_link").val()
-			},
-			type: 'POST',
-			cache: false,
-			dataType: 'JSON',
-			success: function(data) {
-				if(data == '1') {
-					swal({
-						type: 'success',
-						title: '保存成功！',
-						allowEnterKey: false,
-						animation: false,
-						customClass: 'animated jackInTheBox',
-						timer: 2000
-					}).then(
-						function () {
-							window.location.reload();
-						}
-					)
-				} else {
+	var init = function () {
+		initPage();
+		bindEvent();
+		showTextdiv();
+	}, initPage = function () {
+		laydate.render({
+			elem: '#post_time',
+			type: 'datetime',
+			theme: 'wugn',
+			calendar: true,
+			today: true
+		});
+		editor.create();
+	}, bindEvent = function () {
+		$("#insertImg").click(function () {
+			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.jpg" style="max-width:100%;">');
+			imgNO++;
+		});
+		$("#codeEdit").click(function () {
+			if (isShowDiv) {
+				showTextarea();
+			} else {
+				showTextdiv();
+			}
+		});
+		$('#submit').click(function () {
+			$.ajax({
+				url: '__APP__/blog/insert',
+				data: {
+					post_title: $("#post_title").val(),
+					post_author: $("#post_author").val(),
+					post_type: $("#post_type").val(),
+					post_content: isShowDiv ? editor.txt.html() : $("#post_textarea textarea").val(),
+					post_date: $("#post_time").val(),
+					post_from: $("#post_from").val(),
+					post_link: $("#post_link").val()
+				},
+				type: 'POST',
+				cache: false,
+				dataType: 'JSON',
+				success: function (data) {
+					if (data == '1') {
+						swal({
+							type: 'success',
+							title: '保存成功！',
+							allowEnterKey: false,
+							animation: false,
+							customClass: 'animated jackInTheBox',
+							timer: 2000
+						}).then(
+							function () {
+								window.location.reload();
+							}
+						)
+					} else {
+						swal({
+							type: 'error',
+							title: 'AJAX success, but ' + data,
+							allowOutsideClick: false,
+							allowEnterKey: false,
+							confirmButtonText: '确认',
+							animation: false,
+							customClass: 'animated wobble'
+						});
+					}
+				},
+				error: function () {
 					swal({
 						type: 'error',
-						title: 'AJAX success, but ' + data,
+						title: 'AJAX error',
 						allowOutsideClick: false,
 						allowEnterKey: false,
 						confirmButtonText: '确认',
@@ -157,20 +136,23 @@ $(function(){
 						customClass: 'animated wobble'
 					});
 				}
-			},
-			error: function () {
-				swal({
-					type: 'error',
-					title: 'AJAX error',
-					allowOutsideClick: false,
-					allowEnterKey: false,
-					confirmButtonText: '确认',
-					animation: false,
-					customClass: 'animated wobble'
-				});
-			}
+			});
 		});
+	}, showTextdiv = function () {
+		$("#post_content").show();
+		$("#post_textarea").hide();
+		editor.txt.html($("#post_textarea textarea").val());
+		isShowDiv = true;
+	}, showTextarea = function () {
+		$("#post_content").hide();
+		$("#post_textarea").show();
+		$("#post_textarea textarea").val(editor.txt.html());
+		isShowDiv = false;
+	};
+
+	$(function () {
+		init();
 	});
-});
+})();
 </script>
 </block>
