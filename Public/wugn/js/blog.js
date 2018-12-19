@@ -2,7 +2,6 @@ $(function(){
 	//初始化
 	$("#gotop").hide();//小火箭默认隐藏
 	$("#gotop2").hide();//小火箭二号
-	$("#replyImg").hide();//图片放大
 	
 	$("#signup").click(function(){
 		swal({
