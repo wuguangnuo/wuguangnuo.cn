@@ -4,6 +4,11 @@ use Think\Model;
 
 class BlogModel extends Model {
 	
+	public function getBlogById($id) {
+		$where['id'] = array('eq', $id); 
+		return $this->field(true)->where($where)->find();
+	}
+
 	public function getLast() {
 		return $this->field(true)->order('id desc')->limit(1)->find();
 	}

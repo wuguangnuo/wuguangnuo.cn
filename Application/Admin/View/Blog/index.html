@@ -1,5 +1,38 @@
 <extend name="Public:main" />
 
 <block name="container">
-<a href='./add'>add</a><br /><a href='./read'>read</a>
+ID:<input id="blogId" type="text" maxlength="4" style="width: 50px;"/><br />
+<a href='./add'>add</a><br />
+<a id="read" href='./read'>read</a><br />
+<a id="edit" href='./edit'>edit</a>
+</block>
+
+<block name="script">
+<script>
+(function () {
+    var init = function(){
+        initPage();
+        bindEvent();
+    }, initPage = function(){
+        bindHref();
+    }, bindEvent = function(){
+        $("#blogId").change(function(){
+            bindHref();
+        })
+    }, bindHref = function(){
+        var id = $("#blogId").val();
+        if(id){
+            $("#read").attr("href", "./read/id/" + id);
+            $("#edit").attr("href", "./edit/id/" + id);
+        } else {
+            $("#read").attr("href", "./read");
+            $("#edit").attr("href", "./edit");
+        }
+	};
+
+    $(function () {
+        init();
+    });
+})();
+</script>
 </block>

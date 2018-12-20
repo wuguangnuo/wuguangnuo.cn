@@ -15,7 +15,7 @@
 #post_title,
 #post_author,
 #post_type,
-#post_time,
+#post_date,
 #post_from,
 #post_link {
 	width: 300px;
@@ -39,10 +39,10 @@
 	<div class="w-e-menu" style="z-index:101;" id="codeEdit"><i class="fa fa-code" aria-hidden="true" title="编辑源码"></i></div>
 </div>
 <div id="post_content"></div>
-<div id="post_textarea">
+<div id="post_textarea" style="display: none">
 	<textarea></textarea>
 </div>
-<input type="text" class="form-control" id="post_time" name="post_time" value="{$lastDate} 12:30:00">
+<input type="text" class="form-control" id="post_date" name="post_date" value="{$lastDate} 12:30:00">
 <input type="text" class="form-control" id="post_from" name="post_from" placeholder="来源" />
 <input type="text" class="form-control" id="post_link" name="post_link" placeholder="原链" />
 <input type="button" class="btn btn-sm btn-success" id="submit" value="提交">
@@ -65,7 +65,7 @@
 		showTextdiv();
 	}, initPage = function () {
 		laydate.render({
-			elem: '#post_time',
+			elem: '#post_date',
 			type: 'datetime',
 			theme: 'wugn',
 			calendar: true,
@@ -92,7 +92,7 @@
 					post_author: $("#post_author").val(),
 					post_type: $("#post_type").val(),
 					post_content: isShowDiv ? editor.txt.html() : $("#post_textarea textarea").val(),
-					post_date: $("#post_time").val(),
+					post_date: $("#post_date").val(),
 					post_from: $("#post_from").val(),
 					post_link: $("#post_link").val()
 				},
