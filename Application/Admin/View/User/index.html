@@ -1,7 +1,7 @@
 <extend name="Public:main" />
 
 <block name="container">
-<form id="user_pwd_form" class="form-horizontal" method="post" action="" role="form">
+<form id="modifyPwd_form" class="form-horizontal" method="post" action="" role="form">
 	<div class="form-group">
 		<label class="col-md-2 col-sm-2 control-label" for="username">登录名</label>
 		<div class="col-md-4 col-sm-6">
@@ -11,25 +11,25 @@
 	<div class="form-group">
 		<label class="col-md-2 col-sm-2 control-label" for="old_password">原始密码</label>
 		<div class="col-md-4 col-sm-6">
-			<input type="password" class="form-control" id="old_password" name="old_password" placeholder="请输入原密码" />
+			<input type="password" class="form-control" id="old_password" name="old_password" placeholder="请输入原密码" maxlength="32" />
 		</div>
 	</div> 
 	<div class="form-group">
 		<label class="col-md-2 col-sm-2 control-label" for="password">新密码</label>
 		<div class="col-md-4 col-sm-6">
-			<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码" />
+			<input type="password" class="form-control" id="password" name="password" placeholder="请输入新密码" maxlength="32" />
 		</div>
 	</div> 
 	<div class="form-group">
 		<label class="col-md-2 col-sm-2 control-label" for="password2">确认密码</label>
 		<div class="col-md-4 col-sm-6">
-			<input type="password" class="form-control" id="password2" name="password2" placeholder="请重复新密码" />
+			<input type="password" class="form-control" id="password2" name="password2" placeholder="请重复新密码" maxlength="32" />
 		</div>
 	</div> 
 	<div class="form-actions">
 		<div class="col-md-2 col-sm-2"></div>
-		<a class="btn btn-sm btn-primary" id="submit">提交</a>
-		<a href="#" class="btn btn-sm btn-default">返回</a>
+		<button type="submit" class="btn btn-sm btn-primary">提交</button>
+		<a href="javascript:history.back(-1)" class="btn btn-sm btn-default">返回</a>
 	</div>
 </form>
 </block>
@@ -38,16 +38,14 @@
 <script>
 $(".subnavbar .mainnav li").removeClass("active");
 $(".subnavbar .mainnav li").eq(2).addClass("active");
-$("#submit").click(function(){
-	swal({
-		type: 'error',
-		title: '该功能暂未开放',
-		allowOutsideClick: false,
-		allowEnterKey: false,
-		confirmButtonText: '确认',
-		animation: false,
-		customClass: 'animated wobble'
-	});
+
+$('#modifyPwd_form').validate({
+	errorElement:'span',
+	rules:{
+		old_password:{required:true},
+		password:{required:true},
+		password2:{required:true, equalTo:'#password'}
+	}
 });
 </script>
 </block>

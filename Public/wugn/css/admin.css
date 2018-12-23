@@ -334,16 +334,25 @@ hr{
 #register_form .form-group{
   width:300px;
   height:40px;
+}
+#login_form .form-group,
+#register_form .form-group,
+#modifyPwd_form .form-group{
   position:relative;
   z-index:1
 }
 #login_form .form-group span,
-#register_form .form-group span{
+#register_form .form-group span,
+#modifyPwd_form .form-group span{
   font-size:12px;
+  color:#888;
   position:absolute;
   z-index:9;
-  top:8px;
+  top:9px;
   right:5px
+}
+#modifyPwd_form .form-group span{
+  right:25px
 }
 input.error, textarea.error {
   border:2px solid #f30;
