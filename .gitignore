@@ -3,3 +3,4 @@ Runtime/
 vendor/
 *.dat
 *.lock
+.vscode
