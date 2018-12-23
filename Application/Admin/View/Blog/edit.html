@@ -1,0 +1,158 @@
+<extend name="Public:main" />
+
+<block name="style">
+<style type="text/css">
+#post_content,
+#post_textarea textarea {
+	border: 1px solid #ccc;
+	margin-left: 6px !important;
+	background-color: #fff;
+	height: 196px;
+	width: 650px;
+	max-width: 99%
+}
+#post_id,
+#post_title,
+#post_author,
+#post_type,
+#post_date,
+#post_from,
+#post_link {
+	width: 300px;
+	margin-left: 10px;
+	margin-top: 6px
+}
+#submit {
+	margin-left: 10px;
+	margin-top: 6px
+}
+</style>
+</block>
+
+<block name="container">
+<input type="text" class="form-control" id="post_id" value="Bolg-ID：{$data.id}" disabled />
+<input type="text" class="form-control" id="post_title" name="post_title" value="{$data.post_title}" placeholder="标题" />
+<input type="text" class="form-control" id="post_author" name="post_author" value="{$data.post_author}" placeholder="作者" />
+<input type="text" class="form-control" id="post_type" name="post_type" value="{$data.post_type}" placeholder="类型" />
+<div id="post_content_tool">
+	<div class="w-e-menu" style="z-index:101;" id="codeEdit"><i class="fa fa-code" aria-hidden="true" title="编辑源码"></i></div>
+</div>
+<div id="post_content"></div>
+<div id="post_textarea" style="display: none">
+	<textarea>{$data.post_content}</textarea>
+</div>
+<input type="text" class="form-control" id="post_date" name="post_date" value="{$data.post_date}">
+<input type="text" class="form-control" id="post_from" name="post_from" value="{$data.post_from}" placeholder="来源" />
+<input type="text" class="form-control" id="post_link" name="post_link" value="{$data.post_link}" placeholder="原链" />
+<input type="button" class="btn btn-sm btn-success" id="submit" value="提交">
+</block>
+
+<block name="script">
+<load href="{$Think.config.WUGN.CDN}/wangEditor/wangEditor.min.js" />
+<script>
+(function () {
+	var E = window.wangEditor,
+	imgNO = 1,
+	isShowDiv = true;
+	editor = new E('#post_content_tool', '#post_content');
+	editor.customConfig.menus = ['head', 'bold', 'italic', 'underline', 'strikeThrough', 'foreColor', 'backColor', 'link', 'list', 'justify', 'quote', 'emoticon', 'image', 'table', 'code', 'undo', 'redo'];
+	editor.customConfig.uploadImgShowBase64 = true;
+
+	var init = function () {
+		initPage();
+		bindEvent();
+		showTextdiv();
+	}, initPage = function () {
+		laydate.render({
+			elem: '#post_date',
+			type: 'datetime',
+			theme: 'wugn',
+			calendar: true,
+			today: true
+		});
+		editor.create();
+	}, bindEvent = function () {
+		$("#insertImg").click(function () {
+			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.png" style="max-width:100%;">');
+			imgNO++;
+		});
+		$("#codeEdit").click(function () {
+			if (isShowDiv) {
+				showTextarea();
+			} else {
+				showTextdiv();
+			}
+		});
+		$('#submit').click(function () {
+			$.ajax({
+				url: '__APP__/blog/update',
+				data: {
+					id : '{$data.id}',
+					post_title: $("#post_title").val(),
+					post_author: $("#post_author").val(),
+					post_type: $("#post_type").val(),
+					post_content: isShowDiv ? editor.txt.html() : $("#post_textarea textarea").val(),
+					post_date: $("#post_date").val(),
+					post_from: $("#post_from").val(),
+					post_link: $("#post_link").val()
+				},
+				type: 'POST',
+				cache: false,
+				dataType: 'JSON',
+				success: function (data) {
+					if (data == '1') {
+						swal({
+							type: 'success',
+							title: '保存成功！',
+							allowEnterKey: false,
+							animation: false,
+							customClass: 'animated jackInTheBox',
+							timer: 2000
+						}).then(
+							function () {
+								window.location.reload();
+							}
+						)
+					} else {
+						swal({
+							type: 'error',
+							title: 'AJAX success, but ' + data,
+							allowOutsideClick: false,
+							allowEnterKey: false,
+							confirmButtonText: '确认',
+							animation: false,
+							customClass: 'animated wobble'
+						});
+					}
+				},
+				error: function () {
+					swal({
+						type: 'error',
+						title: 'AJAX error',
+						allowOutsideClick: false,
+						allowEnterKey: false,
+						confirmButtonText: '确认',
+						animation: false,
+						customClass: 'animated wobble'
+					});
+				}
+			});
+		});
+	}, showTextdiv = function () {
+		$("#post_content").show();
+		$("#post_textarea").hide();
+		editor.txt.html($("#post_textarea textarea").val());
+		isShowDiv = true;
+	}, showTextarea = function () {
+		$("#post_content").hide();
+		$("#post_textarea").show();
+		$("#post_textarea textarea").val(editor.txt.html());
+		isShowDiv = false;
+	};
+
+	$(function () {
+		init();
+	});
+})();
+</script>
+</block>
