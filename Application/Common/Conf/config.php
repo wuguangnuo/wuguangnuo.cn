@@ -14,7 +14,8 @@ return array(
         'WEB_DESCRIPTION' => 'My Blog Site Source Code. 这是我的个人网站 wuguangnuo.cn 第三代源代码。基于thinkPHP框架', // 网站描述
         'WEB_KEYWORDS'    => 'Information Technology, Science, Education, JAVA, Git, HTML, JavaScript, Maven, PHP, Python, SQL', // 网站关键词
         'COS'             => 'https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com', // COS 对象存储
-        'CDN'             => 'https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/cdn/wugn', // CDN 对象存储
+        'CDN'             => __ROOT__ . '/Public/wugn' // 本地库
+     // 'CDN'             => 'https://wuguangnuo-1257896087.cos.ap-guangzhou.myqcloud.com/cdn/wugn', // CDN 对象存储
     ),
 
     // 数据库
