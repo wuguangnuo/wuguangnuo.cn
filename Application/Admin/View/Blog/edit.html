@@ -35,6 +35,7 @@
 <input type="text" class="form-control" id="post_author" name="post_author" value="{$data.post_author}" placeholder="作者" />
 <input type="text" class="form-control" id="post_type" name="post_type" value="{$data.post_type}" placeholder="类型" />
 <div id="post_content_tool">
+	<div class="w-e-menu" style="z-index:101;" id="insertImg"><i class="fa fa-image" aria-hidden="true" title="添加图片(仅限标准格式)"></i></div>
 	<div class="w-e-menu" style="z-index:101;" id="codeEdit"><i class="fa fa-code" aria-hidden="true" title="编辑源码"></i></div>
 </div>
 <div id="post_content"></div>
@@ -73,7 +74,7 @@
 		editor.create();
 	}, bindEvent = function () {
 		$("#insertImg").click(function () {
-			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.png" style="max-width:100%;">');
+			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$data.id}/' + imgNO + '.png" style="max-width:100%;">');
 			imgNO++;
 		});
 		$("#codeEdit").click(function () {
