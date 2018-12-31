@@ -9,6 +9,11 @@ class BlogController extends BlogsideController {
     }
 	
 	public function loadTable($q = null, $t = null) {
+		$encode = mb_detect_encoding($q, array("ASCII", "UTF-8", "GB2312", "GBK", "BIG5")); 
+		if($encode == "GB2312" || $encode == "EUC-CN"){
+			$q = mb_convert_encoding($q, "utf-8", $encode);
+		}
+
 		$Blog = M('blog');
 		if(empty($q) && !empty($t)) {
 			//按标签查询
