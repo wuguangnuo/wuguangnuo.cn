@@ -1,5 +1,7 @@
 <?php
-//名字过长截断
+/**
+ * 名字过长截断
+ */
 function cut_str($str, $len, $tail=false){
 	$str = strip_tags($str);
 	if(mb_strlen($str, 'utf-8') > $len){
@@ -37,5 +39,18 @@ function srcToOriginal($content = ''){
 	$pregRule = "/<[img|IMG].*?src=[\'|\"](.*?(?:[\.jpg|\.jpeg|\.png|\.gif|\.bmp|\.webp]))[\'|\"].*?[\/]?>/";
 	$content = preg_replace($pregRule, '<img data-original="${1}">', $content);
 	return $content;
+}
+
+/**
+ * 转码 UTF-8
+ */
+function characet($data){
+	if(!empty($data)){
+		$encode = mb_detect_encoding($data, array('ASCII', 'UTF-8', 'GB2312', 'GBK', 'LATIN1', 'BIG5')) ;
+		if($encode != 'UTF-8'){
+			$data = mb_convert_encoding($data ,'utf-8' , $encode);
+		}
+	}
+	return $data;
 }
 ?>
