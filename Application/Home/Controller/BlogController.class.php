@@ -61,4 +61,16 @@ class BlogController extends BlogsideController {
 		$this->flippage = $flippage;
 		$this->display();
 	}
+	
+	public function loadBlog($id = null) {
+		$Blog = D('blog');
+		$result = null;
+		if($id) {
+			$result['data'] = $Blog->getBlogById($id);
+		} else {
+			$result['data'] = $Blog->getLast();
+		}
+		$result['flippage'] = $Blog->getFlippage($id);
+		$this->ajaxReturn($result); 
+	}
 }
