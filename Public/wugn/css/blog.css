@@ -111,8 +111,13 @@ a {
   z-index:-1;
   background:url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAMAAAADCAYAAABWKLW/AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAABFJREFUeNpiYEAAY9wMgAADAArpAJouO8D9AAAAAElFTkSuQmCC) repeat;
 }
+.navbar-brand{
+  font-family: 'Courier New';
+  font-weight: 700;
+  font-size: 2.5rem;
+}
 .postTitle{
-  margin-top:50px;
+  margin-top:54px;
   padding:2px;
   font-family:"Microsoft YaHei",SimSun
 }
