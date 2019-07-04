@@ -161,6 +161,9 @@ a {
   font-weight:900;
   text-decoration:none
 }
+.postCon ul, .postCon ol{
+  padding-left:20px
+}
 .post_msg{
   color:#622;
   font-size:16px;
@@ -182,7 +185,8 @@ a {
   border-left:6px solid #ccc;
   border-radius:4px;
   background:#eee;
-  overflow:auto
+  overflow:auto;
+  font-family:"Courier New",KaiTi,"Microsoft YaHei",SimSun
 }
 .post-content pre code{
   white-space:pre
