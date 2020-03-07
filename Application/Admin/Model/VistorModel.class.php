@@ -4,9 +4,10 @@ use Think\Model;
 
 class VistorModel extends Model {
 	public function getCountGroupDate($type){
+		// 2020.03.07 修改sql,调整查询过慢的情况,改为最近90天
 		$sql = "SELECT DATE(dday) AS ddate, COUNT(*) - 1 AS num
 				FROM(
-				SELECT datelist AS dday FROM wu_calendar WHERE DATE(datelist) BETWEEN '2018-08-12' AND CURDATE()
+				SELECT datelist AS dday FROM wu_calendar WHERE DATE(datelist) BETWEEN DATE_SUB(CURDATE(), INTERVAL 90 DAY) AND CURDATE()
 				UNION ALL
 				SELECT tm FROM wu_vistor WHERE (";
 		switch ($type){
@@ -22,7 +23,7 @@ class VistorModel extends Model {
 		default:
 			$sql .= "(ag LIKE '%spider%' OR ag LIKE '%bot%') AND ag LIKE '%{$type}%'";
 		}
-		$sql .= ") AND (DATE(tm) BETWEEN '2018-08-12' AND CURDATE())
+		$sql .= ") AND (DATE(tm) BETWEEN DATE_SUB(CURDATE(), INTERVAL 90 DAY) AND CURDATE())
 				)T GROUP BY ddate ORDER BY ddate";
 		return $this->query($sql);
 	}
