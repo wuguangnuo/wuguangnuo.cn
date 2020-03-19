@@ -29,14 +29,10 @@ class ToolController extends VistorController {
 	public function _empty($name){
 		$fileName = 'Application/Home/View/Tool/'.$name;
 		if(is_dir($fileName)){
-			$this->showApp($name);
+			$this->assign('link', __ROOT__."/Application/Home/View/Tool/".$name);
 		}else{
-			$this->error("资源不存在");
+			$this->assign('link', C('WUGN.COSWEB')."/cdn/tool/".$name);
 		}
-	}
-	
-	public function showApp($name){
-		$this->assign('link', __ROOT__."/Application/Home/View/Tool/".$name);
 		$this->display('./Application/Home/View/Public/showApp.html');
 	}
 }

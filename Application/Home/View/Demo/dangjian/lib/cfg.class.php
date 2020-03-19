@@ -1,10 +1,10 @@
 <?php
 
 //配置数据库
-$cfg["dbhost"]	=	"118.184.51.51:3306";	//数据库主机
-$cfg["dbuser"]	=	"a0225165252";			//数据库用户名
-$cfg["dbpass"]	=	"wuguangnuo";			//数据库密码
-$cfg["dbname"]	=	"a0225165252";			//数据库名
+$cfg["dbhost"]	=	"127.0.0.1:3306";	//数据库主机
+$cfg["dbuser"]	=	"wgn";				//数据库用户名
+$cfg["dbpass"]	=	"wgn_9112";			//数据库密码
+$cfg["dbname"]	=	"soooo";			//数据库名
 
 //配置邮箱
 $cfg["smtpserver"]		=	"smtp.mxhichina.com";		//SMTP服务器

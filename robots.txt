@@ -1,5 +1,5 @@
 # robots.txt generated
 User-agent: *
 Crawl-delay: 600
-Sitemap: http://www.wuguangnuo.cn/sitemap.xml
+Sitemap: https://www.wuguangnuo.cn/sitemap.xml
 # Disallow: /Application/Admin/

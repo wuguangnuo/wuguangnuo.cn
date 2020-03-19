@@ -29,14 +29,10 @@ class DemoController extends VistorController {
 	public function _empty($name){
 		$fileName = 'Application/Home/View/Demo/'.$name;
 		if(is_dir($fileName)){
-			$this->showApp($name);
+			$this->assign('link', __ROOT__."/Application/Home/View/Demo/".$name);
 		}else{
-			$this->error("资源不存在");
+			$this->assign('link', C('WUGN.COSWEB')."/cdn/demo/".$name);
 		}
-	}
-	
-	public function showApp($name){
-		$this->assign('link', __ROOT__."/Application/Home/View/Demo/".$name);
 		$this->display('./Application/Home/View/Public/showApp.html');
 	}
 }

@@ -6,21 +6,21 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <meta name="apple-mobile-web-app-capable" content="yes">
 
-<script src="cdn/jquery.min.js"></script>
-<link href="cdn/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet">
-<link href="cdn/bootstrap-3.3.7/css/bootstrap.min.css" rel="stylesheet">
-<link href="cdn/bootstrap-datepicker-1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet">
-<link href="cdn/highlight.js-9.12.0/styles/monokai-sublime.css" rel="stylesheet">
-<link href="cdn/sweetalert-1.1.3/sweetalert.min.css" rel="stylesheet">
+<script src="https://cdn.bootcss.com/jquery/1.12.4/jquery.min.js"></script>
+<link href="https://cdn.bootcss.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/css/bootstrap-datepicker.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/highlight.js/9.12.0/styles/monokai-sublime.min.css" rel="stylesheet">
+<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
 <link href="css/style.css" rel="stylesheet">
 
-<script src="cdn/bootstrap-3.3.7/js/bootstrap.min.js"></script>
-<script src="cdn/bootstrap-datepicker-1.7.1/js/bootstrap-datepicker.min.js"></script>
-<script src="cdn/bootstrap-datepicker-1.7.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
+<script src="https://cdn.bootcss.com/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdn.bootcss.com/bootstrap-datepicker/1.7.1/locales/bootstrap-datepicker.zh-CN.min.js"></script>
 <script src="cdn/jquery-validation-1.17.0/jquery.validate.min.js"></script>
 <script src="cdn/jquery-validation-1.17.0/localization/messages_zh.js"></script>
-<script src="cdn/highlight.js-9.12.0/highlight.min.js"></script>
-<script src="cdn/sweetalert-1.1.3/sweetalert.min.js"></script>
+<script src="https://cdn.bootcss.com/highlight.js/9.12.0/highlight.min.js"></script>
+<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
 <script src="js/jquery.fcup.js"></script>
 <script src="js/functions.js"></script>
 
