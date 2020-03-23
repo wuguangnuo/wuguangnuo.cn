@@ -94,12 +94,13 @@
 		var myChart = echarts.init($("#vistorChart")[0]);
 		myChart.showLoading();
 		$.ajax({
-			url: '__APP__/Vistor/loadChart',
-			data: {
+			url: 'https://api.wuguangnuo.cn/home/vistorChart',
+			data: JSON.stringify({
 				type: type,
 				date1: $("#date1").val(),
 				date2: $("#date2").val()
-			},
+			}),
+			headers:{'Content-Type':'application/json;charset=utf8'},
 			type: 'POST',
 			cache: false,
 			dataType: 'JSON',
@@ -107,7 +108,7 @@
 			complete: function(){}
 		}).done(function(data){
 			myChart.hideLoading();
-			myChart.setOption(data);
+			myChart.setOption(JSON.parse(data.data));
 		}).fail(function(){
 				swal({
 				type: 'error',
