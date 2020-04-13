@@ -50,8 +50,8 @@ class BlogController extends BlogsideController {
 		$Blog = D('blog');
 		$data = $Blog->find($id);
 		if($data) {
-			$data['post_content'] = srcToOriginal($data['post_content']);
-			$this->data = $data;
+			// $data['post_content'] = srcToOriginal($data['post_content']);
+			// $this->data = $data;
 		} else {
 			$this->error('没找到');
 		}
@@ -71,6 +71,7 @@ class BlogController extends BlogsideController {
 			$result['data'] = $Blog->getLast();
 		}
 		$result['flippage'] = $Blog->getFlippage($id);
+		$result['data']['post_content'] = srcToOriginal($result['data']['post_content']);
 		$this->ajaxReturn($result); 
 	}
 }
