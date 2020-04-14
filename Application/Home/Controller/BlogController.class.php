@@ -58,20 +58,22 @@ class BlogController extends BlogsideController {
 		$flippage = $Blog->getFlippage($id);
 		
 		$this->assign('meta_title', $data['post_title']);
+		$this->assign('blog_data', $data);
 		$this->flippage = $flippage;
 		$this->display();
 	}
 	
-	public function loadBlog($id = null) {
-		$Blog = D('blog');
-		$result = null;
-		if($id) {
-			$result['data'] = $Blog->getBlogById($id);
-		} else {
-			$result['data'] = $Blog->getLast();
-		}
-		$result['flippage'] = $Blog->getFlippage($id);
-		$result['data']['post_content'] = srcToOriginal($result['data']['post_content']);
-		$this->ajaxReturn($result); 
-	}
+	// SEO优化，取消接口调用
+	// public function loadBlog($id = null) {
+	// 	$Blog = D('blog');
+	// 	$result = null;
+	// 	if($id) {
+	// 		$result['data'] = $Blog->getBlogById($id);
+	// 	} else {
+	// 		$result['data'] = $Blog->getLast();
+	// 	}
+	// 	$result['flippage'] = $Blog->getFlippage($id);
+	// 	$result['data']['post_content'] = srcToOriginal($result['data']['post_content']);
+	// 	$this->ajaxReturn($result); 
+	// }
 }
