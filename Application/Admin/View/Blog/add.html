@@ -74,7 +74,7 @@
 		editor.create();
 	}, bindEvent = function () {
 		$("#insertImg").click(function () {
-			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/image' + imgNO + '.png" style="max-width:100%;">');
+			editor.cmd.do('insertHTML', '<img src="{$Think.config.WUGN.COS}/blog/{$nextID}/' + imgNO + '.png" style="max-width:100%;">');
 			imgNO++;
 		});
 		$("#codeEdit").click(function () {

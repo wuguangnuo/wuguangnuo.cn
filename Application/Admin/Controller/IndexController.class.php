@@ -8,8 +8,8 @@ class IndexController extends Controller {
 		if($ip > 128*256*256*256){
 			$ip -= 256*256*256*256;
 		}
-
-		$Vistor = M('vistor');
+		
+		$Vistor = M('visitor');
 		$Vistor->create();
 		$Vistor->lk = $_SERVER['PHP_SELF'];
 		$Vistor->ip = $ip;

@@ -45,7 +45,7 @@ class VistorController extends AdminController {
 			$where['ag'] = array('neq','null');
 		}
 		
-		$Vistor = M('vistor');
+		$Vistor = M('visitor');
 		$count = $Vistor->where($where)->count();
 		$p = getpage($count, 20);
 		$list = $Vistor->field(true)->where($where)->order('id desc')->limit($p->firstRow, $p->listRows)->select();
@@ -75,7 +75,7 @@ class VistorController extends AdminController {
 		$date['date1'] = $date1;
 		$date['date2'] = $date2;
 
-		$Vistor = D('vistor');
+		$Vistor = D('visitor');
 		$Dic = D('dictionary');
 
 		$vistorShow = array_column($Dic->getDictionary('vistor_show'), 'code_note', 'code_index');

@@ -9,7 +9,7 @@ class VistorModel extends Model {
 				FROM(
 				SELECT datelist AS dday FROM wu_calendar WHERE DATE(datelist) BETWEEN DATE_SUB(CURDATE(), INTERVAL 90 DAY) AND CURDATE()
 				UNION ALL
-				SELECT tm FROM wu_vistor WHERE (";
+				SELECT tm FROM wu_visitor WHERE (";
 		switch ($type){
 		case 'all':
 			$sql .= "1=1";
